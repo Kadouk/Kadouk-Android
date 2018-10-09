@@ -5,10 +5,21 @@
     android:layout_height="match_parent"
     tools:context="com.kadouk.app.GameFragment">
 
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/main_recycler_list"
+        android:id="@+id/main_recycler_cat1"
         style="@style/recyclerView" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/main_recycler_cat2"
+        style="@style/recyclerView"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="216dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_recycler_cat1"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 
 
 </android.support.constraint.ConstraintLayout>

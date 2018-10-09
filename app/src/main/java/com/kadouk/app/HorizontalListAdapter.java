@@ -1,33 +1,35 @@
 package com.kadouk.app;
 
 /**
- * Created by zoli on 10/09/2018.
+ * Created by zoli on 08/16/2018.
  */
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.kadouk.app.model.Content;
+
+import java.util.List;
 
 public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAdapter.ViewHolder> {
 
-    private ArrayList<String> itemName;
-    private ArrayList<Integer> itemImage;
-    public int lastItemPosition = -1;
+    List<Content> content;
+    Context adapterContext;
 
-
-    public HorizontalListAdapter(Context context, ArrayList<String> itemName, ArrayList<Integer> itemImage) {
+    public HorizontalListAdapter(Context context, List<Content> content) {
         super();
-        Context context1 = context;
-        this.itemName = itemName;
-        this.itemImage = itemImage;
+        adapterContext = context;
+        this.content = content;
     }
 
     @Override
@@ -40,55 +42,55 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") int position) {
-        viewHolder.tvSpecies.setText(itemName.get(position));
-        viewHolder.imgThumbnail.setImageResource(itemImage.get(position));
+        viewHolder.tvSpecies.setText(content.get(position).getName());
+        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/"+content.get(position).getImage();
+        Log.i("LOADPIC",imageUrl + position);
+                //"http://kadouk.com/kadouk/public/api/download/Path/" +itemName.get(position).getImage();
+//"http://kadouk.com/kadouk/public/api/download/Path/" +
+        Glide
+                .with(adapterContext)
+                .load(imageUrl)
+                .apply(new RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true))
+                .into(viewHolder.imgThumbnail);
+                 //viewHolder.imgThumbnail.setImageResource(itemImage.get(position));
 
-        Log.e("adapter",String.valueOf(position));
-
-        viewHolder.setClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int position, boolean isLongClick) {
-                if (isLongClick) {
-                    Log.e("Click","#" + position + " - " + itemName.get(position) + " (Long click)");
-                } else {
-                    Log.e("Click","#" + position + " - " + itemName.get(position));
-                }
-            }
-        });
+        Log.e("adapter", String.valueOf(position));
     }
 
     @Override
     public int getItemCount() {
-        return itemName.size();
+        return content.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgThumbnail;
         TextView tvSpecies;
         private ItemClickListener clickListener;
 
         public ViewHolder(View itemView) {
+
             super(itemView);
             imgThumbnail = itemView.findViewById(R.id.img_thumbnail);
             tvSpecies = itemView.findViewById(R.id.tv_species);
-            itemView.setOnClickListener(this);
-            itemView.setOnLongClickListener(this);
-        }
 
-        public void setClickListener(ItemClickListener itemClickListener) {
-            this.clickListener = itemClickListener;
-        }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        @Override
-        public void onClick(View view) {
-            clickListener.onClick(view, getPosition(), false);
-        }
-
-        @Override
-        public boolean onLongClick(View view) {
-            clickListener.onClick(view, getPosition(), true);
-            return true;
+                    int onClickPosition = getAdapterPosition();
+                    if(onClickPosition != RecyclerView.NO_POSITION){
+//                        Intent intent = new Intent(adapterContext,ProductActivity.class);
+//                        intent.putExtra("Name",content.get(onClickPosition).getName());
+//                        intent.putExtra("Id",content.get(onClickPosition).getId());
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        adapterContext.startActivity(intent);
+//                        Log.i("Click","shomare " + onClickPosition + " - " + content.get(onClickPosition).getName());
+                   }
+                }
+            });
         }
     }
 }
