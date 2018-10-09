@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Kadouk.iml" filepath="$PROJECT_DIR$/Kadouk.iml" />
+      <module fileurl="file://C:\Users\zoli\AndroidStudioProjects\newkadouk\newKadouk\Kadouk.iml" filepath="C:\Users\zoli\AndroidStudioProjects\newkadouk\newKadouk\Kadouk.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/newKadouk.iml" filepath="$PROJECT_DIR$/newKadouk.iml" />
     </modules>
   </component>
 </project>
