@@ -44,17 +44,17 @@ public class GameFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
         getContentCat1();
-        getContentCat2();
+        //getContentCat2();
 
         mRecyclerViewCat1 = view.findViewById(R.id.main_recycler_cat1);
         mRecyclerViewCat1.setHasFixedSize(true);
         mLayoutManagerCat1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerViewCat1.setLayoutManager(mLayoutManagerCat1);
 
-        mRecyclerViewCat2 = view.findViewById(R.id.main_recycler_cat2);
-        mRecyclerViewCat2.setHasFixedSize(true);
-        mLayoutManagerCat2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerViewCat2.setLayoutManager(mLayoutManagerCat2);
+//        mRecyclerViewCat2 = view.findViewById(R.id.main_recycler_cat2);
+//        mRecyclerViewCat2.setHasFixedSize(true);
+//        mLayoutManagerCat2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+//        mRecyclerViewCat2.setLayoutManager(mLayoutManagerCat2);
 
         return view;
     }
