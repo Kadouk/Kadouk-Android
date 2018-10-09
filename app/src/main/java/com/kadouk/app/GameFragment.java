@@ -36,7 +36,7 @@ public class GameFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
 
-        mRecyclerView = view.findViewById(R.id.recycler_view);
+        mRecyclerView = view.findViewById(R.id.main_recycler_list);
 
         preparingList();
         mRecyclerView.setHasFixedSize(true);

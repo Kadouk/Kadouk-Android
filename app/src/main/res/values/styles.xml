@@ -1,6 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -8,7 +7,98 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="toolbar" parent="AppTheme" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:elevation" tools:ignore="NewApi">@dimen/smaller</item>
+    </style>
 
+    <style name="recyclerView" parent="AppTheme" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="button" parent="AppTheme" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="textView" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="editText" parent="AppTheme" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="buttonNext" parent="button">
+        <item name="android:layout_marginBottom">@dimen/normal</item>
+        <item name="android:layout_marginRight">@dimen/normal</item>
+        <item name="android:layout_marginEnd" tools:ignore="DuplicateDefinition,NewApi">@dimen/normal</item>
+        <item name="android:text">@string/next</item>
+    </style>
+
+    <style name="buttonBack" parent="button">
+        <item name="android:layout_marginBottom">@dimen/normal</item>
+        <item name="android:layout_marginLeft">@dimen/normal</item>
+        <item name="android:layout_marginStart" tools:ignore="DuplicateDefinition,NewApi">@dimen/normal</item>
+        <item name="android:text">@string/back</item>
+    </style>
+
+    <style name="buttonTopRight" parent="button">
+        <item name="android:layout_marginRight">@dimen/normal</item>
+        <item name="android:layout_marginEnd" tools:ignore="NewApi">@dimen/normal</item>
+        <item name="android:layout_gravity">right</item>
+    </style>
+
+    <style name="spinner">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="textViewTitle" parent="textView">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/normal</item>
+    </style>
+
+
+    <style name="editTextNumber" parent="editText" >
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="radioButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+
+    </style>
+
+    <style name="radioButtonGender" parent="radioButton">
+        <item name="android:onClick">onGenderItemClicked</item>
+    </style>
+
+    <style name="radioButtonCategory" parent="radioButton">
+        <item name="android:layout_marginRight">@dimen/small</item>
+        <item name="android:layout_marginEnd" tools:ignore="NewApi">@dimen/small</item>
+        <item name="android:layout_marginLeft">@dimen/small</item>
+        <item name="android:layout_marginStart" tools:ignore="NewApi">@dimen/small</item>
+        <item name="android:onClick">onCategoryClicked</item>
+    </style>
+
+
+    <style name="imageView" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/ic_launcher_background</item>
+    </style>
+
+    <style name="imageViewProfile" >
+        <item name="android:layout_width">@dimen/xlarge</item>
+        <item name="android:layout_height">@dimen/xlarge</item>
+        <item name="android:src">@drawable/ic_launcher_background</item>
+    </style>
 
 </resources>

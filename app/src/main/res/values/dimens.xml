@@ -1,25 +1,20 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="activity_width">0dp</dimen>
-    <dimen name="activity_margin_zero">0dp</dimen>
-    <dimen name="card_margin_bottom">0dp</dimen>
-    <dimen name="card_margin_left">5dp</dimen>
-    <dimen name="card_margin_right">5dp</dimen>
-    <dimen name="card_margin_top">9dp</dimen>
-    <dimen name="card_CornerRadius">3dp</dimen>
-    <dimen name="card_elevation">0dp</dimen>
-    <dimen name="item_width">150dp</dimen>
-    <dimen name="item_image_height">150dp</dimen>
-    <dimen name="item_text_height">40dp</dimen>
+
     <dimen name="item_text_size">20sp</dimen>
 
-    <dimen name="margin_btn_signup_top">16dp</dimen>
-    <dimen name="margin_txv_login_left">15dp</dimen>
-    <dimen name="margin_txv_login_top">8dp</dimen>
-    <dimen name="toolbar_elevation">4dp</dimen>
-    <dimen name="category_margin_left">10dp</dimen>
-    <dimen name="category_margin_right">10dp</dimen>
+    <dimen name="screenshots_width">300dp</dimen>
+    <dimen name="signup_layout_height_name_gender">300dp</dimen>
+
+    <dimen name="signup_layout_width">400dp</dimen>
+    <dimen name="signup_layout_height">200dp</dimen>
+
+    <dimen name="zero">0dp</dimen>
+    <dimen name="smaller">4dp</dimen>
+    <dimen name="small">8dp</dimen>
+    <dimen name="normal">16dp</dimen>
+    <dimen name="large">32dp</dimen>
+    <dimen name="xlarge">64dp</dimen>
+
 </resources>
