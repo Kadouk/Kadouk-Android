@@ -25,11 +25,14 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
     List<Content> content;
     Context adapterContext;
+    int appPosition = 0;
+
 
     public HorizontalListAdapter(Context context, List<Content> content) {
         super();
         adapterContext = context;
         this.content = content;
+        Glide.get(context).clearMemory();
     }
 
     @Override
@@ -42,12 +45,14 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") int position) {
-        viewHolder.txvAppName1.setText(content.get(position).getName());
-        viewHolder.txvAppDesc1.setText(content.get(position).getDesc());
-        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/"+content.get(position).getImage();
-        Log.i("LOADPIC",imageUrl + position);
-                //"http://kadouk.com/kadouk/public/api/download/Path/" +itemName.get(position).getImage();
-//"http://kadouk.com/kadouk/public/api/download/Path/" +
+
+        int appPosition = position * 2;
+
+        viewHolder.txvAppName1.setText(content.get(appPosition).getName());
+        viewHolder.txvAppDesc1.setText(content.get(appPosition).getDesc());
+        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/" + content.get(appPosition).getImage();
+        Log.i("LOADPIC", imageUrl + appPosition);
+
         Glide
                 .with(adapterContext)
                 .load(imageUrl)
@@ -56,12 +61,12 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                         .skipMemoryCache(true))
                 .into(viewHolder.imgApp1);
 
-        viewHolder.txvAppName2.setText(content.get(position+1).getName());
-        viewHolder.txvAppDesc2.setText(content.get(position+1).getDesc());
-        String imageUrl2 = "http://kadouk.com/kadouk/public/api/download/image/"+content.get(position+1).getImage();
-        Log.i("LOADPIC",imageUrl + position+1);
-        //"http://kadouk.com/kadouk/public/api/download/Path/" +itemName.get(position).getImage();
-//"http://kadouk.com/kadouk/public/api/download/Path/" +
+        //////////////////////////////////////////////////////////////////////////
+        viewHolder.txvAppName2.setText(content.get(appPosition + 1).getName());
+        viewHolder.txvAppDesc2.setText(content.get(appPosition + 1).getDesc());
+        String imageUrl2 = "http://kadouk.com/kadouk/public/api/download/image/" + content.get(appPosition + 1).getImage();
+        Log.i("LOADPIC", imageUrl + appPosition+1 + "  "+ content.size());
+
         Glide
                 .with(adapterContext)
                 .load(imageUrl2)
@@ -69,14 +74,13 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true))
                 .into(viewHolder.imgApp2);
-                 //viewHolder.imgThumbnail.setImageResource(itemImage.get(position));
 
         Log.e("adapter", String.valueOf(position));
     }
 
     @Override
     public int getItemCount() {
-        return content.size();
+        return content.size()/2;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
