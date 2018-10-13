@@ -16,6 +16,8 @@
     <style name="recyclerView" parent="AppTheme" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/normal</item>
+
     </style>
 
     <style name="button" parent="AppTheme" >
@@ -33,6 +35,30 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">1</item>
         <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="categoryTitleLinearLayout" parent="AppTheme" >
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_weight">0.5</item>
+    </style>
+
+    <style name="openCatTextView" parent="textView">
+        <item name="android:layout_marginTop">@dimen/normal</item>
+        <item name="android:layout_marginEnd" tools:ignore="NewApi">@dimen/small</item>
+        <item name="android:layout_marginRight">@dimen/small</item>
+        <item name="android:layout_marginStart" tools:ignore="NewApi">@dimen/large</item>
+        <item name="android:text">@string/open_category</item>
+    </style>
+
+    <style name="catTextView" parent="textView">
+        <item name="android:layout_marginTop">@dimen/normal</item>
+        <item name="android:layout_marginEnd" tools:ignore="NewApi">@dimen/small</item>
+        <item name="android:layout_marginRight">@dimen/small</item>
+        <item name="android:text">@string/app_category</item>
+        <item name="android:textStyle">bold</item>
+
     </style>
 
     <style name="buttonNext" parent="button">

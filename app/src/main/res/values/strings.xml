@@ -38,6 +38,6 @@
     <string name="app_icon">app_image</string>
     <string name="install_icon">install icon</string>
     <string name="app_category">آموزش و یادگیری</string>
-    <string name="open_category">نمایش همه</string>
+    <string name="open_category">نمایش همه></string>
 
 </resources>

@@ -57,8 +57,7 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                 .with(adapterContext)
                 .load(imageUrl)
                 .apply(new RequestOptions()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(true))
+                        .diskCacheStrategy(DiskCacheStrategy.ALL))
                 .into(viewHolder.imgApp1);
 
         //////////////////////////////////////////////////////////////////////////
@@ -71,8 +70,7 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                 .with(adapterContext)
                 .load(imageUrl2)
                 .apply(new RequestOptions()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(true))
+                        .diskCacheStrategy(DiskCacheStrategy.ALL))
                 .into(viewHolder.imgApp2);
 
         Log.e("adapter", String.valueOf(position));
