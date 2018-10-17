@@ -12,6 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.kadouk.app.model.ContentRespons;
+import com.kadouk.app.webService.APIClient;
+import com.kadouk.app.webService.APIInterface;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     final Fragment fragment1 = new GameFragment();
@@ -32,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
         if (SharedPreferences.getString(FirstRun,null) == null) {
+            sendAPI();
 
             Log.i("token", "token = " + SharedPreferences.getString(FirstRun,null));
             intent = new Intent(MainActivity.this, SignUpActivity.class);
@@ -77,4 +86,32 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    protected int getAPI(){
+        int currentAPI = android.os.Build.VERSION.SDK_INT;
+        Log.i("API", currentAPI + "");
+
+        return currentAPI;
+    }
+
+    private void sendAPI() {
+
+        int API = getAPI();
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<ContentRespons> call = apiInterface.sendAPICode(String.valueOf(API));
+        call.enqueue(new Callback<ContentRespons>() {
+            @Override
+            public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
+                if(response.code() == 200){
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ContentRespons> call, Throwable t) {
+                Log.i("Retro","Fail");
+            }
+        });
+
+    }
 }
