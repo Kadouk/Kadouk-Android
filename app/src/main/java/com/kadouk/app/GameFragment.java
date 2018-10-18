@@ -1,11 +1,7 @@
 package com.kadouk.app;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -14,16 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.kadouk.app.model.CatagoryResponse;
 import com.kadouk.app.model.Content;
-import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,9 +25,14 @@ import retrofit2.Response;
 
 public class GameFragment extends Fragment {
 
-    RecyclerView mRecyclerViewCat1,mRecyclerViewCat2,mRecyclerViewCat3,mRecyclerViewCat4,mRecyclerViewCat5;
-    RecyclerView.LayoutManager mLayoutManagerCat1,mLayoutManagerCat2,mLayoutManagerCat3,mLayoutManagerCat4,mLayoutManagerCat5;
-    RecyclerView.Adapter mAdapterCat1,mAdapterCat2,mAdapterCat3,mAdapterCat4,mAdapterCat5;
+    RecyclerView mRecyclerViewCat1, mRecyclerViewCat2, mRecyclerViewCat3, mRecyclerViewCat4, mRecyclerViewCat5;
+
+    RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3, mLayoutManagerCat4, mLayoutManagerCat5;
+
+    RecyclerView.Adapter mAdapterCat1, mAdapterCat2, mAdapterCat3, mAdapterCat4, mAdapterCat5;
+
+    TextView txv_app_cat1, txv_app_cat2, txv_app_cat3, txv_app_cat4, txv_app_cat5;
+
     List<Content> content;
 
     public GameFragment() {
@@ -87,6 +85,12 @@ public class GameFragment extends Fragment {
         mRecyclerViewCat5.setLayoutManager(mLayoutManagerCat5);
         snapHelperCat5.attachToRecyclerView(mRecyclerViewCat5);
 
+        txv_app_cat1 = view.findViewById(R.id.txv_app_cat1);
+        txv_app_cat2 = view.findViewById(R.id.txv_app_cat2);
+        txv_app_cat3 = view.findViewById(R.id.txv_app_cat3);
+        txv_app_cat4 = view.findViewById(R.id.txv_app_cat4);
+        txv_app_cat5 = view.findViewById(R.id.txv_app_cat5);
+
         return view;
     }
 
@@ -94,13 +98,15 @@ public class GameFragment extends Fragment {
     private void getContentCat1() {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<ContentRespons> call = apiInterface.content();
-        call.enqueue(new Callback<ContentRespons>() {
+        Call<CatagoryResponse> call = apiInterface.getContentByID(1);
+        call.enqueue(new Callback<CatagoryResponse>() {
             @Override
-            public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
+            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
+                //Log.i("test",response.code() + "");
                 if(response.code() == 200){
-
                     content = response.body().getContents();
+                    txv_app_cat1.setText(response.body().getCatName());
+
                     mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(),content));
 //                    for (Content content1 : content){
 //                        contentName.add(String.valueOf(content1.getName()));
@@ -114,7 +120,7 @@ public class GameFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ContentRespons> call, Throwable t) {
+            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
                 Log.i("Retro","Fail");
             }
         });
@@ -124,13 +130,15 @@ public class GameFragment extends Fragment {
     private void getContentCat2() {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<ContentRespons> call = apiInterface.content();
-        call.enqueue(new Callback<ContentRespons>() {
+        Call<CatagoryResponse> call = apiInterface.getContentByID(2);
+        call.enqueue(new Callback<CatagoryResponse>() {
             @Override
-            public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
+            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
                 if(response.code() == 200){
 
                     content = response.body().getContents();
+                    txv_app_cat2.setText(response.body().getCatName());
+
                     mRecyclerViewCat2.setAdapter(new HorizontalListAdapter(getContext(),content));
 //                    for (Content content1 : content){
 //                        contentName.add(String.valueOf(content1.getName()));
@@ -144,7 +152,7 @@ public class GameFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ContentRespons> call, Throwable t) {
+            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
                 Log.i("Retro","Fail");
             }
         });
@@ -154,13 +162,15 @@ public class GameFragment extends Fragment {
     private void getContentCat3() {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<ContentRespons> call = apiInterface.content();
-        call.enqueue(new Callback<ContentRespons>() {
+        Call<CatagoryResponse> call = apiInterface.getContentByID(3);
+        call.enqueue(new Callback<CatagoryResponse>() {
             @Override
-            public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
+            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
                 if(response.code() == 200){
 
                     content = response.body().getContents();
+                    txv_app_cat3.setText(response.body().getCatName());
+
                     mRecyclerViewCat3.setAdapter(new HorizontalListAdapter(getContext(),content));
 //                    for (Content content1 : content){
 //                        contentName.add(String.valueOf(content1.getName()));
@@ -174,7 +184,7 @@ public class GameFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ContentRespons> call, Throwable t) {
+            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
                 Log.i("Retro","Fail");
             }
         });
@@ -184,13 +194,15 @@ public class GameFragment extends Fragment {
     private void getContentCat4() {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<ContentRespons> call = apiInterface.content();
-        call.enqueue(new Callback<ContentRespons>() {
+        Call<CatagoryResponse> call = apiInterface.getContentByID(4);
+        call.enqueue(new Callback<CatagoryResponse>() {
             @Override
-            public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
+            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
                 if(response.code() == 200){
 
                     content = response.body().getContents();
+                    txv_app_cat4.setText(response.body().getCatName());
+
                     mRecyclerViewCat4.setAdapter(new HorizontalListAdapter(getContext(),content));
 //                    for (Content content1 : content){
 //                        contentName.add(String.valueOf(content1.getName()));
@@ -204,7 +216,7 @@ public class GameFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ContentRespons> call, Throwable t) {
+            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
                 Log.i("Retro","Fail");
             }
         });
@@ -214,13 +226,15 @@ public class GameFragment extends Fragment {
     private void getContentCat5() {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<ContentRespons> call = apiInterface.content();
-        call.enqueue(new Callback<ContentRespons>() {
+        Call<CatagoryResponse> call = apiInterface.getContentByID(5);
+        call.enqueue(new Callback<CatagoryResponse>() {
             @Override
-            public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
+            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
                 if(response.code() == 200){
 
                     content = response.body().getContents();
+                    txv_app_cat5.setText(response.body().getCatName());
+
                     mRecyclerViewCat5.setAdapter(new HorizontalListAdapter(getContext(),content));
 //                    for (Content content1 : content){
 //                        contentName.add(String.valueOf(content1.getName()));
@@ -234,7 +248,7 @@ public class GameFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ContentRespons> call, Throwable t) {
+            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
                 Log.i("Retro","Fail");
             }
         });

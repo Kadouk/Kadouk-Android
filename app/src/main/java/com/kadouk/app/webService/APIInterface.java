@@ -1,6 +1,7 @@
 package com.kadouk.app.webService;
 
 
+import com.kadouk.app.model.CatagoryResponse;
 import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.model.Details;
 import com.kadouk.app.model.Response;
@@ -40,5 +41,9 @@ public interface APIInterface{
  @POST ("get/version?version=")
  @FormUrlEncoded
  Call<ContentRespons> sendAPICode (@Field("version") String API) ;
+
+ @POST ("content/show/cat?cat=")
+ @FormUrlEncoded
+ Call<CatagoryResponse> getContentByID (@Field("cat") int ID) ;
 
 }
