@@ -33,7 +33,7 @@ dependencies {
         exclude group: "com.android.support"
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-
+    compile 'com.roughike:bottom-bar:2.3.1'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     testImplementation 'junit:junit:4.12'

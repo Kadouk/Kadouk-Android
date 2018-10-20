@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
@@ -36,7 +37,8 @@ public class GameFragment extends Fragment {
     RecyclerView.LayoutManager mLayoutManagerCat1,mLayoutManagerCat2,mLayoutManagerCat3,mLayoutManagerCat4,mLayoutManagerCat5;
     RecyclerView.Adapter mAdapterCat1,mAdapterCat2,mAdapterCat3,mAdapterCat4,mAdapterCat5;
     List<Content> content;
-
+    final Fragment fragment = new ShowCategoryActivity();
+//    MainActivity main = new MainActivity();
     public GameFragment() {
 
     }
@@ -45,6 +47,22 @@ public class GameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
+
+        Button btn = view.findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                main.fragmentManager.beginTransaction().add(R.id.main_container, fragment, "5").hide(fragment).commit();
+//                main.fragmentManager.beginTransaction().hide(Globals.getActive()).show(fragment).commit();
+                //main.active = fragment;
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.main_container, fragment);
+                fr.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fr.addToBackStack(null);
+                Globals.setActive(fragment);
+                fr.commit();
+            }
+        });
         getContentCat1();
         getContentCat2();
         getContentCat3();
