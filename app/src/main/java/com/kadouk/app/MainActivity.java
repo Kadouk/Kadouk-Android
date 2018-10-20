@@ -24,16 +24,21 @@ import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 public class MainActivity extends FragmentActivity {
     Globals global = new Globals();
 
+    final Fragment fragment1 = new GameFragment();
+    final Fragment fragment2 = new DownloadsFragment();
+    final Fragment fragment3 = new SearchFragment();
+    final Fragment fragment4 = new AccountFragment();
+    Fragment active = fragment1;
+    int fragGameLevel = 1, fragDownloadLevel= 1;
     final Fragment game = new GameFragment(), download = new DownloadsFragment(),
             search = new SearchFragment(), account = new AccountFragment();
-    String FRAGMENT_OTHER = "3";
-    BottomBar bottomBar;
-    public static FragmentManager fragmentManager;
+    String FRAGMENT_OTHER = "other";
+    public BottomBar bottomBar;
+    public FragmentManager fragmentManager;
     BottomBarTab downloadTab;
     Intent intent;
     SharedPreferences SharedPreferences;
     public static final String MyShPref = "MyPrefers", FirstRun = "run";
-    final FragmentManager fragmentManagerr = getSupportFragmentManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +54,11 @@ public class MainActivity extends FragmentActivity {
             startActivity(intent);
         }
         fragmentManager = getSupportFragmentManager();
-//        final Fragment fragment = fragmentManager.findFragmentById(R.id.contentContainer);
-//        if (fragment == null) {
-//
-//            FragmentTransaction ft = fragmentManager.beginTransaction();
-//            ft.add(R.id.contentContainer, new GameFragment());
-//            ft.commit();
-//        }
+
+            fragmentManager.beginTransaction().add(R.id.contentContainer, fragment4, "4").hide(fragment4).commit();
+            fragmentManager.beginTransaction().add(R.id.contentContainer, fragment3, "3").hide(fragment3).commit();
+            fragmentManager.beginTransaction().add(R.id.contentContainer, fragment2, "2").hide(fragment2).commit();
+            fragmentManager.beginTransaction().add(R.id.contentContainer,fragment1, "1").commit();
 
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         downloadTab = bottomBar.getTabWithId(R.id.download);
@@ -63,81 +66,50 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if (tabId == R.id.account) {
-                    Log.i("tabs","1");
-//                    FragmentTransaction ft = fragmentManager.beginTransaction();
-//                    ft.replace(R.id.contentContainer ,new AccountFragment());
-//                    ft.addToBackStack("Main_App");
-//                    ft.commit();
-                    // The tab with id R.id.tab_favorites was selected,
-                    // change your content accordingly.
-                    viewFragment(new AccountFragment(), FRAGMENT_OTHER);
+                    viewFragment(fragment1, FRAGMENT_OTHER);
                     downloadTab.setBadgeCount(5);
                 }
                 if (tabId == R.id.download) {
-//                    FragmentTransaction ft = fragmentManager.beginTransaction();
-//                    ft.replace(R.id.contentContainer ,new SearchFragment());
-//                    ft.addToBackStack("Main_App");
-//                    ft.commit();
-                    viewFragment(new DownloadsFragment(), FRAGMENT_OTHER);
 
+                    viewFragment(fragment2, FRAGMENT_OTHER);
                     Log.i("tabs","2");
-                    // The tab with id R.id.tab_favorites was selected,
-                    // change your content accordingly.
                     downloadTab.removeBadge();
                 }
                 if (tabId == R.id.search) {
                     Log.i("tabs","3");
-                    viewFragment(new SearchFragment(), "");
-
-//                    FragmentTransaction ft = fragmentManager.beginTransaction();
-//                    ft.replace(R.id.contentContainer ,game);
-//                    ft.addToBackStack("Main_App");
-//                    ft.commit();
-                    // The tab with id R.id.tab_favorites was selected,
-                    // change your content accordingly.
+                    viewFragment(fragment3, FRAGMENT_OTHER);
                 }
                 if (tabId == R.id.game) {
                     Log.i("tabs","3");
-                    viewFragment(new GameFragment(), "");
-
-//                    FragmentTransaction ft = fragmentManager.beginTransaction();
-//                    ft.replace(R.id.contentContainer ,game);
-//                    ft.addToBackStack("Main_App");
-//                    ft.commit();
-                    // The tab with id R.id.tab_favorites was selected,
-                    // change your content accordingly.
+                    viewFragment(fragment4, "HOME");
                 }
             }
         });
     }
-    private void viewFragment(Fragment fragment, String name){
-
+    private void viewFragment(final Fragment fragment, String name){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.contentContainer, fragment);
-        // 1. Know how many fragments there are in the stack
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).hide(active).show(fragment).commit();
+        active = fragment;
         final int count = fragmentManager.getBackStackEntryCount();
-        // 2. If the fragment is **not** "home type", save it to the stack
         if( name.equals( FRAGMENT_OTHER) ) {
             fragmentTransaction.addToBackStack(name);
             Log.i("backs", String.valueOf(count));
         }
-        // Commit !
-        fragmentTransaction.commit();
-        // 3. After the commit, if the fragment is not an "home type" the back stack is changed, triggering the
-        // OnBackStackChanged callback
         fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
-                // If the stack decreases it means I clicked the back button
                 if( fragmentManager.getBackStackEntryCount() <= count){
-                    // pop all the fragment and remove the listener
-                    fragmentManager.popBackStack(FRAGMENT_OTHER, POP_BACK_STACK_INCLUSIVE);
+                    fragmentManager.beginTransaction().hide(fragment2).hide(fragment3).hide(fragment4).commit();
+                    fragmentManager.popBackStack("HOME", POP_BACK_STACK_INCLUSIVE);
                     fragmentManager.removeOnBackStackChangedListener(this);
-                    // set the home button selected
-                   // bottomBar.getMenu().getItem(0).setChecked(true);
-                    bottomBar.selectTabAtPosition(2, false);
+                    bottomBar.selectTabAtPosition(0, true);
+                    active = fragment1;
                 }
             }
         });
+    }
+
+    public void addFragmentOnTop(Fragment fragment) {
+        viewFragment(fragment, FRAGMENT_OTHER);
     }
 }

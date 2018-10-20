@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,14 +32,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
+
 public class GameFragment extends Fragment {
 
-    RecyclerView mRecyclerViewCat1,mRecyclerViewCat2,mRecyclerViewCat3,mRecyclerViewCat4,mRecyclerViewCat5;
-    RecyclerView.LayoutManager mLayoutManagerCat1,mLayoutManagerCat2,mLayoutManagerCat3,mLayoutManagerCat4,mLayoutManagerCat5;
-    RecyclerView.Adapter mAdapterCat1,mAdapterCat2,mAdapterCat3,mAdapterCat4,mAdapterCat5;
+    RecyclerView mRecyclerViewCat1, mRecyclerViewCat2, mRecyclerViewCat3, mRecyclerViewCat4, mRecyclerViewCat5;
+    RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3, mLayoutManagerCat4, mLayoutManagerCat5;
+    RecyclerView.Adapter mAdapterCat1, mAdapterCat2, mAdapterCat3, mAdapterCat4, mAdapterCat5;
     List<Content> content;
-    final Fragment fragment = new ShowCategoryActivity();
-//    MainActivity main = new MainActivity();
     public GameFragment() {
 
     }
@@ -55,12 +56,14 @@ public class GameFragment extends Fragment {
 //                main.fragmentManager.beginTransaction().add(R.id.main_container, fragment, "5").hide(fragment).commit();
 //                main.fragmentManager.beginTransaction().hide(Globals.getActive()).show(fragment).commit();
                 //main.active = fragment;
-                FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.main_container, fragment);
-                fr.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                fr.addToBackStack(null);
-                Globals.setActive(fragment);
-                fr.commit();
+//                main.fragmentManager.beginTransaction().add(R.id.contentContainer,fragment, "5").commit();
+//                FragmentTransaction fr = getFragmentManager().beginTransaction();
+//                fr.replace(R.id.contentContainer, fragment);
+//                fr.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                fr.addToBackStack(null);
+//                Globals.setActive(fragment);
+//                fr.commit();
+                ((MainActivity) getActivity()).addFragmentOnTop(new ShowCategoryActivity());
             }
         });
         getContentCat1();
@@ -116,10 +119,10 @@ public class GameFragment extends Fragment {
         call.enqueue(new Callback<ContentRespons>() {
             @Override
             public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
-                if(response.code() == 200){
+                if (response.code() == 200) {
 
                     content = response.body().getContents();
-                    mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(),content));
+                    mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(), content));
 //                    for (Content content1 : content){
 //                        contentName.add(String.valueOf(content1.getName()));
 //                        contentImageUrl.add(String.valueOf(content1.getImage()));
@@ -133,7 +136,7 @@ public class GameFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ContentRespons> call, Throwable t) {
-                Log.i("Retro","Fail");
+                Log.i("Retro", "Fail");
             }
         });
 
@@ -146,10 +149,10 @@ public class GameFragment extends Fragment {
         call.enqueue(new Callback<ContentRespons>() {
             @Override
             public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
-                if(response.code() == 200){
+                if (response.code() == 200) {
 
                     content = response.body().getContents();
-                    mRecyclerViewCat2.setAdapter(new HorizontalListAdapter(getContext(),content));
+                    mRecyclerViewCat2.setAdapter(new HorizontalListAdapter(getContext(), content));
 //                    for (Content content1 : content){
 //                        contentName.add(String.valueOf(content1.getName()));
 //                        contentImageUrl.add(String.valueOf(content1.getImage()));
@@ -163,7 +166,7 @@ public class GameFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ContentRespons> call, Throwable t) {
-                Log.i("Retro","Fail");
+                Log.i("Retro", "Fail");
             }
         });
 
@@ -176,10 +179,10 @@ public class GameFragment extends Fragment {
         call.enqueue(new Callback<ContentRespons>() {
             @Override
             public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
-                if(response.code() == 200){
+                if (response.code() == 200) {
 
                     content = response.body().getContents();
-                    mRecyclerViewCat3.setAdapter(new HorizontalListAdapter(getContext(),content));
+                    mRecyclerViewCat3.setAdapter(new HorizontalListAdapter(getContext(), content));
 //                    for (Content content1 : content){
 //                        contentName.add(String.valueOf(content1.getName()));
 //                        contentImageUrl.add(String.valueOf(content1.getImage()));
@@ -193,7 +196,7 @@ public class GameFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ContentRespons> call, Throwable t) {
-                Log.i("Retro","Fail");
+                Log.i("Retro", "Fail");
             }
         });
 
@@ -206,10 +209,10 @@ public class GameFragment extends Fragment {
         call.enqueue(new Callback<ContentRespons>() {
             @Override
             public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
-                if(response.code() == 200){
+                if (response.code() == 200) {
 
                     content = response.body().getContents();
-                    mRecyclerViewCat4.setAdapter(new HorizontalListAdapter(getContext(),content));
+                    mRecyclerViewCat4.setAdapter(new HorizontalListAdapter(getContext(), content));
 //                    for (Content content1 : content){
 //                        contentName.add(String.valueOf(content1.getName()));
 //                        contentImageUrl.add(String.valueOf(content1.getImage()));
@@ -223,7 +226,7 @@ public class GameFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ContentRespons> call, Throwable t) {
-                Log.i("Retro","Fail");
+                Log.i("Retro", "Fail");
             }
         });
 
@@ -236,10 +239,10 @@ public class GameFragment extends Fragment {
         call.enqueue(new Callback<ContentRespons>() {
             @Override
             public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
-                if(response.code() == 200){
+                if (response.code() == 200) {
 
                     content = response.body().getContents();
-                    mRecyclerViewCat5.setAdapter(new HorizontalListAdapter(getContext(),content));
+                    mRecyclerViewCat5.setAdapter(new HorizontalListAdapter(getContext(), content));
 //                    for (Content content1 : content){
 //                        contentName.add(String.valueOf(content1.getName()));
 //                        contentImageUrl.add(String.valueOf(content1.getImage()));
@@ -253,11 +256,8 @@ public class GameFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ContentRespons> call, Throwable t) {
-                Log.i("Retro","Fail");
+                Log.i("Retro", "Fail");
             }
         });
-
     }
-
-
 }
