@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <tabs>
+        <tab
+            id="@+id/account"
+            icon="@drawable/ic_launcher_background"
+            title="Favorites" />
+        <tab
+            id="@+id/download"
+            icon="@drawable/ic_launcher_background"
+            title="Nearby" />
+        <tab
+            id="@+id/search"
+            icon="@drawable/ic_launcher_background"
+            title="Friends" />
+
+        <tab
+            id="@+id/game"
+            icon="@drawable/ic_launcher_background"
+            title="Friends" />
+
+    </tabs>
+</PreferenceScreen>

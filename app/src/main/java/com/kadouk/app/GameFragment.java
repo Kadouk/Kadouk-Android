@@ -10,18 +10,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.kadouk.app.model.CatagoryResponse;
 import com.kadouk.app.model.Content;
+import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.widget.TextView;
+import com.kadouk.app.model.CatagoryResponse;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 public class GameFragment extends Fragment {
 
@@ -33,8 +39,10 @@ public class GameFragment extends Fragment {
 
     TextView txv_app_cat1, txv_app_cat2, txv_app_cat3, txv_app_cat4, txv_app_cat5;
 
+    RecyclerView mRecyclerViewCat1, mRecyclerViewCat2, mRecyclerViewCat3, mRecyclerViewCat4, mRecyclerViewCat5;
+    RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3, mLayoutManagerCat4, mLayoutManagerCat5;
+    RecyclerView.Adapter mAdapterCat1, mAdapterCat2, mAdapterCat3, mAdapterCat4, mAdapterCat5;
     List<Content> content;
-
     public GameFragment() {
 
     }
@@ -43,6 +51,24 @@ public class GameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
+
+        Button btn = view.findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                main.fragmentManager.beginTransaction().add(R.id.main_container, fragment, "5").hide(fragment).commit();
+//                main.fragmentManager.beginTransaction().hide(Globals.getActive()).show(fragment).commit();
+                //main.active = fragment;
+//                main.fragmentManager.beginTransaction().add(R.id.contentContainer,fragment, "5").commit();
+//                FragmentTransaction fr = getFragmentManager().beginTransaction();
+//                fr.replace(R.id.contentContainer, fragment);
+//                fr.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                fr.addToBackStack(null);
+//                Globals.setActive(fragment);
+//                fr.commit();
+                ((MainActivity) getActivity()).addFragmentOnTop(new ShowCategoryActivity());
+            }
+        });
         getContentCat1();
         getContentCat2();
         getContentCat3();
@@ -252,8 +278,5 @@ public class GameFragment extends Fragment {
                 Log.i("Retro","Fail");
             }
         });
-
     }
-
-
 }

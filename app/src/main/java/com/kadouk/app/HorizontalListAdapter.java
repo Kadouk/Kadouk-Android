@@ -27,7 +27,6 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
     Context adapterContext;
     int appPosition = 0;
 
-
     public HorizontalListAdapter(Context context, List<Content> content) {
         super();
         adapterContext = context;
@@ -98,18 +97,35 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
             txvAppName2 = itemView.findViewById(R.id.txv_app_name2);
             txvAppDesc2 = itemView.findViewById(R.id.txv_app_desc2);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            imgApp1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    int onClickPosition = getAdapterPosition();
+                    int onClickPosition = getAdapterPosition()*2;
                     if(onClickPosition != RecyclerView.NO_POSITION){
-//                        Intent intent = new Intent(adapterContext,ProductActivity.class);
+                        Intent intent = new Intent(adapterContext,ShowCategoryActivity.class);
+                        intent.putExtra("Name",content.get(onClickPosition).getName());
+                        intent.putExtra("Id",content.get(onClickPosition).getId());
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        adapterContext.startActivity(intent);
+                        Log.i("Click","shomare " + onClickPosition + " - " + content.get(onClickPosition).getName());
+                    }
+                }
+            });
+            imgApp2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int onClickPosition = getAdapterPosition()*2+1;
+                    if(onClickPosition != RecyclerView.NO_POSITION){
+//                        Intent intent = new Intent(adapterContext,ShowCategoryActivity.class);
 //                        intent.putExtra("Name",content.get(onClickPosition).getName());
 //                        intent.putExtra("Id",content.get(onClickPosition).getId());
 //                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                        adapterContext.startActivity(intent);
-//                        Log.i("Click","shomare " + onClickPosition + " - " + content.get(onClickPosition).getName());
+                        Log.i("Click","shomare " + onClickPosition + " - " + content.get(onClickPosition).getName());
+
+
                    }
                 }
             });
