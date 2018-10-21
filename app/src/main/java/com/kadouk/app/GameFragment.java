@@ -10,32 +10,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.kadouk.app.model.CatagoryResponse;
 import com.kadouk.app.model.Content;
-import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.widget.TextView;
-import com.kadouk.app.model.CatagoryResponse;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
-
 public class GameFragment extends Fragment {
-
-    RecyclerView mRecyclerViewCat1, mRecyclerViewCat2, mRecyclerViewCat3, mRecyclerViewCat4, mRecyclerViewCat5;
-
-    RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3, mLayoutManagerCat4, mLayoutManagerCat5;
-
-    RecyclerView.Adapter mAdapterCat1, mAdapterCat2, mAdapterCat3, mAdapterCat4, mAdapterCat5;
 
     TextView txv_app_cat1, txv_app_cat2, txv_app_cat3, txv_app_cat4, txv_app_cat5;
 
