@@ -32,17 +32,19 @@ public class MainActivity extends AppCompatActivity {
     final Fragment fragment2 = new DownloadsFragment();
     final Fragment fragment3 = new SearchFragment();
     final Fragment fragment4 = new AccountFragment();
+    Fragment fGame1;
     Fragment active = fragment1;
     int fragGameLevel = 1, fragDownloadLevel= 1;
     final Fragment game = new GameFragment(), download = new DownloadsFragment(),
             search = new SearchFragment(), account = new AccountFragment();
-    String FRAGMENT_OTHER = "other";
+    String FRAGMENT_OTHER = "other", backStackGame = "HOME";
     public BottomBar bottomBar;
     public FragmentManager fragmentManager;
     BottomBarTab downloadTab;
     Intent intent;
     SharedPreferences SharedPreferences;
     public static final String MyShPref = "MyPrefers", FirstRun = "run";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,12 +73,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if (tabId == R.id.account) {
-                    viewFragment(fragment1, FRAGMENT_OTHER);
+
+                    if(backStackGame.equals("HOME"))
+                    viewFragment(fragment1, backStackGame);
+                    else if(backStackGame.equals("game1"))
+                        viewFragment(fGame1, "game1");
                     downloadTab.setBadgeCount(5);
                 }
                 if (tabId == R.id.download) {
 
                     viewFragment(fragment2, FRAGMENT_OTHER);
+//                    else if(backStack.equals("Game1"))
+//                        viewFragment(f1, backStack);
+//                    else if(backStack.equals("Game2"))
+//                        viewFragment(fragment4, backStack);
+
                     Log.i("tabs","2");
                     downloadTab.removeBadge();
                 }
@@ -85,39 +96,41 @@ public class MainActivity extends AppCompatActivity {
                     viewFragment(fragment3, FRAGMENT_OTHER);
                 }
                 if (tabId == R.id.game) {
-                    Log.i("tabs","3");
-                    viewFragment(fragment4, "HOME");
+
+                    Log.i("tabs", FRAGMENT_OTHER);
+                    viewFragment(fragment4, FRAGMENT_OTHER);
                 }
             }
         });
     }
     private void viewFragment(final Fragment fragment, String name){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).hide(active).show(fragment).commit();
+        fragmentTransaction.hide(active).show(fragment).commit();
         active = fragment;
         final int count = fragmentManager.getBackStackEntryCount();
-        if( name.equals( FRAGMENT_OTHER) ) {
+        if( name.equals(FRAGMENT_OTHER)|| name.equals("game1") ) {
             fragmentTransaction.addToBackStack(name);
             Log.i("backs", String.valueOf(count));
+        Log.i("backs", String.valueOf(fragmentManager.getBackStackEntryCount()));
         }
         fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
                 if( fragmentManager.getBackStackEntryCount() <= count){
                     fragmentManager.beginTransaction().hide(fragment2).hide(fragment3).hide(fragment4).commit();
-                    fragmentManager.popBackStack("HOME", POP_BACK_STACK_INCLUSIVE);
+                    fragmentManager.popBackStack(backStackGame, POP_BACK_STACK_INCLUSIVE);
                     fragmentManager.removeOnBackStackChangedListener(this);
                     bottomBar.selectTabAtPosition(0, true);
                     active = fragment1;
                 }
             }
-
-
         });
     }
 
     public void addFragmentOnTop(Fragment fragment) {
-        viewFragment(fragment, FRAGMENT_OTHER);
+        fGame1 = fragment;
+        fragmentManager.beginTransaction().add(R.id.contentContainer,fGame1,"game1").commit();
+        viewFragment(fGame1, "game1");
     }
 
     protected int getAPI(){

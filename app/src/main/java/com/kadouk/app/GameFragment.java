@@ -55,7 +55,10 @@ public class GameFragment extends Fragment {
 //                fr.addToBackStack(null);
 //                Globals.setActive(fragment);
 //                fr.commit();
+
+                ((MainActivity) getActivity()).backStackGame = "Game1";
                 ((MainActivity) getActivity()).addFragmentOnTop(new ShowCategoryActivity());
+
             }
         });
         getContentCat1();

@@ -4,20 +4,20 @@
         <tab
             id="@+id/account"
             icon="@drawable/ic_launcher_background"
-            title="Favorites" />
+            title="account" />
         <tab
             id="@+id/download"
             icon="@drawable/ic_launcher_background"
-            title="Nearby" />
+            title="download" />
         <tab
             id="@+id/search"
             icon="@drawable/ic_launcher_background"
-            title="Friends" />
+            title="search" />
 
         <tab
             id="@+id/game"
             icon="@drawable/ic_launcher_background"
-            title="Friends" />
+            title="game" />
 
     </tabs>
 </PreferenceScreen>
