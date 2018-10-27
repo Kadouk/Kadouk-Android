@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     int fragGameLevel = 1, fragDownloadLevel= 1;
     final Fragment game = new GameFragment(), download = new DownloadsFragment(),
             search = new SearchFragment(), account = new AccountFragment();
-    String FRAGMENT_OTHER = "other", backStackGame = "HOME";
+    String FRAGMENT_OTHER = "other", backStackGame = "HOME", backStackDownload = "DOWNLOAD";
     public BottomBar bottomBar;
     public FragmentManager fragmentManager;
     BottomBarTab downloadTab;
@@ -82,7 +82,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (tabId == R.id.download) {
 
-                    viewFragment(fragment2, FRAGMENT_OTHER);
+                    if(backStackDownload.equals("DOWNLOAD"))
+                        viewFragment(fragment2, backStackDownload);
+                    else if(backStackDownload.equals("download1"))
+                        viewFragment(fGame1, "download1");
+                    //viewFragment(fragment2, FRAGMENT_OTHER);
 //                    else if(backStack.equals("Game1"))
 //                        viewFragment(f1, backStack);
 //                    else if(backStack.equals("Game2"))
@@ -104,24 +108,38 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void viewFragment(final Fragment fragment, String name){
+        Log.i("backs", String.valueOf(active));
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.hide(active).show(fragment).commit();
         active = fragment;
+        Log.i("backs", String.valueOf(active));
         final int count = fragmentManager.getBackStackEntryCount();
-        if( name.equals(FRAGMENT_OTHER)|| name.equals("game1") ) {
+       // if( name.equals(FRAGMENT_OTHER)|| name.equals("game1") ) {
             fragmentTransaction.addToBackStack(name);
-            Log.i("backs", String.valueOf(count));
+            Log.i("backs", String.valueOf(count)+"   "+name);
         Log.i("backs", String.valueOf(fragmentManager.getBackStackEntryCount()));
-        }
+       // }
         fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
                 if( fragmentManager.getBackStackEntryCount() <= count){
-                    fragmentManager.beginTransaction().hide(fragment2).hide(fragment3).hide(fragment4).commit();
-                    fragmentManager.popBackStack(backStackGame, POP_BACK_STACK_INCLUSIVE);
-                    fragmentManager.removeOnBackStackChangedListener(this);
-                    bottomBar.selectTabAtPosition(0, true);
-                    active = fragment1;
+                    if(backStackDownload.equals("DOWNLOAD")){
+                        fragmentManager.beginTransaction().hide(fragment2).hide(fragment3).hide(fragment4).commit();
+                        fragmentManager.popBackStack(backStackGame, POP_BACK_STACK_INCLUSIVE);
+                        fragmentManager.removeOnBackStackChangedListener(this);
+                        bottomBar.selectTabAtPosition(0, true);
+                    }else if(backStackDownload.equals("download1")) {
+                        fragmentManager.beginTransaction().hide(fragment1).hide(fragment3).hide(fragment4).commit();
+                        fragmentManager.popBackStack(backStackDownload, POP_BACK_STACK_INCLUSIVE);
+                        fragmentManager.removeOnBackStackChangedListener(this);
+                        backStackDownload = "DOWNLOAD";
+                        active = fragment2;
+                    }
+
+                    if(backStackGame.equals("HOME"))
+                        active = fragment1;
+                    if(backStackGame.equals("game1"))
+                        active = fGame1;
                 }
             }
         });
