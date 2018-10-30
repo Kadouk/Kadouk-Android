@@ -175,6 +175,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Retro","Fail");
             }
         });
-
     }
+
+    public void showUpButton() { getSupportActionBar().setDisplayHomeAsUpEnabled(true); }
+    public void hideUpButton() { getSupportActionBar().setDisplayHomeAsUpEnabled(false); }
 }

@@ -6,6 +6,8 @@ package com.kadouk.app;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -118,10 +120,13 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
                     int onClickPosition = getAdapterPosition()*2+1;
                     if(onClickPosition != RecyclerView.NO_POSITION){
-
+                        Bundle i = new Bundle();
+                        i.putString("name", "Emmanuel");
+                        ShowCategoryActivity frag = new ShowCategoryActivity();
+                        frag.setArguments(i);
                         MainActivity mainActivity = (MainActivity) adapterContext;
                         mainActivity.backStackGame = "Game1";
-                        mainActivity.addFragmentOnTop(new ShowCategoryActivity());
+                        mainActivity.addFragmentOnTop(frag);
 //                        Intent intent = new Intent(adapterContext,ShowCategoryActivity.class);
 //                        intent.putExtra("Name",content.get(onClickPosition).getName());
 //                        intent.putExtra("Id",content.get(onClickPosition).getId());

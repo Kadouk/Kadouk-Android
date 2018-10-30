@@ -2,6 +2,7 @@ package com.kadouk.app;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -24,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GameFragment extends Fragment {
+public class GameFragment extends Fragment implements FragmentManager.OnBackStackChangedListener {
 
     TextView txv_app_cat1, txv_app_cat2, txv_app_cat3, txv_app_cat4, txv_app_cat5;
 
@@ -58,9 +59,9 @@ public class GameFragment extends Fragment {
 
                 ((MainActivity) getActivity()).backStackGame = "Game1";
                 ((MainActivity) getActivity()).addFragmentOnTop(new ShowCategoryActivity());
-
             }
         });
+        getActivity().getSupportFragmentManager().addOnBackStackChangedListener(this);
         getContentCat1();
         getContentCat2();
         getContentCat3();
@@ -270,5 +271,12 @@ public class GameFragment extends Fragment {
                 Log.i("Retro","Fail");
             }
         });
+    }
+
+    public void onBackStackChanged() {
+        // enable Up button only  if there are entries on the backstack
+        if (getActivity().getSupportFragmentManager().getBackStackEntryCount() < 1) {
+            ((MainActivity) getActivity()).hideUpButton();
+        }
     }
 }
