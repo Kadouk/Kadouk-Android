@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.kadouk.app.model.ContentRespons;
+import com.kadouk.app.model.Details;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 import com.roughike.bottombar.BottomBar;
@@ -43,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
     BottomBarTab downloadTab;
     Intent intent;
     SharedPreferences SharedPreferences;
-    public static final String MyShPref = "MyPrefers", FirstRun = "run";
+    public static final String MyShPref = "MyPrefers", FirstRun = "run",
+            authenticationToken = "Token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +57,17 @@ public class MainActivity extends AppCompatActivity {
         if (SharedPreferences.getString(FirstRun,null) == null) {
             sendAPI();
 
-            Log.i("token", "token = " + SharedPreferences.getString(FirstRun,null));
+            Log.i("token", "token1 = " + SharedPreferences.getString(FirstRun,null));
             intent = new Intent(MainActivity.this, SignUpActivity.class);
             finish();
             startActivity(intent);
+        }
+        if (SharedPreferences.getString(authenticationToken,null) != null) {
+            String Token = SharedPreferences.getString(authenticationToken,null);
+            Globals.setToken(Token);
+            Log.i("token", "token = " + SharedPreferences.getString(authenticationToken,null));
+
+
         }
         fragmentManager = getSupportFragmentManager();
 
@@ -106,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        //details();
     }
     private void viewFragment(final Fragment fragment, String name){
         Log.i("backs", String.valueOf(active));
@@ -175,6 +185,30 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Retro","Fail");
             }
         });
+
+    }
+
+    private void details() {
+
+        //int API = getAPI();
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+
+        Call<Details> call = apiInterface.details(0 + "","Bearer " + Globals.getToken());
+        call.enqueue(new Callback<Details>() {
+            @Override
+            public void onResponse(Call<Details> call, Response<Details> response) {
+                Log.i("Details", response.code() + "");
+                if(response.code() == 200){
+                    Log.i("details", response.body().getName() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Details> call, Throwable t) {
+                Log.i("Retro","Fail");
+            }
+        });
+
     }
 
     public void showUpButton() { getSupportActionBar().setDisplayHomeAsUpEnabled(true); }

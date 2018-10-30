@@ -39,5 +39,44 @@
     <string name="install_icon">install icon</string>
     <string name="app_category">آموزش و یادگیری</string>
     <string name="open_category">نمایش همه></string>
+    <string name="enter_your_number">لطفا شماره موبایل خورد را وارد کنید</string>
+    <string name="hint_example_number">example: 09121112233</string>
+    <string name="signup_later">i will signup later</string>
+    <string name="enter_your_kid_name">اسم و جنسیت فرزندتان را وارد کنید</string>
+    <string name="enter_your_kid_birthday">سال و ماه تولد را وارد کنید</string>
+    <string name="enter_code">کد تایید را وارد کنید</string>
+
+    <string-array name="month">
+        <item>فروردین</item>
+        <item>اردیبهشت</item>
+        <item>خرداد</item>
+        <item>تیر</item>
+        <item>مرداد</item>
+        <item>شهریور</item>
+        <item>مهر</item>
+        <item>آبان</item>
+        <item>آذز</item>
+        <item>دی</item>
+        <item>بهمن</item>
+        <item>اسفند</item>
+    </string-array>
+
+    <string-array name="year">
+        <item>1395</item>
+        <item>1394</item>
+        <item>1393</item>
+        <item>1392</item>
+        <item>1391</item>
+        <item>1390</item>
+        <item>1389</item>
+        <item>1388</item>
+        <item>1387</item>
+        <item>1386</item>
+        <item>1385</item>
+        <item>1384</item>
+    </string-array>
+
+
+
 
 </resources>
