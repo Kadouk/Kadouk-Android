@@ -1,5 +1,6 @@
 package com.kadouk.app;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -33,6 +34,8 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3, mLayoutManagerCat4, mLayoutManagerCat5;
     RecyclerView.Adapter mAdapterCat1, mAdapterCat2, mAdapterCat3, mAdapterCat4, mAdapterCat5;
     List<Content> content;
+    ShowCategoryActivity showCategoryFragment = new ShowCategoryActivity();
+    MainActivity mainActivity = (MainActivity) getContext();
     public GameFragment() {
 
     }
@@ -41,6 +44,71 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
+
+
+        TextView openCat1 = view.findViewById(R.id.txv_app_open_cat1);
+        openCat1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle i = new Bundle();
+                i.putString("id", "1");
+                showCategoryFragment.setArguments(i);
+                ((MainActivity) getActivity()).backStackGame = "Game1";
+                ((MainActivity) getActivity()).addFragmentOnTop(showCategoryFragment);
+            }
+        });
+
+        TextView openCat2 = view.findViewById(R.id.txv_app_open_cat2);
+        openCat2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle i = new Bundle();
+                ShowCategoryActivity showCategoryFragment = new ShowCategoryActivity();
+                i.putString("id", "2");
+                showCategoryFragment.setArguments(i);
+                ((MainActivity) getActivity()).backStackGame = "Game1";
+                ((MainActivity) getActivity()).addFragmentOnTop(showCategoryFragment);
+            }
+        });
+
+        TextView openCat3 = view.findViewById(R.id.txv_app_open_cat3);
+        openCat3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle i = new Bundle();
+                ShowCategoryActivity showCategoryFragment = new ShowCategoryActivity();
+                i.putString("id", "3");
+                showCategoryFragment.setArguments(i);
+                ((MainActivity) getActivity()).backStackGame = "Game1";
+                ((MainActivity) getActivity()).addFragmentOnTop(showCategoryFragment);
+            }
+        });
+
+        TextView openCat4 = view.findViewById(R.id.txv_app_open_cat4);
+        openCat4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle i = new Bundle();
+                ShowCategoryActivity showCategoryFragment = new ShowCategoryActivity();
+                i.putString("id", "4");
+                showCategoryFragment.setArguments(i);
+                ((MainActivity) getActivity()).backStackGame = "Game1";
+                ((MainActivity) getActivity()).addFragmentOnTop(showCategoryFragment);
+            }
+        });
+
+        TextView openCat5 = view.findViewById(R.id.txv_app_open_cat5);
+        openCat5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle i = new Bundle();
+                ShowCategoryActivity showCategoryFragment = new ShowCategoryActivity();
+                i.putString("id", "5");
+                showCategoryFragment.setArguments(i);
+                ((MainActivity) getActivity()).backStackGame = "Game1";
+                ((MainActivity) getActivity()).addFragmentOnTop(showCategoryFragment);
+            }
+        });
 
         Button btn = view.findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {

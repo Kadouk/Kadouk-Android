@@ -38,6 +38,7 @@ public class ShowCategoryActivity extends Fragment {
     RecyclerView.LayoutManager mLayoutManagerCat;
     RecyclerView.Adapter mAdapterCat1, mAdapterCat2, mAdapterCat3, mAdapterCat4, mAdapterCat5;
     List<Content> content;
+    TextView toolbarTitle;
 
     public ShowCategoryActivity() {
 
@@ -48,7 +49,7 @@ public class ShowCategoryActivity extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_show_category, container, false);
         mRecyclerViewCat = view.findViewById(R.id.show_cat_recycler);
-        TextView ToolbarTitle = view.findViewById(R.id.show_cat_title);
+        toolbarTitle = view.findViewById(R.id.show_cat_title);
         mRecyclerViewCat.setHasFixedSize(true);
         mLayoutManagerCat = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mRecyclerViewCat.setLayoutManager(mLayoutManagerCat);
@@ -56,9 +57,9 @@ public class ShowCategoryActivity extends Fragment {
         mRecyclerViewCat.setLayoutManager(mLayoutManagerCat);
       //  snapHelperCat.attachToRecyclerView(mRecyclerViewCat);
         Intent intent = getActivity().getIntent();
-        String name = getArguments().getString("name");
-        Log.i("passs",name);
-        ToolbarTitle.setText(name);
+        String id = getArguments().getString("id");
+        Log.i("passs",id);
+        //toolbarTitle.setText(name);
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((MainActivity)getActivity()).setSupportActionBar(toolbar);
         ((MainActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -67,7 +68,7 @@ public class ShowCategoryActivity extends Fragment {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        getContentCat(1);
+        getContentCat(Integer.parseInt(id));
         return view;
     }
 
@@ -81,7 +82,8 @@ public class ShowCategoryActivity extends Fragment {
                 //Log.i("test",response.code() + "");
                 if(response.code() == 200){
                     content = response.body().getContents();
-
+                    toolbarTitle.setVisibility(View.VISIBLE);
+                    toolbarTitle.setText(response.body().getCatName());
                     mRecyclerViewCat.setAdapter(new VerticalListAdapter(getContext(),content));
 //                    for (Content content1 : content){
 //                        contentName.add(String.valueOf(content1.getName()));
