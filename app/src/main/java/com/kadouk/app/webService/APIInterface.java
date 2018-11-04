@@ -1,6 +1,7 @@
 package com.kadouk.app.webService;
 
 
+import com.kadouk.app.model.App;
 import com.kadouk.app.model.CatagoryResponse;
 import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.model.Details;
@@ -46,4 +47,7 @@ public interface APIInterface{
  @FormUrlEncoded
  Call<CatagoryResponse> getContentByID (@Field("cat") int ID) ;
 
+ @POST ("content/show/page?id=")
+ @FormUrlEncoded
+ Call<App> getAppDataByID (@Field("id") int ID) ;
 }

@@ -81,7 +81,7 @@ public class VerticalListAdapter extends RecyclerView.Adapter<VerticalListAdapte
 
                     int onClickPosition = getAdapterPosition();
                     if(onClickPosition != RecyclerView.NO_POSITION){
-//                        Intent intent = new Intent(adapterContext,ShowCategoryActivity.class);
+//                        Intent intent = new Intent(adapterContext,ShowCategoryFragment.class);
 //                        intent.putExtra("Name",content.get(onClickPosition).getName());
 //                        intent.putExtra("Id",content.get(onClickPosition).getId());
 //                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

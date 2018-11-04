@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".ShowCategoryActivity"></activity>
+        <activity android:name=".ShowCategoryFragment"></activity>
         <activity
             android:name=".SignUpNameGenderBirthdayActivity"
             android:screenOrientation="landscape" />

@@ -1,6 +1,5 @@
 package com.kadouk.app;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -34,7 +33,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3, mLayoutManagerCat4, mLayoutManagerCat5;
     RecyclerView.Adapter mAdapterCat1, mAdapterCat2, mAdapterCat3, mAdapterCat4, mAdapterCat5;
     List<Content> content;
-    ShowCategoryActivity showCategoryFragment = new ShowCategoryActivity();
+    ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
     MainActivity mainActivity = (MainActivity) getContext();
     public GameFragment() {
 
@@ -63,7 +62,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             @Override
             public void onClick(View v) {
                 Bundle i = new Bundle();
-                ShowCategoryActivity showCategoryFragment = new ShowCategoryActivity();
+                ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
                 i.putString("id", "2");
                 showCategoryFragment.setArguments(i);
                 ((MainActivity) getActivity()).backStackGame = "Game1";
@@ -76,7 +75,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             @Override
             public void onClick(View v) {
                 Bundle i = new Bundle();
-                ShowCategoryActivity showCategoryFragment = new ShowCategoryActivity();
+                ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
                 i.putString("id", "3");
                 showCategoryFragment.setArguments(i);
                 ((MainActivity) getActivity()).backStackGame = "Game1";
@@ -89,7 +88,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             @Override
             public void onClick(View v) {
                 Bundle i = new Bundle();
-                ShowCategoryActivity showCategoryFragment = new ShowCategoryActivity();
+                ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
                 i.putString("id", "4");
                 showCategoryFragment.setArguments(i);
                 ((MainActivity) getActivity()).backStackGame = "Game1";
@@ -102,7 +101,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             @Override
             public void onClick(View v) {
                 Bundle i = new Bundle();
-                ShowCategoryActivity showCategoryFragment = new ShowCategoryActivity();
+                ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
                 i.putString("id", "5");
                 showCategoryFragment.setArguments(i);
                 ((MainActivity) getActivity()).backStackGame = "Game1";
@@ -126,7 +125,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 //                fr.commit();
 
                 ((MainActivity) getActivity()).backStackGame = "Game1";
-                ((MainActivity) getActivity()).addFragmentOnTop(new ShowCategoryActivity());
+                ((MainActivity) getActivity()).addFragmentOnTop(new ProductPageFragment());
             }
         });
         getActivity().getSupportFragmentManager().addOnBackStackChangedListener(this);
@@ -180,7 +179,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
         return view;
     }
-
 
     private void getContentCat1() {
 
@@ -243,7 +241,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 Log.i("Retro","Fail");
             }
         });
-
     }
 
     private void getContentCat3() {
@@ -275,7 +272,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 Log.i("Retro","Fail");
             }
         });
-
     }
 
     private void getContentCat4() {
@@ -307,7 +303,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 Log.i("Retro","Fail");
             }
         });
-
     }
 
     private void getContentCat5() {

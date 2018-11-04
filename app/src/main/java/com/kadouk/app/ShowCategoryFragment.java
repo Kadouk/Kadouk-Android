@@ -1,22 +1,14 @@
 package com.kadouk.app;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -32,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShowCategoryActivity extends Fragment {
+public class ShowCategoryFragment extends Fragment {
 
     RecyclerView mRecyclerViewCat;
     RecyclerView.LayoutManager mLayoutManagerCat;
@@ -40,14 +32,14 @@ public class ShowCategoryActivity extends Fragment {
     List<Content> content;
     TextView toolbarTitle;
 
-    public ShowCategoryActivity() {
+    public ShowCategoryFragment() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_show_category, container, false);
+        View view = inflater.inflate(R.layout.fragment_show_category, container, false);
         mRecyclerViewCat = view.findViewById(R.id.show_cat_recycler);
         toolbarTitle = view.findViewById(R.id.show_cat_title);
         mRecyclerViewCat.setHasFixedSize(true);

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class DownloadsFragment extends Fragment {
 
@@ -23,7 +22,7 @@ public class DownloadsFragment extends Fragment {
             public void onClick(View v) {
 
                 ((MainActivity) getActivity()).backStackDownload = "download1";
-                ((MainActivity) getActivity()).addFragmentOnTop(new ShowCategoryActivity());
+                ((MainActivity) getActivity()).addFragmentOnTop(new ShowCategoryFragment());
 
             }
         });
