@@ -3,13 +3,10 @@ package com.kadouk.app.model;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by zoli on 11/05/2018.
+ * Created by zoli on 11/06/2018.
  */
 
-import java.util.List;
-/*
-public class App {
-
+public class Contents {
 
     @SerializedName("id")
     private int id;
@@ -35,12 +32,24 @@ public class App {
     @SerializedName("cost")
     private String cost;
 
-    @SerializedName("file")
-    private String file;
+//    @SerializedName("file")
+//    private String file;
 
     @SerializedName("image")
     private String image;
 
+    public Contents(int id, String name, String desc, int report, int age, String tag, String size, String cost, String file, String image) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.report = report;
+        this.age = age;
+        this.tag = tag;
+        this.size = size;
+        this.cost = cost;
+       //this.file = file;
+        this.image = image;
+    }
 
     public int getId() {
         return id;
@@ -106,13 +115,13 @@ public class App {
         this.cost = cost;
     }
 
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
+//    public String getFile() {
+//        return file;
+//    }
+//
+//    public void setFile(String file) {
+//        this.file = file;
+//    }
 
     public String getImage() {
         return image;
@@ -120,28 +129,5 @@ public class App {
 
     public void setImage(String image) {
         this.image = image;
-    }
-}
-*/
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
-
-/**
- * Created by jahan on 10/18/18.
- */
-
-public class App {
-
-    @SerializedName("contents")
-    private Content content;
-
-    public Content getContent() {
-        return content;
-    }
-
-    public void setContent(Content content) {
-        this.content = content;
     }
 }

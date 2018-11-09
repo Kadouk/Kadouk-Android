@@ -13,9 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+
 import com.kadouk.app.model.App;
-import com.kadouk.app.model.CatagoryResponse;
 import com.kadouk.app.model.Content;
+import com.kadouk.app.model.Contents;
+import com.kadouk.app.model.Product;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
@@ -79,27 +81,32 @@ public class ProductPageFragment extends Fragment {
 
     }
 
+
     private void getAppData(int id) {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<App> call = apiInterface.getAppDataByID(id);
-        call.enqueue(new Callback<App>() {
+        Call<Contents> call = apiInterface.getAppDataByID(id);
+        call.enqueue(new Callback<Contents>() {
             @Override
-            public void onResponse(Call<App> call, Response<App> response) {
-                if(response.code() == 200) {
-                    Log.i("passs", "ok");
-                    Log.i("passs", response.body().getImage());
-                }
+            public void onResponse(Call<Contents> call, Response<Contents> response) {
+                Log.i("passs", String.valueOf(response.body().getId()));
+                Log.i("passs", response.body().getName());
+                Log.i("passs", response.body().getDesc());
+                Log.i("passs", String.valueOf(response.body().getReport()));
+                Log.i("passs", String.valueOf(response.body().getAge()));
+//                Log.i("passs", response.body().getTag());
+//                Log.i("passs", response.body().getSize());
+//                Log.i("passs", response.body().getCost());
+ //               String a = response.body().getCost();
+                Log.i("passs", response.body().getImage());
+
             }
 
             @Override
-            public void onFailure(Call<App> call, Throwable t) {
-                Log.i("passs", "faild");
+            public void onFailure(Call<Contents> call, Throwable t) {
+
             }
         });
-
-
-
 
     }
 

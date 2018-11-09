@@ -4,7 +4,9 @@ package com.kadouk.app.webService;
 import com.kadouk.app.model.App;
 import com.kadouk.app.model.CatagoryResponse;
 import com.kadouk.app.model.ContentRespons;
+import com.kadouk.app.model.Contents;
 import com.kadouk.app.model.Details;
+import com.kadouk.app.model.Product;
 import com.kadouk.app.model.Response;
 
 import retrofit2.Call;
@@ -49,5 +51,5 @@ public interface APIInterface{
 
  @POST ("content/show/page?id=")
  @FormUrlEncoded
- Call<App> getAppDataByID (@Field("id") int ID) ;
+ Call<Contents> getAppDataByID (@Field("id") int ID) ;
 }
