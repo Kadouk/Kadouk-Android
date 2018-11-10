@@ -18,6 +18,7 @@ import com.kadouk.app.model.App;
 import com.kadouk.app.model.Content;
 import com.kadouk.app.model.Contents;
 import com.kadouk.app.model.Product;
+import com.kadouk.app.model.Screenshots;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
@@ -33,6 +34,7 @@ public class ProductPageFragment extends Fragment {
     RecyclerView mRecyclerViewCat;
     List<Content> content;
     TextView toolbarTitle;
+    List<com.kadouk.app.model.Screenshots> Screenshots;
 
     public ProductPageFragment() {
 
@@ -94,9 +96,9 @@ public class ProductPageFragment extends Fragment {
                 Log.i("passs", response.body().getDesc());
                 Log.i("passs", String.valueOf(response.body().getReport()));
                 Log.i("passs", String.valueOf(response.body().getAge()));
-//                Log.i("passs", response.body().getTag());
-//                Log.i("passs", response.body().getSize());
-//                Log.i("passs", response.body().getCost());
+                Log.i("passs", response.body().getTag());
+                Log.i("passs", response.body().getSize());
+                Log.i("passs", response.body().getCost());
  //               String a = response.body().getCost();
                 Log.i("passs", response.body().getImage());
 

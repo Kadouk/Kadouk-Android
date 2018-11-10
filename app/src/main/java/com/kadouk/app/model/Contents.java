@@ -2,6 +2,8 @@ package com.kadouk.app.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by zoli on 11/06/2018.
  */
@@ -32,13 +34,17 @@ public class Contents {
     @SerializedName("cost")
     private String cost;
 
-//    @SerializedName("file")
-//    private String file;
+    @SerializedName("file")
+    private String file;
 
     @SerializedName("image")
     private String image;
 
-    public Contents(int id, String name, String desc, int report, int age, String tag, String size, String cost, String file, String image) {
+    @SerializedName("media")
+    private List<Screenshots> Screenshots;
+
+
+    public Contents(int id, String name, String desc, int report, int age, String tag, String size, String cost, String file, String image, List<com.kadouk.app.model.Screenshots> screenshots) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -47,8 +53,9 @@ public class Contents {
         this.tag = tag;
         this.size = size;
         this.cost = cost;
-       //this.file = file;
+        this.file = file;
         this.image = image;
+        Screenshots = screenshots;
     }
 
     public int getId() {
@@ -115,13 +122,13 @@ public class Contents {
         this.cost = cost;
     }
 
-//    public String getFile() {
-//        return file;
-//    }
-//
-//    public void setFile(String file) {
-//        this.file = file;
-//    }
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
 
     public String getImage() {
         return image;
@@ -129,5 +136,13 @@ public class Contents {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public List<com.kadouk.app.model.Screenshots> getScreenshots() {
+        return Screenshots;
+    }
+
+    public void setScreenshots(List<com.kadouk.app.model.Screenshots> screenshots) {
+        Screenshots = screenshots;
     }
 }
