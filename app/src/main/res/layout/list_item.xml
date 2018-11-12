@@ -5,42 +5,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
+    <RelativeLayout
+        android:id="@+id/top_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/zero"
-        android:layout_marginLeft="@dimen/smaller"
-        android:layout_marginRight="@dimen/smaller"
-        android:layout_marginTop="@dimen/small"
-        card_view:cardCornerRadius="@dimen/smaller"
-        card_view:cardElevation="@dimen/smaller">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/top_layout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/signup_layout_height">
+        <ImageView
+            android:id="@+id/product_screenshots"
+            android:layout_width="@dimen/screenshots_width"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/small"
+            android:layout_marginLeft="@dimen/smaller"
+            android:layout_marginRight="@dimen/smaller"
+            android:layout_marginTop="@dimen/small"
+            android:scaleType="fitXY"/>
 
-            <ImageView
-                android:id="@+id/img_thumbnail"
-                android:layout_width="@dimen/signup_layout_height"
-                android:layout_height="@dimen/signup_layout_height"
-                android:layout_above="@+id/tv_species"
-                android:layout_centerHorizontal="true"
-                android:scaleType="fitXY" />
-
-            <TextView
-                android:id="@+id/tv_species"
-                style="@style/textView"
-                android:layout_width="@dimen/signup_layout_height"
-                android:layout_height="@dimen/large"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_gravity="bottom"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="@string/app"
-                android:textSize="@dimen/item_text_size" />
-
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </RelativeLayout>
 </LinearLayout>

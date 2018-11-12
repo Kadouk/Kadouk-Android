@@ -40,11 +40,11 @@ public class Contents {
     @SerializedName("image")
     private String image;
 
-    @SerializedName("media")
-    private List<Screenshots> Screenshots;
+//    @SerializedName("media")
+//    private List<Screenshots> Screenshots;
 
 
-    public Contents(int id, String name, String desc, int report, int age, String tag, String size, String cost, String file, String image, List<com.kadouk.app.model.Screenshots> screenshots) {
+    public Contents(int id, String name, String desc, int report, int age, String tag, String size, String cost, String file, String image) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -55,7 +55,6 @@ public class Contents {
         this.cost = cost;
         this.file = file;
         this.image = image;
-        Screenshots = screenshots;
     }
 
     public int getId() {
@@ -138,11 +137,4 @@ public class Contents {
         this.image = image;
     }
 
-    public List<com.kadouk.app.model.Screenshots> getScreenshots() {
-        return Screenshots;
-    }
-
-    public void setScreenshots(List<com.kadouk.app.model.Screenshots> screenshots) {
-        Screenshots = screenshots;
-    }
 }

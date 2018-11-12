@@ -22,6 +22,8 @@ import com.kadouk.app.model.Screenshots;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -31,10 +33,12 @@ import retrofit2.Response;
 
 public class ProductPageFragment extends Fragment {
 
-    RecyclerView mRecyclerViewCat;
-    List<Content> content;
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
     TextView toolbarTitle;
-    List<com.kadouk.app.model.Screenshots> Screenshots;
+    List<Screenshots> Screenshots;
+    ArrayList<Integer> itemImage;
+    RecyclerView.Adapter mAdapter;
 
     public ProductPageFragment() {
 
@@ -78,7 +82,18 @@ public class ProductPageFragment extends Fragment {
 //        mAdapter = new ProductScreenshotsAdapter(this,itemImage);
 //        mRecyclerView.setAdapter(mAdapter);
 //    }
+
+
+        mRecyclerView = view.findViewById(R.id.recycler_screenshots);
+        preparingList();
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new ProductScreenshotsAdapter(getContext(),itemImage);
+        mRecyclerView.setAdapter(mAdapter);
+
         getAppData(Integer.parseInt(id));
+
         return view;
 
     }
@@ -91,6 +106,9 @@ public class ProductPageFragment extends Fragment {
         call.enqueue(new Callback<Contents>() {
             @Override
             public void onResponse(Call<Contents> call, Response<Contents> response) {
+
+                //Screenshots = response.body().getScreenshots();
+                //mRecyclerView.setAdapter(new ProductScreenshotsAdapter(getContext(), Screenshots));
                 Log.i("passs", String.valueOf(response.body().getId()));
                 Log.i("passs", response.body().getName());
                 Log.i("passs", response.body().getDesc());
@@ -111,5 +129,13 @@ public class ProductPageFragment extends Fragment {
         });
 
     }
+
+    public void preparingList(){
+        itemImage = new ArrayList<>(Arrays.asList(R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
+                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
+                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
+                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background));
+    }
+
 
 }
