@@ -2,6 +2,8 @@ package com.kadouk.app.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by zoli on 11/06/2018.
  */
@@ -32,11 +34,28 @@ public class Product {
     @SerializedName("cost")
     private String cost;
 
-//    @SerializedName("file")
-//    private String file;
-
     @SerializedName("image")
     private String image;
+
+    @SerializedName("media")
+    private List<Media> media;
+
+    @SerializedName("file")
+    private String file;
+
+    public Product(int id, String name, String desc, int report, int age, String tag, String size, String cost, String image, List<Media> media, String file) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.report = report;
+        this.age = age;
+        this.tag = tag;
+        this.size = size;
+        this.cost = cost;
+        this.image = image;
+        this.media = media;
+        this.file = file;
+    }
 
     public int getId() {
         return id;
@@ -108,5 +127,21 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public List<Media> getMedia() {
+        return media;
+    }
+
+    public void setMedia(List<Media> media) {
+        this.media = media;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
     }
 }

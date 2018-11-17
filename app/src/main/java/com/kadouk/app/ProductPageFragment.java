@@ -2,7 +2,6 @@ package com.kadouk.app;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,18 +13,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import com.kadouk.app.model.App;
-import com.kadouk.app.model.Content;
 import com.kadouk.app.model.Contents;
-import com.kadouk.app.model.Product;
-import com.kadouk.app.model.Screenshots;
+import com.kadouk.app.model.Media;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,11 +27,10 @@ import retrofit2.Response;
 
 public class ProductPageFragment extends Fragment {
 
-    RecyclerView mRecyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
+    RecyclerView mRecyclerViewProduct;
+    RecyclerView.LayoutManager mLayoutManagerProduct;
     TextView toolbarTitle;
-    List<Screenshots> Screenshots;
-    ArrayList<Integer> itemImage;
+    List<com.kadouk.app.model.Media> Media;
     RecyclerView.Adapter mAdapter;
 
     public ProductPageFragment() {
@@ -84,20 +77,18 @@ public class ProductPageFragment extends Fragment {
 //    }
 
 
-        mRecyclerView = view.findViewById(R.id.recycler_screenshots);
-        preparingList();
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new ProductScreenshotsAdapter(getContext(),itemImage);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerViewProduct = view.findViewById(R.id.recycler_screenshots);
+        mRecyclerViewProduct.setHasFixedSize(true);
+        mLayoutManagerProduct = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerViewProduct.setLayoutManager(mLayoutManagerProduct);
+        //mAdapter = new ProductScreenshotsAdapter(getContext(),itemImage);
+       // mRecyclerView.setAdapter(mAdapter);
 
         getAppData(Integer.parseInt(id));
 
         return view;
 
     }
-
 
     private void getAppData(int id) {
 
@@ -106,9 +97,7 @@ public class ProductPageFragment extends Fragment {
         call.enqueue(new Callback<Contents>() {
             @Override
             public void onResponse(Call<Contents> call, Response<Contents> response) {
-
-                //Screenshots = response.body().getScreenshots();
-                //mRecyclerView.setAdapter(new ProductScreenshotsAdapter(getContext(), Screenshots));
+                Media = response.body().getMedia();
                 Log.i("passs", String.valueOf(response.body().getId()));
                 Log.i("passs", response.body().getName());
                 Log.i("passs", response.body().getDesc());
@@ -117,25 +106,82 @@ public class ProductPageFragment extends Fragment {
                 Log.i("passs", response.body().getTag());
                 Log.i("passs", response.body().getSize());
                 Log.i("passs", response.body().getCost());
- //               String a = response.body().getCost();
+                //               String a = response.body().getCost();
                 Log.i("passs", response.body().getImage());
 
             }
 
             @Override
             public void onFailure(Call<Contents> call, Throwable t) {
-
+                Log.i("passs", "faild");
             }
         });
 
     }
 
-    public void preparingList(){
-        itemImage = new ArrayList<>(Arrays.asList(R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background));
-    }
+
+//    private void getAppData(int id) {
+//
+//        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+////        Call<Product> call = apiInterface.getAppDataByID(id);
+////        call.enqueue(new Callback<Product>() {
+////            @Override
+////            public void onResponse(Call<Product> call, Response<Product> response) {
+////                //Media = response.body().getMedia();
+////               // mRecyclerViewProduct.setAdapter(new ProductScreenshotsAdapter(getContext(), response.body().getMedia()));
+////                //Log.i("passs", String.valueOf(response.body().getId()));
+////                Log.i("passs", response.body().getName());
+////                Log.i("passs", response.body().getDesc());
+////                Log.i("passs", String.valueOf(response.body().getReport()));
+////                Log.i("passs", String.valueOf(response.body().getAge()));
+////                Log.i("passs", response.body().getTag());
+////                Log.i("passs", response.body().getSize());
+////                Log.i("passs", response.body().getCost());
+//// //               String a = response.body().getCost();
+////                Log.i("passs", response.body().getImage());
+////                Media = response.body().getMedia();
+////            }
+////
+////            @Override
+////            public void onFailure(Call<Product> call, Throwable t) {
+////                Log.i("passs","faild");
+////
+////            }
+////        });
+//               Call<Contents> call = apiInterface.getAppDataByID(id);
+//        call.enqueue(new Callback<Contents>() {
+//            @Override
+//            public void onResponse(Call<Contents> call, Response<Contents> response) {
+//
+//                //Media = response.body().getMedia();
+//                // mRecyclerViewProduct.setAdapter(new ProductScreenshotsAdapter(getContext(), Media));
+//                Log.i("passs", String.valueOf(response.body().getId()));
+//                Log.i("passs", response.body().getName());
+//                Log.i("passs", response.body().getDesc());
+//                Log.i("passs", String.valueOf(response.body().getReport()));
+//                Log.i("passs", String.valueOf(response.body().getAge()));
+//                Log.i("passs", response.body().getTag());
+//                Log.i("passs", response.body().getSize());
+//                Log.i("passs", response.body().getCost());
+//                //               String a = response.body().getCost();
+//                Log.i("passs", response.body().getImage());
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Contents> call, Throwable t) {
+//                Log.i("passs","faild");
+//            }
+//        });
+//
+//    }
+
+//    public void preparingList(){
+//        itemImage = new ArrayList<>(Arrays.asList(R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
+//                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
+//                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
+//                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background));
+//    }
 
 
 }

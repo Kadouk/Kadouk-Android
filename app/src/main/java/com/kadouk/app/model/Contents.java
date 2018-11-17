@@ -40,11 +40,11 @@ public class Contents {
     @SerializedName("image")
     private String image;
 
-//    @SerializedName("media")
-//    private List<Screenshots> Screenshots;
+    @SerializedName("media")
+    private List<Media> media;
 
 
-    public Contents(int id, String name, String desc, int report, int age, String tag, String size, String cost, String file, String image) {
+    public Contents(int id, String name, String desc, int report, int age, String tag, String size, String cost, String file, String image, List<Media> media) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -55,6 +55,7 @@ public class Contents {
         this.cost = cost;
         this.file = file;
         this.image = image;
+        this.media = media;
     }
 
     public int getId() {
@@ -137,4 +138,11 @@ public class Contents {
         this.image = image;
     }
 
+    public List<Media> getMedia() {
+        return media;
+    }
+
+    public void setMedia(List<Media> media) {
+        this.media = media;
+    }
 }

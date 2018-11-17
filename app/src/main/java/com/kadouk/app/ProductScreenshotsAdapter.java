@@ -1,8 +1,6 @@
 package com.kadouk.app;
 
-/**
- * Created by zoli on 11/11/2018.
- */import android.annotation.SuppressLint;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,21 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
+import com.kadouk.app.model.Media;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ProductScreenshotsAdapter extends RecyclerView.Adapter<ProductScreenshotsAdapter.ViewHolder> {
 
-    private ArrayList<Integer> itemImage;
-    Context context1;
+    List<Media> screenshots;
+    Context adapterContext;
 
-    public ProductScreenshotsAdapter(Context context, ArrayList<Integer> itemImage) {
+    public ProductScreenshotsAdapter(Context context, List<Media> screenshots) {
         super();
-        context1 = context;
-        this.itemImage = itemImage;
+        adapterContext = context;
+        this.screenshots = screenshots;
     }
 
     @Override
@@ -38,59 +34,48 @@ public class ProductScreenshotsAdapter extends RecyclerView.Adapter<ProductScree
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") int position) {
-        viewHolder.imgThumbnail.setImageResource(itemImage.get(position));
+        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/"+screenshots.get(position).getPath();
+        //"http://kadouk.com/kadouk/public/api/download/Path/" +itemName.get(position).getImage();
+//"http://kadouk.com/kadouk/public/api/download/Path/" +
+//        Glide
+//                .with(adapterContext)
+//                .load(imageUrl)
+//                .into(viewHolder.imgThumbnail);
+        //viewHolder.imgThumbnail.setImageResource(itemImage.get(position));
 
-        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/1/app/43/43-1.png";
-        //Log.i("LOADPIC", imageUrl + appPosition);
-
-        Glide
-                .with(context1)
-                .load(imageUrl)
-                .apply(new RequestOptions()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL))
-                .into(viewHolder.imgThumbnail);
-        viewHolder.setClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int position, boolean isLongClick) {
-                if (isLongClick) {
-                    Log.e("screen","shomare " + position + " - " + " (Long click)");
-                } else {
-                    Log.e("screen","shomare " + position + " - " );
-                }
-            }
-        });
+        Log.i("screenshots",imageUrl);
     }
 
     @Override
     public int getItemCount() {
-        return itemImage.size();
+        return screenshots.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgThumbnail;
+
         private ItemClickListener clickListener;
 
-        ViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
+
             super(itemView);
             imgThumbnail = itemView.findViewById(R.id.product_screenshots);
-            itemView.setOnClickListener(this);
-            itemView.setOnLongClickListener(this);
-        }
 
-        void setClickListener(ItemClickListener itemClickListener) {
-            this.clickListener = itemClickListener;
-        }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        @Override
-        public void onClick(View view) {
-            clickListener.onClick(view, getPosition(), false);
-        }
-
-        @Override
-        public boolean onLongClick(View view) {
-            clickListener.onClick(view, getPosition(), true);
-            return true;
+//                    int position = getAdapterPosition();
+//                    if(position != RecyclerView.NO_POSITION){
+//                        Intent intent = new Intent(adapterContext,ProductActivity.class);
+//                        intent.putExtra("Name",content.get(position).getName());
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        adapterContext.startActivity(intent);
+//                        Log.i("Click","shomare " + position+ " - " + content.get(position).getName());
+//                    }
+                }
+            });
         }
     }
 }

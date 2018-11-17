@@ -33,6 +33,7 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
         adapterContext = context;
         this.content = content;
         Glide.get(context).clearMemory();
+        Log.i("LOADPIC2", String.valueOf(content));
     }
 
     @Override

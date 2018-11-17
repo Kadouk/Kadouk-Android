@@ -8,10 +8,22 @@ import com.google.gson.annotations.SerializedName;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Screenshots {
+public class Media {
 
 
     @SerializedName("path")
     private int path;
+
+    public Media(int path) {
+        this.path = path;
+    }
+
+    public int getPath() {
+        return path;
+    }
+
+    public void setPath(int path) {
+        this.path = path;
+    }
 }
 
