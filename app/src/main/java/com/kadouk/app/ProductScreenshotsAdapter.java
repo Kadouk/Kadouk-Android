@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.kadouk.app.model.Media;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class ProductScreenshotsAdapter extends RecyclerView.Adapter<ProductScree
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.list_item, viewGroup, false);
+                .inflate(R.layout.content_screenshots_item, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
@@ -37,10 +38,10 @@ public class ProductScreenshotsAdapter extends RecyclerView.Adapter<ProductScree
         String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/"+screenshots.get(position).getPath();
         //"http://kadouk.com/kadouk/public/api/download/Path/" +itemName.get(position).getImage();
 //"http://kadouk.com/kadouk/public/api/download/Path/" +
-//        Glide
-//                .with(adapterContext)
-//                .load(imageUrl)
-//                .into(viewHolder.imgThumbnail);
+        Glide
+                .with(adapterContext)
+                .load(imageUrl)
+                .into(viewHolder.imgThumbnail);
         //viewHolder.imgThumbnail.setImageResource(itemImage.get(position));
 
         Log.i("screenshots",imageUrl);

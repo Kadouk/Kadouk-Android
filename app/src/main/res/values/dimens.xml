@@ -4,7 +4,7 @@
 
     <dimen name="item_text_size">20sp</dimen>
 
-    <dimen name="screenshots_width">300dp</dimen>
+    <dimen name="screenshots_width">150dp</dimen>
     <dimen name="signup_layout_height_name_gender">300dp</dimen>
 
     <dimen name="signup_layout_width">400dp</dimen>

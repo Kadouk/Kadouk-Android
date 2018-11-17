@@ -98,6 +98,8 @@ public class ProductPageFragment extends Fragment {
             @Override
             public void onResponse(Call<Contents> call, Response<Contents> response) {
                 Media = response.body().getMedia();
+                Log.i("passs", String.valueOf(Media));
+                mRecyclerViewProduct.setAdapter(new ProductScreenshotsAdapter(getContext(), response.body().getMedia()));
                 Log.i("passs", String.valueOf(response.body().getId()));
                 Log.i("passs", response.body().getName());
                 Log.i("passs", response.body().getDesc());

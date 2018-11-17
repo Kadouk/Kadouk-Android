@@ -12,17 +12,17 @@ public class Media {
 
 
     @SerializedName("path")
-    private int path;
+    private String path;
 
-    public Media(int path) {
+    public Media(String path) {
         this.path = path;
     }
 
-    public int getPath() {
+    public String getPath() {
         return path;
     }
 
-    public void setPath(int path) {
+    public void setPath(String path) {
         this.path = path;
     }
 }
