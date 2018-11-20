@@ -1,18 +1,22 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
 
     <LinearLayout
-        android:layout_width="@dimen/signup_layout_width"
-        android:layout_height="@dimen/signup_layout_height"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6">
 
         <TextView
             android:id="@+id/signup_edt_enter_code"
@@ -58,4 +62,16 @@
         app:layout_constraintStart_toStartOf="parent"
         android:onClick="backToEnterNumber"/>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        style="@style/buttonNext"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:fabSize="auto"
+        app:rippleColor="@color/colorPrimary"
+        android:layout_marginRight="8dp" />
+
+</LinearLayout>
