@@ -26,7 +26,14 @@
         <activity android:name=".ShowCategoryFragment" />
         <activity
             android:name=".SignUpNameGenderBirthdayActivity" />
-        <activity android:name=".SignUpEnterCodeActivity" />
+        <activity android:name=".SignUpEnterCodeActivity"
+            android:parentActivityName="com.kadouk.app.SignUpActivity" />
+
+        <!-- Parent activity meta-data to support 4.0 and lower -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.kadouk.app.SignUpActivity" />
+
     </application>
 
 </manifest>

@@ -52,6 +52,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            android:id="@+id/signup_txv_receive_code"
             android:text="@string/wait_to_receive_code"
             style="@style/textView"
             android:layout_gravity="right"
