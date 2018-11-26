@@ -80,8 +80,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="install">نصب</string>
     <string name="uniq">یک دنیا تفریح و یادگیری</string>
-    <string name="wait_to_receive_code">لطفا تا دریافت کد صبر کنید.</string>
-    <string name="resend_code">ارسال دوباره کد؟</string>
+    <string name="wait_to_receive_code">لطفا تا دریافت کد منتظر بمانید.</string>
+    <string name="resend_code">ارسال دوباره</string>
+    <string name="none_messages">پیامی دریافت نکردید؟</string>
 
 
 </resources>

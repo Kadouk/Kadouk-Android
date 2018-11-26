@@ -5,20 +5,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/sifnup_enter_code_toolbar"
+        style="@style/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:contentInsetLeft="@dimen/zero"
+        app:contentInsetStart="@dimen/zero"
+        app:contentInsetStartWithNavigation="@dimen/zero">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4">
+    </android.support.v7.widget.Toolbar>
 
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_launcher_background" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,12 +26,6 @@
         android:orientation="vertical"
         android:focusable="true"
         android:focusableInTouchMode="true">
-
-        <TextView
-            android:text="@string/uniq"
-            style="@style/textView"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/xlarge"/>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_name"
@@ -48,17 +41,33 @@
                 android:maxLength="11"
                 android:inputType="number"
                 android:hint="@string/enter_code"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:layout_marginLeft="@dimen/xlarge"/>
         </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/signup_txv_receive_code"
-            android:text="@string/wait_to_receive_code"
-            style="@style/textView"
-            android:layout_gravity="right"
-            android:layout_marginTop="@dimen/normal"
-            android:layout_marginRight="@dimen/normal"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:focusable="true"
+            android:gravity="right"
+            android:focusableInTouchMode="true">
 
+            <TextView
+                android:id="@+id/signup_txv_time"
+                style="@style/textView"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/normal" />
+
+            <TextView
+                android:id="@+id/signup_txv_receive_code"
+                android:text="@string/wait_to_receive_code"
+                style="@style/textView"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/normal"
+                android:layout_marginRight="@dimen/normal"/>
+
+        </LinearLayout>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

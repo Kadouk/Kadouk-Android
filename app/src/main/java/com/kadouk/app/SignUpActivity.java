@@ -1,5 +1,6 @@
 package com.kadouk.app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
         SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
     }
 
+    @SuppressLint("WrongViewCast")
     public void sendNumber(View view) {
 
         EditTextNumber = findViewById(R.id.signup_edt_number);
@@ -61,7 +63,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if (String.valueOf(response.body().getStatus()).equals("200")){
                         Log.i("LOGIN", String.valueOf(response.body().getStatus()));
                         intent = new Intent(SignUpActivity.this, SignUpEnterCodeActivity.class);
-                        finish();
+                       // finish();
                         startActivity(intent);
                     }
 
@@ -93,7 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
         sEdit.apply();
 
         intent = new Intent(SignUpActivity.this, MainActivity.class);
-        finish();
+        //finish();
         startActivity(intent);
     }
 }

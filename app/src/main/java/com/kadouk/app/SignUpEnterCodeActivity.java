@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -39,13 +41,21 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
     Timer timer;
     TimerTask TimerTask;
     int  time = 1000, timeLeft = 0;
-    TextView textViewResendCode;
+    TextView textViewResendCode,textViewTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_code);
+
+        Toolbar toolbar = findViewById(R.id.sifnup_enter_code_toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+
         textViewResendCode = (TextView) findViewById(R.id.signup_txv_receive_code);
+        textViewTime = findViewById(R.id.signup_txv_time);
         EditTextCode = findViewById(R.id.signup_edt_code);
         FloatingActionButton fab = findViewById(R.id.fab_code);
         startTimer(time);
@@ -67,8 +77,8 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             startTimer(time);
-            textViewResendCode.setTextColor(BLACK);
-            textViewResendCode.setOnClickListener(null);
+            textViewTime.setTextColor(BLACK);
+            textViewTime.setOnClickListener(null);
 
         }
     };
@@ -156,15 +166,16 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
                 public void run() {
 
                     timeLeft = lastPeriod - timeCounter;
-                    textViewResendCode.setText( getString(R.string.wait_to_receive_code) + "  " +String.format("%02d",00) + ":"+ String.format("%02d",timeLeft));
-
+                    textViewResendCode.setText( getString(R.string.wait_to_receive_code));
+                    textViewTime.setText(String.format("%02d",00) + ":"+ String.format("%02d",timeLeft));
                     if(timeLeft == 0){
                         timeCounter = 0;
                         timer.cancel();
                         timer = null;
-                        textViewResendCode.setTextColor(getResources().getColor(R.color.colorAccent));
-                        textViewResendCode.setText(getString(R.string.resend_code));
-                        textViewResendCode.setOnClickListener(onclicklistener);
+                        textViewTime.setTextColor(getResources().getColor(R.color.colorAccent));
+                        textViewResendCode.setText( getString(R.string.none_messages));
+                        textViewTime.setText(getString(R.string.resend_code));
+                        textViewTime.setOnClickListener(onclicklistener);
                     }
                 }
             });

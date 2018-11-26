@@ -9,38 +9,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.4">
-
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_launcher_background" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
         android:layout_weight="0.6"
         android:orientation="vertical"
         android:focusable="true"
         android:focusableInTouchMode="true">
 
-        <TextView
-            android:id="@+id/signup_edt_enter_code"
-            android:text="@string/uniq"
-            style="@style/textView"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/xlarge"/>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/normal"
-            android:layout_marginLeft="@dimen/normal">
+            android:layout_marginLeft="@dimen/normal"
+            android:layout_marginTop="@dimen/xlarge">
 
             <EditText
                 android:id="@+id/signup_edt_number"
@@ -49,7 +30,8 @@
                 android:maxLength="11"
                 android:inputType="number"
                 android:hint="@string/enter_your_number"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:layout_marginLeft="@dimen/xlarge"/>
         </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>

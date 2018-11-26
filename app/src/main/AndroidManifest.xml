@@ -27,7 +27,7 @@
         <activity
             android:name=".SignUpNameGenderBirthdayActivity" />
         <activity android:name=".SignUpEnterCodeActivity"
-            android:parentActivityName="com.kadouk.app.SignUpActivity" />
+            android:parentActivityName=".SignUpActivity" />
 
         <!-- Parent activity meta-data to support 4.0 and lower -->
         <meta-data
