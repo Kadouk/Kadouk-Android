@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
@@ -30,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup_enter_number);
 
         SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
+
     }
 
     @SuppressLint("WrongViewCast")

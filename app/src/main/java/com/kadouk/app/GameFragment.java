@@ -11,7 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kadouk.app.model.CatagoryResponse;
@@ -46,14 +49,19 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
 
         TextView openCat1 = view.findViewById(R.id.txv_app_open_cat1);
+        final ImageView image = (ImageView)view.findViewById(R.id.imageView);
         openCat1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle i = new Bundle();
-                i.putString("id", "1");
-                showCategoryFragment.setArguments(i);
-                ((MainActivity) getActivity()).backStackGame = "Game1";
-                ((MainActivity) getActivity()).addFragmentOnTop(showCategoryFragment);
+                //Bundle i = new Bundle();
+                //i.putString("id", "1");
+                //showCategoryFragment.setArguments(i);
+                //((MainActivity) getActivity()).backStackGame = "Game1";
+                //((MainActivity) getActivity()).addFragmentOnTop(showCategoryFragment);
+
+                Animation animation1 =
+                        AnimationUtils.loadAnimation(getContext(), R.anim.move);
+                image.startAnimation(animation1);
             }
         });
 
@@ -177,7 +185,11 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         txv_app_cat4 = view.findViewById(R.id.txv_app_cat4);
         txv_app_cat5 = view.findViewById(R.id.txv_app_cat5);
 
+
+
         return view;
+
+
     }
 
     private void getContentCat1() {
