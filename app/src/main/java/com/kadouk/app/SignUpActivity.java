@@ -31,8 +31,49 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_number);
-
+        final Animation animation1, animation2, animation3 ;
+        animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
+        animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
+        animation3 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
+        final ImageView image = (ImageView)findViewById(R.id.imageView);
+        final ImageView image1 = (ImageView)findViewById(R.id.imageView1);
+        final ImageView image2= (ImageView)findViewById(R.id.imageView2);
         SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
+
+        image.startAnimation(animation1);
+        // animation1.setAnimationListener
+
+        animation1.setAnimationListener(new Animation.AnimationListener(){
+        @Override
+        public void onAnimationStart(Animation arg0) {
+
+        }
+        @Override
+        public void onAnimationRepeat(Animation arg0) {
+
+        }
+        @Override
+        public void onAnimationEnd(Animation arg0) {
+            image1.startAnimation(animation2);
+        }
+        });
+
+        animation2.setAnimationListener(new Animation.AnimationListener(){
+            @Override
+            public void onAnimationStart(Animation arg0) {
+
+            }
+            @Override
+            public void onAnimationRepeat(Animation arg0) {
+
+            }
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                image2.startAnimation(animation3);
+            }
+        });
+
+
 
     }
 
