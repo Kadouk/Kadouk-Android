@@ -16,6 +16,26 @@
         android:src="@drawable/login_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="56dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/login_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="76dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/white_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_name"
@@ -40,16 +60,7 @@
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="56dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/login_circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -63,15 +74,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:rippleColor="@color/colorPrimary" />
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="76dp"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/white_circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>
