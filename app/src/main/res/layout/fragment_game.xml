@@ -41,6 +41,13 @@
         </LinearLayout>
 
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/login_circle" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_recycler_cat1"
             style="@style/recyclerView" />

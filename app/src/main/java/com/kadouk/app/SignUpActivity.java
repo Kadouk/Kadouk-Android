@@ -32,12 +32,14 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_number);
         final Animation animation1, animation2, animation3 ;
+
         animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
-        animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
-        animation3 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
+        animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move1);
+        animation3 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move2);
         final ImageView image = (ImageView)findViewById(R.id.imageView);
         final ImageView image1 = (ImageView)findViewById(R.id.imageView1);
         final ImageView image2= (ImageView)findViewById(R.id.imageView2);
+
         SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
 
         image.startAnimation(animation1);
