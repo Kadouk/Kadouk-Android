@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="charcoal">#4a4a4a</color>
+    <color name="grey">#bdbdbd</color>
+    <color name="white">#ffffff</color>
+    <color name="olivine">#9ccc65</color>
+    <color name="charlotte">#9ae1e2</color>
+    <color name="biloba">#b39ddb</color>
+    <color name="scarlet">#ca3074</color>
+    <color name="grandis">#f6c667</color>
 </resources>

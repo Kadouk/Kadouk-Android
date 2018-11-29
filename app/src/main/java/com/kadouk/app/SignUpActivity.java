@@ -4,25 +4,36 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    AppCompatEditText  EditTextNumber, EditTextName, loginEditTextNumber, loginEditTextPassword ;
-    String name, kidGender = "boy", month, year, number, password, cPassword, birth, loginNumber, loginPassword;
+    Short EditTextMaxLength = 11;
+    FloatingActionButton fab;
+    EditText EditTextNumber;
     public static final String MyShPref = "MyPrefers",FirstRun = "run";
     SharedPreferences SharedPreferences;
     Intent intent;
@@ -31,24 +42,26 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_number);
-        final Animation animation1, animation2, animation3 ;
-
-        animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
-        animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move1);
-        animation3 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move2);
+        final Animation animation, animation1, animation2 ;
+        fab = findViewById(R.id.fab);
+        EditTextNumber = findViewById(R.id.signup_edt_number);
+        EditTextNumber.addTextChangedListener(mTextEditorWatcher);
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
+        animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move1);
+        animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move2);
         final ImageView image = (ImageView)findViewById(R.id.imageView);
-        final ImageView image1 = (ImageView)findViewById(R.id.imageView1);
-        final ImageView image2= (ImageView)findViewById(R.id.imageView2);
+        final ImageView image1 = (ImageView)findViewById(R.id.login_blue_circle);
+        final ImageView image2= (ImageView)findViewById(R.id.login_white_circle);
 
         SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
 
-        image.startAnimation(animation1);
+        image.startAnimation(animation);
         // animation1.setAnimationListener
 
-        animation1.setAnimationListener(new Animation.AnimationListener(){
+        animation.setAnimationListener(new Animation.AnimationListener(){
         @Override
         public void onAnimationStart(Animation arg0) {
-
+            image1.startAnimation(animation1);
         }
         @Override
         public void onAnimationRepeat(Animation arg0) {
@@ -56,14 +69,14 @@ public class SignUpActivity extends AppCompatActivity {
         }
         @Override
         public void onAnimationEnd(Animation arg0) {
-            image1.startAnimation(animation2);
+
         }
         });
 
-        animation2.setAnimationListener(new Animation.AnimationListener(){
+        animation1.setAnimationListener(new Animation.AnimationListener(){
             @Override
             public void onAnimationStart(Animation arg0) {
-
+                image2.startAnimation(animation2);
             }
             @Override
             public void onAnimationRepeat(Animation arg0) {
@@ -71,12 +84,9 @@ public class SignUpActivity extends AppCompatActivity {
             }
             @Override
             public void onAnimationEnd(Animation arg0) {
-                image2.startAnimation(animation3);
+
             }
         });
-
-
-
     }
 
     @SuppressLint("WrongViewCast")
@@ -145,4 +155,20 @@ public class SignUpActivity extends AppCompatActivity {
         //finish();
         startActivity(intent);
     }
+
+    private final TextWatcher mTextEditorWatcher = new TextWatcher() {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if(s.length() == EditTextMaxLength){
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.olivine)));
+            }else {
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+            }
+        }
+
+        public void afterTextChanged(Editable s) {
+        }
+    };
 }

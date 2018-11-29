@@ -9,13 +9,13 @@
     <!--android:duration="800" />-->
 
     <scale
-        android:fromXScale="100dp"
-        android:toXScale="400dp"
-        android:fromYScale="100dp"
-        android:toYScale="400dp"
+        android:fromXScale="150dp"
+        android:toXScale="450dp"
+        android:fromYScale="150dp"
+        android:toYScale="450dp"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:duration="1000"/>
+        android:duration="2000"/>
 
 
 </set>
