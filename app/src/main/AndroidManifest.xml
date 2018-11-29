@@ -23,12 +23,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"/>
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ShowCategoryFragment" />
         <activity
             android:name=".SignUpNameGenderBirthdayActivity" />
         <activity android:name=".SignUpEnterCodeActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".SignUpActivity" />
 
         <!-- Parent activity meta-data to support 4.0 and lower -->
