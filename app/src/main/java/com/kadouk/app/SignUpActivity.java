@@ -163,8 +163,12 @@ public class SignUpActivity extends AppCompatActivity {
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(s.length() == EditTextMaxLength){
                 fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.olivine)));
+                fab.setClickable(true);
+                fab.setVisibility(View.VISIBLE);
             }else {
                 fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+                fab.setClickable(false);
+                fab.setVisibility(View.GONE);
             }
         }
 

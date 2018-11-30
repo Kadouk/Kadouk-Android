@@ -31,7 +31,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
     RecyclerView mRecyclerViewCat1, mRecyclerViewCat2, mRecyclerViewCat3, mRecyclerViewCat4, mRecyclerViewCat5;
     RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3, mLayoutManagerCat4, mLayoutManagerCat5;
-    RecyclerView.Adapter mAdapterCat1, mAdapterCat2, mAdapterCat3, mAdapterCat4, mAdapterCat5;
     List<Content> content;
     ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
     MainActivity mainActivity = (MainActivity) getContext();
@@ -55,10 +54,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 showCategoryFragment.setArguments(i);
                 ((MainActivity) getActivity()).backStackGame = "Game1";
                 ((MainActivity) getActivity()).addFragmentOnTop(showCategoryFragment);
-
-
-                //image.startAnimation(animation1);
-               // animation1.setAnimationListener
             }
         });
 
@@ -115,25 +110,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             }
         });
 
-        Button btn = view.findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                main.fragmentManager.beginTransaction().add(R.id.main_container, fragment, "5").hide(fragment).commit();
-//                main.fragmentManager.beginTransaction().hide(Globals.getActive()).show(fragment).commit();
-                //main.active = fragment;
-//                main.fragmentManager.beginTransaction().add(R.id.contentContainer,fragment, "5").commit();
-//                FragmentTransaction fr = getFragmentManager().beginTransaction();
-//                fr.replace(R.id.contentContainer, fragment);
-//                fr.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                fr.addToBackStack(null);
-//                Globals.setActive(fragment);
-//                fr.commit();
-
-                ((MainActivity) getActivity()).backStackGame = "Game1";
-                ((MainActivity) getActivity()).addFragmentOnTop(new ProductPageFragment());
-            }
-        });
         getActivity().getSupportFragmentManager().addOnBackStackChangedListener(this);
         getContentCat1();
         getContentCat2();
@@ -197,20 +173,11 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         call.enqueue(new Callback<CatagoryResponse>() {
             @Override
             public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
-                //Log.i("test",response.code() + "");
                 if(response.code() == 200){
                     content = response.body().getContents();
                     txv_app_cat1.setText(response.body().getCatName());
 
                     mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(),content));
-//                    for (Content content1 : content){
-//                        contentName.add(String.valueOf(content1.getName()));
-//                        contentImageUrl.add(String.valueOf(content1.getImage()));
-//                        Log.i("LOGIN", String.valueOf(content1.getId()));
-//                        Log.i("LOGIN", String.valueOf(content1.getName()));
-//                        Log.i("LOGIN", String.valueOf(content1.getDesc()));
-//                        Log.i("LOGIN", String.valueOf(content1.getImage()));
-//                    }
                 }
             }
 
@@ -235,14 +202,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                     txv_app_cat2.setText(response.body().getCatName());
 
                     mRecyclerViewCat2.setAdapter(new HorizontalListAdapter(getContext(),content));
-//                    for (Content content1 : content){
-//                        contentName.add(String.valueOf(content1.getName()));
-//                        contentImageUrl.add(String.valueOf(content1.getImage()));
-//                        Log.i("LOGIN", String.valueOf(content1.getId()));
-//                        Log.i("LOGIN", String.valueOf(content1.getName()));
-//                        Log.i("LOGIN", String.valueOf(content1.getDesc()));
-//                        Log.i("LOGIN", String.valueOf(content1.getImage()));
-//                    }
                 }
             }
 
@@ -266,14 +225,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                     txv_app_cat3.setText(response.body().getCatName());
 
                     mRecyclerViewCat3.setAdapter(new HorizontalListAdapter(getContext(),content));
-//                    for (Content content1 : content){
-//                        contentName.add(String.valueOf(content1.getName()));
-//                        contentImageUrl.add(String.valueOf(content1.getImage()));
-//                        Log.i("LOGIN", String.valueOf(content1.getId()));
-//                        Log.i("LOGIN", String.valueOf(content1.getName()));
-//                        Log.i("LOGIN", String.valueOf(content1.getDesc()));
-//                        Log.i("LOGIN", String.valueOf(content1.getImage()));
-//                    }
                 }
             }
 
@@ -297,14 +248,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                     txv_app_cat4.setText(response.body().getCatName());
 
                     mRecyclerViewCat4.setAdapter(new HorizontalListAdapter(getContext(),content));
-//                    for (Content content1 : content){
-//                        contentName.add(String.valueOf(content1.getName()));
-//                        contentImageUrl.add(String.valueOf(content1.getImage()));
-//                        Log.i("LOGIN", String.valueOf(content1.getId()));
-//                        Log.i("LOGIN", String.valueOf(content1.getName()));
-//                        Log.i("LOGIN", String.valueOf(content1.getDesc()));
-//                        Log.i("LOGIN", String.valueOf(content1.getImage()));
-//                    }
                 }
             }
 
@@ -328,14 +271,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                     txv_app_cat5.setText(response.body().getCatName());
 
                     mRecyclerViewCat5.setAdapter(new HorizontalListAdapter(getContext(),content));
-//                    for (Content content1 : content){
-//                        contentName.add(String.valueOf(content1.getName()));
-//                        contentImageUrl.add(String.valueOf(content1.getImage()));
-//                        Log.i("LOGIN", String.valueOf(content1.getId()));
-//                        Log.i("LOGIN", String.valueOf(content1.getName()));
-//                        Log.i("LOGIN", String.valueOf(content1.getDesc()));
-//                        Log.i("LOGIN", String.valueOf(content1.getImage()));
-//                    }
                 }
             }
 
@@ -347,7 +282,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     }
 
     public void onBackStackChanged() {
-        // enable Up button only  if there are entries on the backstack
         if (getActivity().getSupportFragmentManager().getBackStackEntryCount() < 1) {
             ((MainActivity) getActivity()).hideUpButton();
         }
