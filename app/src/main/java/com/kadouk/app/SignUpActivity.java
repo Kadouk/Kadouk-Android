@@ -7,13 +7,16 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -28,22 +31,28 @@ import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.http.Field;
 
 public class SignUpActivity extends AppCompatActivity {
 
     Short EditTextMaxLength = 11;
     FloatingActionButton fab;
     EditText EditTextNumber;
+    private TextInputLayout inputLayoutNumber;
     public static final String MyShPref = "MyPrefers",FirstRun = "run";
     SharedPreferences SharedPreferences;
     Intent intent;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_number);
         final Animation animation, animation1, animation2 ;
         fab = findViewById(R.id.fab);
+        fab.setEnabled(false);
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
+        inputLayoutNumber = findViewById(R.id.input_layout_number);
         EditTextNumber = findViewById(R.id.signup_edt_number);
         EditTextNumber.addTextChangedListener(mTextEditorWatcher);
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
@@ -84,7 +93,34 @@ public class SignUpActivity extends AppCompatActivity {
             }
             @Override
             public void onAnimationEnd(Animation arg0) {
+            }
+        });
 
+        animation2.setAnimationListener(new Animation.AnimationListener(){
+            @Override
+            public void onAnimationStart(Animation arg0) {
+
+            }
+            @Override
+            public void onAnimationRepeat(Animation arg0) {
+
+            }
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                EditTextNumber.setVisibility(View.VISIBLE);
+            }
+        });
+
+        EditTextNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View arg0, boolean hasfocus) {
+                if (hasfocus) {
+                    //EditTextNumber.("شماره موبایل");
+                    //inputLayoutNumber.setError("شماره را کامل وارد کنید");
+                    //inputLayoutNumber.getEditText().setHint("شم");
+                    // Retrieve the CollapsingTextHelper Field
+
+                }
             }
         });
     }
@@ -163,12 +199,10 @@ public class SignUpActivity extends AppCompatActivity {
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(s.length() == EditTextMaxLength){
                 fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.olivine)));
-                fab.setClickable(true);
-                fab.setVisibility(View.VISIBLE);
+                fab.setEnabled(true);
             }else {
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
-                fab.setClickable(false);
-                fab.setVisibility(View.GONE);
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
+                fab.setEnabled(false);
             }
         }
 
