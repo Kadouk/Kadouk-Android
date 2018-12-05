@@ -42,25 +42,29 @@ public class SignUpActivity extends AppCompatActivity {
     public static final String MyShPref = "MyPrefers",FirstRun = "run";
     SharedPreferences SharedPreferences;
     Intent intent;
+    Animation animation, animation1, animation2 ;
+    ImageView image, image1, image2;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_number);
-        final Animation animation, animation1, animation2 ;
         fab = findViewById(R.id.fab);
         fab.setEnabled(false);
         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
         inputLayoutNumber = findViewById(R.id.input_layout_number);
         EditTextNumber = findViewById(R.id.signup_edt_number);
         EditTextNumber.addTextChangedListener(mTextEditorWatcher);
+
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
         animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move1);
         animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move2);
-        final ImageView image = (ImageView)findViewById(R.id.imageView);
-        final ImageView image1 = (ImageView)findViewById(R.id.login_blue_circle);
-        final ImageView image2= (ImageView)findViewById(R.id.login_white_circle);
+
+        image = (ImageView)findViewById(R.id.imageView);
+        image1 = (ImageView)findViewById(R.id.login_blue_circle);
+        image2= (ImageView)findViewById(R.id.login_white_circle);
 
         SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
 
@@ -129,20 +133,68 @@ public class SignUpActivity extends AppCompatActivity {
     public void sendNumber(View view) {
 
         EditTextNumber = findViewById(R.id.signup_edt_number);
-        if(EditTextNumber.getText().length() < 11){
+        if (EditTextNumber.getText().length() < 11) {
             EditTextNumber.setError("There must be 11 numbers");
-        }else {
-            Log.i("number",String.valueOf(EditTextNumber.getText()));
-            String number = String.valueOf(EditTextNumber.getText());
-            Globals.setNumber(number);
-            sendPhoneNumber(number);
+        } else {
+            Log.i("number", String.valueOf(EditTextNumber.getText()));
+
+
+
+
+            inputLayoutNumber.setVisibility(View.GONE);
+            animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.back_blue_circle);
+            animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.back_withe_circle);
+
+
+            image2.startAnimation(animation2);
+
+            animation2.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation arg0) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation arg0) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation arg0) {
+                    image2.setVisibility(View.INVISIBLE);
+                    image1.setAnimation(animation1);
+                }
+            });
+
+            animation1.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation arg0) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation arg0) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation arg0) {
+                    image1.setVisibility(View.INVISIBLE);
+                    String number = String.valueOf(EditTextNumber.getText());
+                    Globals.setNumber(number);
+                    sendPhoneNumber(number);
+                }
+            });
+
+
 //            intent = new Intent(SignUpActivity.this, SignUpEnterCodeActivity.class);
 //            finish();
 //            startActivity(intent);
         }
+    }
         //number = EditTextNumber.getText().toString();
         // register(name, kidGender, birth, number, password, cPassword);
-    }
+   // }
 
     private void sendPhoneNumber(String Number){
 
