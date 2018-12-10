@@ -82,7 +82,6 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
 
 
         image.startAnimation(animation);
-        // animation1.setAnimationListener
 
         animation.setAnimationListener(new Animation.AnimationListener(){
             @Override
@@ -113,6 +112,24 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
 
             }
         });
+
+        animation2.setAnimationListener(new Animation.AnimationListener(){
+            @Override
+            public void onAnimationStart(Animation arg0) {
+                image2.startAnimation(animation2);
+            }
+            @Override
+            public void onAnimationRepeat(Animation arg0) {
+
+            }
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                EditTextCode.setVisibility(View.VISIBLE);
+                textViewResendCode.setVisibility(View.VISIBLE);
+                textViewTime.setVisibility(View.VISIBLE);
+            }
+        });
+
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

@@ -207,7 +207,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                     if (String.valueOf(response.body().getStatus()).equals("200")){
                         Log.i("LOGIN", String.valueOf(response.body().getStatus()));
-                        intent = new Intent(SignUpActivity.this, SignUpEnterCodeActivity.class);
+                        intent = new Intent(SignUpActivity.this, SignUpEnterCodeActivity.class).
+                                addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
                        // finish();
                         startActivity(intent);
                     }
