@@ -53,22 +53,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Globals.setActive(game);
 
-        SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
-        if (SharedPreferences.getString(FirstRun,null) == null) {
-            sendAPI();
-
-            Log.i("token", "token1 = " + SharedPreferences.getString(FirstRun,null));
-            intent = new Intent(MainActivity.this, SignUpActivity.class);
-            finish();
-            startActivity(intent);
-        }
-        if (SharedPreferences.getString(authenticationToken,null) != null) {
-            String Token = SharedPreferences.getString(authenticationToken,null);
-            Globals.setToken(Token);
-            Log.i("token", "token = " + SharedPreferences.getString(authenticationToken,null));
-
-
-        }
+//        SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
+//        if (SharedPreferences.getString(FirstRun,null) == null) {
+//            sendAPI();
+//
+//            Log.i("token", "token1 = " + SharedPreferences.getString(FirstRun,null));
+//            intent = new Intent(MainActivity.this, SignUpActivity.class);
+//            finish();
+//            startActivity(intent);
+//        }
+//        if (SharedPreferences.getString(authenticationToken,null) != null) {
+//            String Token = SharedPreferences.getString(authenticationToken,null);
+//            Globals.setToken(Token);
+//            Log.i("token", "token = " + SharedPreferences.getString(authenticationToken,null));
+//
+//
+//        }
         fragmentManager = getSupportFragmentManager();
 
             fragmentManager.beginTransaction().add(R.id.contentContainer, fragment4, "4").hide(fragment4).commit();
