@@ -3,7 +3,9 @@ package com.kadouk.app;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -23,12 +25,17 @@ import retrofit2.Callback;
 public class SignUpNameGenderBirthdayActivity extends AppCompatActivity {
     String name, kidGender = "boy", day, month, year;
     EditText EditTextName;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_name_gender_birthday);
         EditTextName = findViewById(R.id.signup_edt_name);
+
+        fab = findViewById(R.id.fab_finish);
+       // fab.setEnabled(false);
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
 
         Spinner SpinnerDay = findViewById(R.id.signup_name_gender_spinner_day);
         Spinner SpinnerMonth = findViewById(R.id.signup_name_gender_spinner_month);
@@ -114,7 +121,7 @@ public class SignUpNameGenderBirthdayActivity extends AppCompatActivity {
         }
     }
 
-    public void next(View view) {
+    public void finish(View view) {
         name = EditTextName.getText().toString();
         String birth = year + "/" + month + "/" + day;
         Log.i("data", name +"/"+ kidGender + "/" + birth);

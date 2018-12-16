@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".SignUpNameGenderBirthdayActivity">
+
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
         android:layout_marginLeft="@dimen/large"
         android:layout_marginRight="@dimen/large"
         android:layout_marginTop="@dimen/large"
@@ -115,4 +117,29 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/normal"
+            android:layout_marginBottom="@dimen/normal"
+            android:onClick="finish"
+            app:fabSize="auto"
+            app:rippleColor="@color/colorPrimary"
+            android:fitsSystemWindows="true"
+            android:tint="@color/olivine" />
+
+    </LinearLayout>
+
+
 </LinearLayout>

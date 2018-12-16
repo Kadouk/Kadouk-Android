@@ -129,8 +129,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.942"
         app:rippleColor="@color/colorPrimary"
-        android:clickable="false"
-        android:visibility="gone"/>
+        android:clickable="false" />
 
 </android.support.constraint.ConstraintLayout>
 

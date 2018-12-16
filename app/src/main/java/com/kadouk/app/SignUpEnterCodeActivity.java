@@ -59,9 +59,13 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
         final Animation animation, animation1, animation2 ;
 
         fab = findViewById(R.id.fab_code);
+        fab.setEnabled(false);
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
+
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
         animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move1);
         animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move2);
+
         final ImageView image = (ImageView)findViewById(R.id.get_code_image);
         final ImageView image1 = (ImageView)findViewById(R.id.get_code_image1);
         final ImageView image2= (ImageView)findViewById(R.id.get_code_image2);
@@ -271,12 +275,10 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(s.length() == EditTextMaxLength){
                 fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.olivine)));
-                fab.setClickable(true);
-                fab.setVisibility(View.VISIBLE);
+                fab.setEnabled(true);
             }else {
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
-                fab.setClickable(false);
-                fab.setVisibility(View.GONE);
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
+                fab.setEnabled(false);
             }
         }
 
