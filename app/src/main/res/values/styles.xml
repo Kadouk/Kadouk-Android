@@ -83,6 +83,8 @@
     <style name="spinner">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/normal</item>
+
     </style>
 
     <style name="textViewTitle" parent="textView">

@@ -21,22 +21,43 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class SignUpNameGenderBirthdayActivity extends AppCompatActivity {
-    String name, kidGender = "boy", month, year;
+    String name, kidGender = "boy", day, month, year;
     EditText EditTextName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_name_gender_birthday);
-        EditTextName = findViewById(R.id.signup_name_gender_next_edt_name);
+        EditTextName = findViewById(R.id.signup_edt_name);
 
+        Spinner SpinnerDay = findViewById(R.id.signup_name_gender_spinner_day);
         Spinner SpinnerMonth = findViewById(R.id.signup_name_gender_spinner_month);
         Spinner SpinnerYear = findViewById(R.id.signup_name_gender_spinner_year);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+
+        ArrayAdapter<CharSequence> dayAdapter = ArrayAdapter.createFromResource(this,
+                R.array.day, android.R.layout.simple_spinner_item);
+        dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpinnerDay.setAdapter(dayAdapter);
+        SpinnerDay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                day = adapterView.getItemAtPosition(i).toString();
+                Log.i("SPINNER",adapterView.getItemAtPosition(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        ArrayAdapter<CharSequence> monthAdapter = ArrayAdapter.createFromResource(this,
                 R.array.month, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpinnerMonth.setAdapter(adapter);
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpinnerMonth.setAdapter(monthAdapter);
         SpinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -53,7 +74,7 @@ public class SignUpNameGenderBirthdayActivity extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> yearAdapter = ArrayAdapter.createFromResource(this,
                 R.array.year, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerYear.setAdapter(yearAdapter);
         SpinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -95,7 +116,7 @@ public class SignUpNameGenderBirthdayActivity extends AppCompatActivity {
 
     public void next(View view) {
         name = EditTextName.getText().toString();
-        String birth = year + "/" + month;
+        String birth = year + "/" + month + "/" + day;
         Log.i("data", name +"/"+ kidGender + "/" + birth);
         String number = Globals.getNumber();
         Log.i("data", name +"/"+ kidGender +"/"+ number+ "/" + birth);

@@ -1,130 +1,118 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     tools:context=".SignUpNameGenderBirthdayActivity">
 
-    <LinearLayout
-        android:layout_width="@dimen/signup_layout_height_name_gender"
-        android:layout_height="@dimen/signup_layout_height_name_gender"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large"
         android:layout_marginRight="@dimen/large"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="@dimen/large">
+        android:layout_marginTop="@dimen/large"
+        card_view:cardCornerRadius="@dimen/normal"
+        card_view:cardElevation="@dimen/smaller">
 
-        <TextView
-            style="@style/textViewTitle"
-            android:text="@string/enter_your_kid_name" />
-
-        <LinearLayout
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_profile"
+                style="@style/imageViewProfile"
+                android:layout_width="@dimen/xlarge"
+                android:layout_height="@dimen/xlarge"
+                android:layout_marginTop="@dimen/normal"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitXY" />
+
+            <EditText
+                android:id="@+id/signup_edt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_your_kid_name"
+                android:layout_marginTop="@dimen/normal"
+                android:singleLine="true"
+                android:background="@null"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"/>
+
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/normal"
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    style="@style/textView"
+                    android:text="@string/girl" />
+
+                <RadioButton
+                    android:id="@+id/signup_name_gender_radio_girl"
+                    style="@style/radioButtonGender"
+                    android:layout_marginEnd="@dimen/normal"
+                    android:layout_marginRight="@dimen/normal" />
+
+                <TextView
+                    style="@style/textView"
+                    android:text="@string/boy" />
+
+                <RadioButton
+                    android:id="@+id/signup_name_gender_radio_boy"
+                    style="@style/radioButtonGender"
+                    android:checked="true" />
+
+            </RadioGroup>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/normal"
+                android:layout_gravity="center_horizontal">
 
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/signup_name_gender_next_edt_name"
-                    style="@style/editText"
-                    android:layout_marginTop="30dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="right">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/your_kid_birthday" />
+                </LinearLayout>
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/normal"
-                    android:gravity="end"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/smaller"
+                    android:layout_marginBottom="@dimen/normal"
                     android:orientation="horizontal">
+                    <Spinner
+                        android:id="@+id/signup_name_gender_spinner_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-                    <TextView
-                        style="@style/textView"
-                        android:text="@string/girl" />
+                    <Spinner
+                        android:id="@+id/signup_name_gender_spinner_month"
+                        style="@style/spinner" />
 
-                    <RadioButton
-                        android:id="@+id/signup_name_gender_radio_girl"
-                        style="@style/radioButtonGender"
-                        android:layout_marginEnd="@dimen/xlarge"
-                        android:layout_marginRight="@dimen/xlarge" />
+                    <Spinner
+                        android:id="@+id/signup_name_gender_spinner_day"
+                        style="@style/spinner" />
 
-                    <TextView
-                        style="@style/textView"
-                        android:text="@string/boy" />
-
-                    <RadioButton
-                        android:id="@+id/signup_name_gender_radio_boy"
-                        style="@style/radioButtonGender"
-                        android:checked="true" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_weight="0.1">
-
-                <!--<ImageView
-                    style="@style/imageViewProfile" />-->
-
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
-
-        <TextView
-            style="@style/textViewTitle"
-            android:text="@string/enter_your_kid_birthday" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:orientation="vertical">
-
-                <Spinner
-                    android:id="@+id/signup_name_gender_spinner_month"
-                    style="@style/spinner"
-                    android:layout_gravity="right"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:orientation="vertical">
-
-                <Spinner
-                    android:id="@+id/signup_name_gender_spinner_year"
-                    style="@style/spinner"
-                    android:layout_gravity="center_horizontal"/>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/signup_name_gender_next"
-        style="@style/buttonNext"
-        android:onClick="next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/signup_name_gender_back"
-        style="@style/buttonBack"
-        android:onClick="back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
