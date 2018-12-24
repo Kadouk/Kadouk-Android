@@ -17,4 +17,7 @@
     <dimen name="large">32dp</dimen>
     <dimen name="xlarge">64dp</dimen>
 
+    <dimen name="profile_pic">48dp</dimen>
+
+
 </resources>

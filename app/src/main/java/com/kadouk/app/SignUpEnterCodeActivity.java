@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -183,7 +182,7 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
                         Log.i("LOGIN", "umad inja");
                     }else if(String.valueOf(response.body().getError()).equals("Not Register")) {
                         Log.i("LOGIN", "sabt nashode");
-                        intent = new Intent(SignUpEnterCodeActivity.this, SignUpNameGenderBirthdayActivity.class);
+                        intent = new Intent(SignUpEnterCodeActivity.this, SignUpProfileActivity.class);
                         startActivity(intent);
                     }else if(String.valueOf(response.body().getToken()).length() > 1) {
                         Log.i("LOGIN", "sabt shode");

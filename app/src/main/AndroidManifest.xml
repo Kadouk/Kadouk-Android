@@ -22,7 +22,7 @@
             android:name=".SignUpActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ShowCategoryFragment" />
-        <activity android:name=".SignUpNameGenderBirthdayActivity" />
+        <activity android:name=".SignUpProfileActivity" />
         <activity
             android:name=".SignUpEnterCodeActivity"
             android:windowSoftInputMode="adjustResize"

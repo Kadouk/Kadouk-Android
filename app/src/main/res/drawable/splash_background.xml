@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-<item android:drawable="@color/colorPrimary" />
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/ic_appname"/>
+    </item>
 
-<item>
-<bitmap
-    android:gravity="center"
-android:src="@mipmap/ic_launcher" />
-</item>
+    <item>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="rectangle">
+        <solid android:color="@color/snow"/>
 
-    </layer-list>
+    </shape>
+   </item>
+
+    <item android:drawable="@drawable/tile_background" />
+
+
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle">
+            <solid android:color="@color/white"/>
+        </shape>
+    </item>
+
+
+</layer-list>

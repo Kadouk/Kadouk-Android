@@ -3,7 +3,9 @@ package com.kadouk.app;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -19,10 +21,12 @@ import com.kadouk.app.model.Response;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
+import java.util.Locale;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class SignUpNameGenderBirthdayActivity extends AppCompatActivity {
+public class SignUpProfileActivity extends AppCompatActivity {
     String name, kidGender = "boy", day, month, year;
     EditText EditTextName;
     FloatingActionButton fab;
@@ -30,8 +34,13 @@ public class SignUpNameGenderBirthdayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup_name_gender_birthday);
+        setContentView(R.layout.activity_signup_profile);
         EditTextName = findViewById(R.id.signup_edt_name);
+
+
+       // Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/B_Koodak_Bold_0.ttf");
+
+        //EditTextName.setTypeface(custom_font);
 
         fab = findViewById(R.id.fab_finish);
        // fab.setEnabled(false);
@@ -102,7 +111,7 @@ public class SignUpNameGenderBirthdayActivity extends AppCompatActivity {
    // }
 
     public void back(View view) {
-        Intent intent = new Intent(SignUpNameGenderBirthdayActivity.this, SignUpActivity.class);
+        Intent intent = new Intent(SignUpProfileActivity.this, SignUpActivity.class);
         startActivity(intent);
     }
 
@@ -131,7 +140,7 @@ public class SignUpNameGenderBirthdayActivity extends AppCompatActivity {
     }
 
     public void backOfTerm(View view) {
-        Intent intent = new Intent(SignUpNameGenderBirthdayActivity.this, SignUpNameGenderBirthdayActivity.class);
+        Intent intent = new Intent(SignUpProfileActivity.this, SignUpProfileActivity.class);
         finish();
         startActivity(intent);
     }
@@ -159,7 +168,7 @@ public class SignUpNameGenderBirthdayActivity extends AppCompatActivity {
                     Globals.setToken(Token);
                     sEdit.apply();
 
-                    Intent intent = new Intent(SignUpNameGenderBirthdayActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SignUpProfileActivity.this, MainActivity.class);
                     startActivity(intent);
 
                 }else{
