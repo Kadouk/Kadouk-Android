@@ -11,21 +11,21 @@ import java.util.List;
 public class CatagoryResponse {
 
     @SerializedName("contents")
-    private List<Content> contents;
+    private List<Contents> contents;
 
     @SerializedName("catName")
     private String catName;
 
-    public CatagoryResponse(List<Content> contents, String catName) {
+    public CatagoryResponse(List<Contents> contents, String catName) {
         this.contents = contents;
         this.catName = catName;
     }
 
-    public List<Content> getContents() {
+    public List<Contents> getContents() {
         return contents;
     }
 
-    public void setContents(List<Content> contents) {
+    public void setContents(List<Contents> contents) {
         this.contents = contents;
     }
 

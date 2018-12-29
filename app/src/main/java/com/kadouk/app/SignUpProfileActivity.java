@@ -3,9 +3,7 @@ package com.kadouk.app;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -17,11 +15,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
-import com.kadouk.app.model.Response;
+import com.kadouk.app.model.RegisterResponse;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
-
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -148,10 +144,10 @@ public class SignUpProfileActivity extends AppCompatActivity {
     private void sendUserInformation(String name, String kidGender, String number, String birth){
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<Response> call = apiInterface.register(name, kidGender, number, birth);
-        call.enqueue(new Callback<Response>() {
+        Call<RegisterResponse> call = apiInterface.register(name, kidGender, number, birth);
+        call.enqueue(new Callback<RegisterResponse>() {
             @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+            public void onResponse(Call<RegisterResponse> call, retrofit2.Response<RegisterResponse> response) {
                 if(response.isSuccessful()){
                     Log.i("RETROFIT", "successful");
                     Log.i("RETROFIT", String.valueOf(response.body().getName()));
@@ -178,7 +174,7 @@ public class SignUpProfileActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Response> call, Throwable t) {
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
 
             }
         });

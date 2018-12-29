@@ -9,11 +9,11 @@
     </item>
 
     <item>
-    <shape xmlns:android="http://schemas.android.com/apk/res/android"
-        android:shape="rectangle">
-        <solid android:color="@color/snow"/>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle">
+            <solid android:color="@color/snow"/>
 
-    </shape>
+        </shape>
    </item>
 
     <item android:drawable="@drawable/tile_background" />

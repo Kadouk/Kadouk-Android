@@ -17,19 +17,19 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.kadouk.app.model.Content;
+import com.kadouk.app.model.Contents;
 
 import java.util.List;
 
 public class VerticalListAdapter extends RecyclerView.Adapter<VerticalListAdapter.ViewHolder> {
 
-    List<Content> content;
+    List<Contents> contents;
     Context adapterContext;
 
-    public VerticalListAdapter(Context context, List<Content> content) {
+    public VerticalListAdapter(Context context, List<Contents> contents) {
         super();
         adapterContext = context;
-        this.content = content;
+        this.contents = contents;
         Glide.get(context).clearMemory();
     }
 
@@ -44,9 +44,9 @@ public class VerticalListAdapter extends RecyclerView.Adapter<VerticalListAdapte
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") int position) {
 
-        viewHolder.txvAppName.setText(content.get(position).getName());
-        viewHolder.txvAppDesc.setText(content.get(position).getDesc());
-        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/" + content.get(position).getImage();
+        viewHolder.txvAppName.setText(contents.get(position).getName());
+        viewHolder.txvAppDesc.setText(contents.get(position).getDesc());
+        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/" + contents.get(position).getImage();
         Log.i("LOADPIC", imageUrl + position);
 
         Glide
@@ -59,7 +59,7 @@ public class VerticalListAdapter extends RecyclerView.Adapter<VerticalListAdapte
 
     @Override
     public int getItemCount() {
-        return content.size();
+        return contents.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -82,11 +82,11 @@ public class VerticalListAdapter extends RecyclerView.Adapter<VerticalListAdapte
                     int onClickPosition = getAdapterPosition();
                     if(onClickPosition != RecyclerView.NO_POSITION){
 //                        Intent intent = new Intent(adapterContext,ShowCategoryFragment.class);
-//                        intent.putExtra("Name",content.get(onClickPosition).getName());
-//                        intent.putExtra("Id",content.get(onClickPosition).getId());
+//                        intent.putExtra("Name",contents.get(onClickPosition).getName());
+//                        intent.putExtra("Id",contents.get(onClickPosition).getId());
 //                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                        adapterContext.startActivity(intent);
-                        Log.i("Click","shomare " + onClickPosition + " - " + content.get(onClickPosition).getName());
+                        Log.i("Click","shomare " + onClickPosition + " - " + contents.get(onClickPosition).getName());
                     }
                 }
             });

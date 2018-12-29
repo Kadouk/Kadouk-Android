@@ -1,13 +1,11 @@
 package com.kadouk.app.webService;
 
 
-import com.kadouk.app.model.App;
 import com.kadouk.app.model.CatagoryResponse;
 import com.kadouk.app.model.ContentRespons;
-import com.kadouk.app.model.Contents;
+import com.kadouk.app.model.Content;
 import com.kadouk.app.model.Details;
-import com.kadouk.app.model.Product;
-import com.kadouk.app.model.Response;
+import com.kadouk.app.model.RegisterResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -18,10 +16,6 @@ import retrofit2.http.POST;
 
 public interface APIInterface{
 
-//@GET("login")
-// Call <Response> login();
-
-
  @POST("details")
  @FormUrlEncoded
  Call<Details> details (@Field("phone") String phone, @Header("Authorization") String Token);
@@ -31,15 +25,15 @@ public interface APIInterface{
 
  @POST ("get/phone?phone=…")
  @FormUrlEncoded
- Call<Response> sendPhoneNumber (@Field("phone") String phone);
+ Call<RegisterResponse> sendPhoneNumber (@Field("phone") String phone);
 
  @POST ("login?code=…&phone=…")
  @FormUrlEncoded
- Call<Response> sendVerificationCode (@Field("code") String verificationCode, @Field("phone") String number) ;
+ Call<RegisterResponse> sendVerificationCode (@Field("code") String verificationCode, @Field("phone") String number) ;
 
  @POST ("register")
  @FormUrlEncoded
- Call<Response> register (@Field("name") String name, @Field("gender") String kidGender, @Field("phone") String phone, @Field("birth") String birth) ;
+ Call<RegisterResponse> register (@Field("name") String name, @Field("gender") String kidGender, @Field("phone") String phone, @Field("birth") String birth) ;
 
  @POST ("get/version?version=")
  @FormUrlEncoded
@@ -51,5 +45,5 @@ public interface APIInterface{
 
  @POST ("content/show/page?id=")
  @FormUrlEncoded
- Call<Contents> getAppDataByID (@Field("id") int ID) ;
+ Call<Content> getAppDataByID (@Field("id") int ID) ;
 }

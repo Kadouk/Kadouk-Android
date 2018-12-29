@@ -70,10 +70,10 @@ public class ProductScreenshotsAdapter extends RecyclerView.Adapter<ProductScree
 //                    int position = getAdapterPosition();
 //                    if(position != RecyclerView.NO_POSITION){
 //                        Intent intent = new Intent(adapterContext,ProductActivity.class);
-//                        intent.putExtra("Name",content.get(position).getName());
+//                        intent.putExtra("Name",contents.get(position).getName());
 //                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                        adapterContext.startActivity(intent);
-//                        Log.i("Click","shomare " + position+ " - " + content.get(position).getName());
+//                        Log.i("Click","shomare " + position+ " - " + contents.get(position).getName());
 //                    }
                 }
             });

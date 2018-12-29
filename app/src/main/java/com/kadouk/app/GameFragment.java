@@ -11,11 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.kadouk.app.model.CatagoryResponse;
-import com.kadouk.app.model.Content;
+import com.kadouk.app.model.Contents;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
@@ -31,7 +30,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
     RecyclerView mRecyclerViewCat1, mRecyclerViewCat2, mRecyclerViewCat3, mRecyclerViewCat4, mRecyclerViewCat5;
     RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3, mLayoutManagerCat4, mLayoutManagerCat5;
-    List<Content> content;
+    List<Contents> contents;
     ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
     MainActivity mainActivity = (MainActivity) getContext();
     public GameFragment() {
@@ -174,10 +173,10 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             @Override
             public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
                 if(response.code() == 200){
-                    content = response.body().getContents();
+                    contents = response.body().getContents();
                     txv_app_cat1.setText(response.body().getCatName());
 
-                    mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(),content));
+                    mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
             }
 
@@ -198,10 +197,10 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
                 if(response.code() == 200){
 
-                    content = response.body().getContents();
+                    contents = response.body().getContents();
                     txv_app_cat2.setText(response.body().getCatName());
 
-                    mRecyclerViewCat2.setAdapter(new HorizontalListAdapter(getContext(),content));
+                    mRecyclerViewCat2.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
             }
 
@@ -221,10 +220,10 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
                 if(response.code() == 200){
 
-                    content = response.body().getContents();
+                    contents = response.body().getContents();
                     txv_app_cat3.setText(response.body().getCatName());
 
-                    mRecyclerViewCat3.setAdapter(new HorizontalListAdapter(getContext(),content));
+                    mRecyclerViewCat3.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
             }
 
@@ -244,10 +243,10 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
                 if(response.code() == 200){
 
-                    content = response.body().getContents();
+                    contents = response.body().getContents();
                     txv_app_cat4.setText(response.body().getCatName());
 
-                    mRecyclerViewCat4.setAdapter(new HorizontalListAdapter(getContext(),content));
+                    mRecyclerViewCat4.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
             }
 
@@ -267,10 +266,10 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
                 if(response.code() == 200){
 
-                    content = response.body().getContents();
+                    contents = response.body().getContents();
                     txv_app_cat5.setText(response.body().getCatName());
 
-                    mRecyclerViewCat5.setAdapter(new HorizontalListAdapter(getContext(),content));
+                    mRecyclerViewCat5.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
             }
 

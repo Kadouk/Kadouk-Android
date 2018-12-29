@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.kadouk.app.model.Response;
+import com.kadouk.app.model.RegisterResponse;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
@@ -171,10 +171,10 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
     private void sendCode(String code, String number) {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<Response> call = apiInterface.sendVerificationCode(code,number);
-        call.enqueue(new Callback<Response>() {
+        Call<RegisterResponse> call = apiInterface.sendVerificationCode(code,number);
+        call.enqueue(new Callback<RegisterResponse>() {
             @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+            public void onResponse(Call<RegisterResponse> call, retrofit2.Response<RegisterResponse> response) {
                 if(response.code() == 200){
                     Log.i("LOGIN", String.valueOf(response.body().getError()));
                     if(String.valueOf(response.body().getError()).equals("Wrong Code") ){
@@ -213,7 +213,7 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Response> call, Throwable t) {
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
 
             }
         });

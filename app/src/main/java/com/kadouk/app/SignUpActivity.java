@@ -5,33 +5,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.kadouk.app.model.RegisterResponse;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.http.Field;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -199,10 +191,10 @@ public class SignUpActivity extends AppCompatActivity {
     private void sendPhoneNumber(String Number){
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<com.kadouk.app.model.Response> call =  apiInterface.sendPhoneNumber(Number);
-        call.enqueue(new Callback<com.kadouk.app.model.Response>() {
+        Call<RegisterResponse> call =  apiInterface.sendPhoneNumber(Number);
+        call.enqueue(new Callback<RegisterResponse>() {
             @Override
-            public void onResponse(Call<com.kadouk.app.model.Response> call, retrofit2.Response<com.kadouk.app.model.Response> response){
+            public void onResponse(Call<RegisterResponse> call, retrofit2.Response<RegisterResponse> response){
                 if(response.isSuccessful()) {
 
                     if (String.valueOf(response.body().getStatus()).equals("200")){
@@ -227,7 +219,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<com.kadouk.app.model.Response> call, Throwable t) {
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 Log.i("LOGIN", "connection problem!");
             }
         });

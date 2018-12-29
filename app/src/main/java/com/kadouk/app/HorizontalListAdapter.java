@@ -5,7 +5,6 @@ package com.kadouk.app;
  */
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,22 +17,22 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.kadouk.app.model.Content;
+import com.kadouk.app.model.Contents;
 
 import java.util.List;
 
 public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAdapter.ViewHolder> {
 
-    List<Content> content;
+    List<Contents> contents;
     Context adapterContext;
     int appPosition = 0;
 
-    public HorizontalListAdapter(Context context, List<Content> content) {
+    public HorizontalListAdapter(Context context, List<Contents> contents) {
         super();
         adapterContext = context;
-        this.content = content;
+        this.contents = contents;
         Glide.get(context).clearMemory();
-        Log.i("LOADPIC2", String.valueOf(content));
+        Log.i("LOADPIC2", String.valueOf(contents));
     }
 
     @Override
@@ -49,9 +48,9 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
         int appPosition = position * 2;
 
-        viewHolder.txvAppName1.setText(content.get(appPosition).getName());
-        viewHolder.txvAppDesc1.setText(content.get(appPosition).getDesc());
-        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/" + content.get(appPosition).getImage();
+        viewHolder.txvAppName1.setText(contents.get(appPosition).getName());
+        viewHolder.txvAppDesc1.setText(contents.get(appPosition).getDesc());
+        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/" + contents.get(appPosition).getImage();
         Log.i("LOADPIC", imageUrl + appPosition);
 
         Glide
@@ -62,10 +61,10 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                 .into(viewHolder.imgApp1);
 
         //////////////////////////////////////////////////////////////////////////
-        viewHolder.txvAppName2.setText(content.get(appPosition + 1).getName());
-        viewHolder.txvAppDesc2.setText(content.get(appPosition + 1).getDesc());
-        String imageUrl2 = "http://kadouk.com/kadouk/public/api/download/image/" + content.get(appPosition + 1).getImage();
-        Log.i("LOADPIC", imageUrl + appPosition+1 + "  "+ content.size());
+        viewHolder.txvAppName2.setText(contents.get(appPosition + 1).getName());
+        viewHolder.txvAppDesc2.setText(contents.get(appPosition + 1).getDesc());
+        String imageUrl2 = "http://kadouk.com/kadouk/public/api/download/image/" + contents.get(appPosition + 1).getImage();
+        Log.i("LOADPIC", imageUrl + appPosition+1 + "  "+ contents.size());
 
         Glide
                 .with(adapterContext)
@@ -79,7 +78,7 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
     @Override
     public int getItemCount() {
-        return content.size()/2;
+        return contents.size()/2;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -107,8 +106,8 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                     if(onClickPosition != RecyclerView.NO_POSITION){
 
                         Bundle i = new Bundle();
-                        i.putString("name", content.get(onClickPosition).getName());
-                        i.putString("appId", String.valueOf(content.get(onClickPosition).getId()));
+                        i.putString("name", contents.get(onClickPosition).getName());
+                        i.putString("appId", String.valueOf(contents.get(onClickPosition).getId()));
                         ProductPageFragment frag = new ProductPageFragment();
                         frag.setArguments(i);
                         MainActivity mainActivity = (MainActivity) adapterContext;
@@ -116,11 +115,11 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                         mainActivity.addFragmentOnTop(frag);
 
 //                        Intent intent = new Intent(adapterContext,ShowCategoryFragment.class);
-//                        intent.putExtra("Name",content.get(onClickPosition).getName());
-//                        intent.putExtra("Id",content.get(onClickPosition).getId());
+//                        intent.putExtra("Name",contents.get(onClickPosition).getName());
+//                        intent.putExtra("Id",contents.get(onClickPosition).getId());
 //                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                        adapterContext.startActivity(intent);
-                        Log.i("Click","shomare " + onClickPosition + " - " + content.get(onClickPosition).getName());
+                        Log.i("Click","shomare " + onClickPosition + " - " + contents.get(onClickPosition).getName());
                     }
                 }
             });
@@ -131,19 +130,19 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                     int onClickPosition = getAdapterPosition()*2+1;
                     if(onClickPosition != RecyclerView.NO_POSITION){
                         Bundle i = new Bundle();
-                        i.putString("name", content.get(onClickPosition).getName());
-                        i.putString("appId", String.valueOf(content.get(onClickPosition).getId()));
+                        i.putString("name", contents.get(onClickPosition).getName());
+                        i.putString("appId", String.valueOf(contents.get(onClickPosition).getId()));
                         ProductPageFragment frag = new ProductPageFragment();
                         frag.setArguments(i);
                         MainActivity mainActivity = (MainActivity) adapterContext;
                         mainActivity.backStackGame = "Game1";
                         mainActivity.addFragmentOnTop(frag);
 //                        Intent intent = new Intent(adapterContext,ShowCategoryFragment.class);
-//                        intent.putExtra("Name",content.get(onClickPosition).getName());
-//                        intent.putExtra("Id",content.get(onClickPosition).getId());
+//                        intent.putExtra("Name",contents.get(onClickPosition).getName());
+//                        intent.putExtra("Id",contents.get(onClickPosition).getId());
 //                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                        adapterContext.startActivity(intent);
-                        Log.i("Click","shomare " + onClickPosition + " - " + content.get(onClickPosition).getName());
+                        Log.i("Click","shomare " + onClickPosition + " - " + contents.get(onClickPosition).getName());
 
 
                    }

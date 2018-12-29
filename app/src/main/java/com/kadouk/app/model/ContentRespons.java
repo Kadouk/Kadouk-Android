@@ -11,13 +11,13 @@ import java.util.List;
 public class ContentRespons {
 
     @SerializedName("contents")
-    private List<Content> contents;
+    private List<Contents> contents;
 
-    public List<Content> getContents() {
+    public List<Contents> getContents() {
         return contents;
     }
 
-    public void setContents(List<Content> contents) {
+    public void setContents(List<Contents> contents) {
         this.contents = contents;
     }
 }

@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kadouk.app.model.CatagoryResponse;
-import com.kadouk.app.model.Content;
+import com.kadouk.app.model.Contents;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
@@ -29,7 +29,7 @@ public class ShowCategoryFragment extends Fragment {
     RecyclerView mRecyclerViewCat;
     RecyclerView.LayoutManager mLayoutManagerCat;
     RecyclerView.Adapter mAdapterCat1, mAdapterCat2, mAdapterCat3, mAdapterCat4, mAdapterCat5;
-    List<Content> content;
+    List<Contents> contents;
     TextView toolbarTitle;
 
     public ShowCategoryFragment() {
@@ -73,11 +73,11 @@ public class ShowCategoryFragment extends Fragment {
             public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
                 //Log.i("test",response.code() + "");
                 if(response.code() == 200){
-                    content = response.body().getContents();
+                    contents = response.body().getContents();
                     toolbarTitle.setVisibility(View.VISIBLE);
                     toolbarTitle.setText(response.body().getCatName());
-                    mRecyclerViewCat.setAdapter(new VerticalListAdapter(getContext(),content));
-//                    for (Content content1 : content){
+                    mRecyclerViewCat.setAdapter(new VerticalListAdapter(getContext(), contents));
+//                    for (Contents content1 : contents){
 //                        contentName.add(String.valueOf(content1.getName()));
 //                        contentImageUrl.add(String.valueOf(content1.getImage()));
 //                        Log.i("LOGIN", String.valueOf(content1.getId()));

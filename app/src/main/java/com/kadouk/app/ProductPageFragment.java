@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import com.kadouk.app.model.Contents;
-import com.kadouk.app.model.Media;
+import com.kadouk.app.model.Content;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
@@ -93,10 +92,10 @@ public class ProductPageFragment extends Fragment {
     private void getAppData(int id) {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<Contents> call = apiInterface.getAppDataByID(id);
-        call.enqueue(new Callback<Contents>() {
+        Call<Content> call = apiInterface.getAppDataByID(id);
+        call.enqueue(new Callback<Content>() {
             @Override
-            public void onResponse(Call<Contents> call, Response<Contents> response) {
+            public void onResponse(Call<Content> call, Response<Content> response) {
                 Media = response.body().getMedia();
                 Log.i("passs", String.valueOf(Media));
                 mRecyclerViewProduct.setAdapter(new ProductScreenshotsAdapter(getContext(), response.body().getMedia()));
@@ -114,76 +113,10 @@ public class ProductPageFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Contents> call, Throwable t) {
+            public void onFailure(Call<Content> call, Throwable t) {
                 Log.i("passs", "faild");
             }
         });
 
     }
-
-
-//    private void getAppData(int id) {
-//
-//        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-////        Call<Product> call = apiInterface.getAppDataByID(id);
-////        call.enqueue(new Callback<Product>() {
-////            @Override
-////            public void onResponse(Call<Product> call, Response<Product> response) {
-////                //Media = response.body().getMedia();
-////               // mRecyclerViewProduct.setAdapter(new ProductScreenshotsAdapter(getContext(), response.body().getMedia()));
-////                //Log.i("passs", String.valueOf(response.body().getId()));
-////                Log.i("passs", response.body().getName());
-////                Log.i("passs", response.body().getDesc());
-////                Log.i("passs", String.valueOf(response.body().getReport()));
-////                Log.i("passs", String.valueOf(response.body().getAge()));
-////                Log.i("passs", response.body().getTag());
-////                Log.i("passs", response.body().getSize());
-////                Log.i("passs", response.body().getCost());
-//// //               String a = response.body().getCost();
-////                Log.i("passs", response.body().getImage());
-////                Media = response.body().getMedia();
-////            }
-////
-////            @Override
-////            public void onFailure(Call<Product> call, Throwable t) {
-////                Log.i("passs","faild");
-////
-////            }
-////        });
-//               Call<Contents> call = apiInterface.getAppDataByID(id);
-//        call.enqueue(new Callback<Contents>() {
-//            @Override
-//            public void onResponse(Call<Contents> call, Response<Contents> response) {
-//
-//                //Media = response.body().getMedia();
-//                // mRecyclerViewProduct.setAdapter(new ProductScreenshotsAdapter(getContext(), Media));
-//                Log.i("passs", String.valueOf(response.body().getId()));
-//                Log.i("passs", response.body().getName());
-//                Log.i("passs", response.body().getDesc());
-//                Log.i("passs", String.valueOf(response.body().getReport()));
-//                Log.i("passs", String.valueOf(response.body().getAge()));
-//                Log.i("passs", response.body().getTag());
-//                Log.i("passs", response.body().getSize());
-//                Log.i("passs", response.body().getCost());
-//                //               String a = response.body().getCost();
-//                Log.i("passs", response.body().getImage());
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Contents> call, Throwable t) {
-//                Log.i("passs","faild");
-//            }
-//        });
-//
-//    }
-
-//    public void preparingList(){
-//        itemImage = new ArrayList<>(Arrays.asList(R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
-//                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
-//                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,
-//                R.drawable.ic_launcher_background, R.drawable.ic_launcher_background));
-//    }
-
-
 }
