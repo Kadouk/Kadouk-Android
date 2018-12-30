@@ -29,13 +29,10 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        checkConnection();
         super.onCreate(savedInstanceState);
 
-        checkConnection();
-
     }
-
-
 
     protected int getAPI(){
         int currentAPI = android.os.Build.VERSION.SDK_INT;
@@ -43,7 +40,6 @@ public class SplashActivity extends AppCompatActivity {
 
         return currentAPI;
     }
-
 
     private void sendAPI() {
 
@@ -89,30 +85,33 @@ public class SplashActivity extends AppCompatActivity {
         if(isOnline()){
 
             SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
+
+            Log.i("haredPreferences123", "eshteba = " + SharedPreferences.getString(FirstRun,null));
             if (SharedPreferences.getString(FirstRun,null) == null) {
                 sendAPI();
 
                 Log.i("token", "token1 = " + SharedPreferences.getString(FirstRun,null));
-                intent = new Intent(this, SignUpActivity.class);
+                intent = new Intent(SplashActivity.this, SignUpActivity.class);
                 finish();
                 startActivity(intent);
-            }else
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            }
 
             if (SharedPreferences.getString(authenticationToken,null) != null) {
                 String Token = SharedPreferences.getString(authenticationToken,null);
                 Globals.setToken(Token);
-                Log.i("token", "token = " + SharedPreferences.getString(authenticationToken,null));
+                Log.i("token", "eshtebah = " + SharedPreferences.getString(authenticationToken,null));
+            }
+
+            if (SharedPreferences.getString(FirstRun,null) != null) {
+                Log.i("token", "eshteba = " + SharedPreferences.getString(FirstRun,null));
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
             }
 
         }else{
 
-            Toast.makeText(this, "net nist",
+            Toast.makeText(this, "no internet connection",
                     Toast.LENGTH_LONG).show();
 
         }
-
     }
-
-
 }

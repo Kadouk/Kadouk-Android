@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class GameFragment extends Fragment implements FragmentManager.OnBackStackChangedListener {
 
-    TextView txv_app_cat1, txv_app_cat2, txv_app_cat3, txv_app_cat4, txv_app_cat5;
+    TextView txv_cat1_name, txv_cat2_name, txv_cat3_name, txv_cat4_name, txv_cat5_name;
 
     RecyclerView mRecyclerViewCat1, mRecyclerViewCat2, mRecyclerViewCat3, mRecyclerViewCat4, mRecyclerViewCat5;
     RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3, mLayoutManagerCat4, mLayoutManagerCat5;
@@ -43,7 +43,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         View view = inflater.inflate(R.layout.fragment_game, container, false);
 
 
-        TextView openCat1 = view.findViewById(R.id.txv_app_open_cat1);
+        TextView openCat1 = view.findViewById(R.id.cat1_txv_open);
 
         openCat1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +57,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         });
 
 
-        TextView openCat2 = view.findViewById(R.id.txv_app_open_cat2);
+        TextView openCat2 = view.findViewById(R.id.cat2_txv_open);
         openCat2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +70,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             }
         });
 
-        TextView openCat3 = view.findViewById(R.id.txv_app_open_cat3);
+        TextView openCat3 = view.findViewById(R.id.cat3_txv_open);
         openCat3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +83,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             }
         });
 
-        TextView openCat4 = view.findViewById(R.id.txv_app_open_cat4);
+        TextView openCat4 = view.findViewById(R.id.cat4_txv_open);
         openCat4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +96,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             }
         });
 
-        TextView openCat5 = view.findViewById(R.id.txv_app_open_cat5);
+        TextView openCat5 = view.findViewById(R.id.cat5_txv_open);
         openCat5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,17 +152,12 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         mRecyclerViewCat5.setLayoutManager(mLayoutManagerCat5);
         snapHelperCat5.attachToRecyclerView(mRecyclerViewCat5);
 
-        txv_app_cat1 = view.findViewById(R.id.txv_app_cat1);
-        txv_app_cat2 = view.findViewById(R.id.txv_app_cat2);
-        txv_app_cat3 = view.findViewById(R.id.txv_app_cat3);
-        txv_app_cat4 = view.findViewById(R.id.txv_app_cat4);
-        txv_app_cat5 = view.findViewById(R.id.txv_app_cat5);
-
-
-
+        txv_cat1_name = view.findViewById(R.id.cat1_txv_name);
+        txv_cat2_name = view.findViewById(R.id.cat2_txv_name);
+        txv_cat3_name = view.findViewById(R.id.cat3_txv_name);
+        txv_cat4_name = view.findViewById(R.id.cat4_txv_name);
+        txv_cat5_name = view.findViewById(R.id.cat5_txv_name);
         return view;
-
-
     }
 
     private void getContentCat1() {
@@ -174,7 +169,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
                 if(response.code() == 200){
                     contents = response.body().getContents();
-                    txv_app_cat1.setText(response.body().getCatName());
+                    txv_cat1_name.setText(response.body().getCatName());
 
                     mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
@@ -198,7 +193,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 if(response.code() == 200){
 
                     contents = response.body().getContents();
-                    txv_app_cat2.setText(response.body().getCatName());
+                    txv_cat2_name.setText(response.body().getCatName());
 
                     mRecyclerViewCat2.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
@@ -221,7 +216,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 if(response.code() == 200){
 
                     contents = response.body().getContents();
-                    txv_app_cat3.setText(response.body().getCatName());
+                    txv_cat3_name.setText(response.body().getCatName());
 
                     mRecyclerViewCat3.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
@@ -244,7 +239,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 if(response.code() == 200){
 
                     contents = response.body().getContents();
-                    txv_app_cat4.setText(response.body().getCatName());
+                    txv_cat4_name.setText(response.body().getCatName());
 
                     mRecyclerViewCat4.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
@@ -267,7 +262,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 if(response.code() == 200){
 
                     contents = response.body().getContents();
-                    txv_app_cat5.setText(response.body().getCatName());
+                    txv_cat5_name.setText(response.body().getCatName());
 
                     mRecyclerViewCat5.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }

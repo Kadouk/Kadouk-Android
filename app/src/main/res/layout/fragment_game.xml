@@ -22,7 +22,7 @@
 
                 <TextView
                     style="@style/openCatTextView"
-                    android:id="@+id/txv_app_open_cat1" />
+                    android:id="@+id/cat1_txv_open" />
 
             </LinearLayout>
 
@@ -31,7 +31,7 @@
                 android:gravity="end">
 
                 <TextView
-                    android:id="@+id/txv_app_cat1"
+                    android:id="@+id/cat1_txv_name"
                     style="@style/catTextView" />
 
 
@@ -56,7 +56,7 @@
 
                 <TextView
                     style="@style/openCatTextView"
-                    android:id="@+id/txv_app_open_cat2"/>
+                    android:id="@+id/cat2_txv_open"/>
             </LinearLayout>
 
             <LinearLayout
@@ -64,7 +64,7 @@
                 android:gravity="end">
 
                 <TextView
-                    android:id="@+id/txv_app_cat2"
+                    android:id="@+id/cat2_txv_name"
                     style="@style/catTextView" />
             </LinearLayout>
         </LinearLayout>
@@ -84,7 +84,7 @@
 
                 <TextView
                     style="@style/openCatTextView"
-                    android:id="@+id/txv_app_open_cat3"/>
+                    android:id="@+id/cat3_txv_open"/>
 
             </LinearLayout>
 
@@ -93,7 +93,7 @@
                 android:gravity="end">
 
                 <TextView
-                    android:id="@+id/txv_app_cat3"
+                    android:id="@+id/cat3_txv_name"
                     style="@style/catTextView" />
             </LinearLayout>
         </LinearLayout>
@@ -113,7 +113,7 @@
 
                 <TextView
                     style="@style/openCatTextView"
-                    android:id="@+id/txv_app_open_cat4"/>
+                    android:id="@+id/cat4_txv_open"/>
 
             </LinearLayout>
 
@@ -122,7 +122,7 @@
                 android:gravity="end">
 
                 <TextView
-                    android:id="@+id/txv_app_cat4"
+                    android:id="@+id/cat4_txv_name"
                     style="@style/catTextView" />
             </LinearLayout>
         </LinearLayout>
@@ -142,7 +142,7 @@
 
                 <TextView
                     style="@style/openCatTextView"
-                    android:id="@+id/txv_app_open_cat5"/>
+                    android:id="@+id/cat5_txv_open"/>
 
             </LinearLayout>
 
@@ -151,7 +151,7 @@
                 android:gravity="end">
 
                 <TextView
-                    android:id="@+id/txv_app_cat5"
+                    android:id="@+id/cat5_txv_name"
                     style="@style/catTextView" />
             </LinearLayout>
         </LinearLayout>

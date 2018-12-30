@@ -25,7 +25,6 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
     List<Contents> contents;
     Context adapterContext;
-    int appPosition = 0;
 
     public HorizontalListAdapter(Context context, List<Contents> contents) {
         super();
@@ -110,15 +109,11 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                         i.putString("appId", String.valueOf(contents.get(onClickPosition).getId()));
                         ProductPageFragment frag = new ProductPageFragment();
                         frag.setArguments(i);
+
                         MainActivity mainActivity = (MainActivity) adapterContext;
                         mainActivity.backStackGame = "Game1";
                         mainActivity.addFragmentOnTop(frag);
 
-//                        Intent intent = new Intent(adapterContext,ShowCategoryFragment.class);
-//                        intent.putExtra("Name",contents.get(onClickPosition).getName());
-//                        intent.putExtra("Id",contents.get(onClickPosition).getId());
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        adapterContext.startActivity(intent);
                         Log.i("Click","shomare " + onClickPosition + " - " + contents.get(onClickPosition).getName());
                     }
                 }
@@ -129,22 +124,18 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
                     int onClickPosition = getAdapterPosition()*2+1;
                     if(onClickPosition != RecyclerView.NO_POSITION){
+
                         Bundle i = new Bundle();
                         i.putString("name", contents.get(onClickPosition).getName());
                         i.putString("appId", String.valueOf(contents.get(onClickPosition).getId()));
                         ProductPageFragment frag = new ProductPageFragment();
                         frag.setArguments(i);
+
                         MainActivity mainActivity = (MainActivity) adapterContext;
                         mainActivity.backStackGame = "Game1";
                         mainActivity.addFragmentOnTop(frag);
-//                        Intent intent = new Intent(adapterContext,ShowCategoryFragment.class);
-//                        intent.putExtra("Name",contents.get(onClickPosition).getName());
-//                        intent.putExtra("Id",contents.get(onClickPosition).getId());
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        adapterContext.startActivity(intent);
+
                         Log.i("Click","shomare " + onClickPosition + " - " + contents.get(onClickPosition).getName());
-
-
                    }
                 }
             });

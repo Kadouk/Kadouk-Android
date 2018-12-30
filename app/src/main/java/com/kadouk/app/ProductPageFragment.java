@@ -28,9 +28,7 @@ public class ProductPageFragment extends Fragment {
 
     RecyclerView mRecyclerViewProduct;
     RecyclerView.LayoutManager mLayoutManagerProduct;
-    TextView toolbarTitle;
     List<com.kadouk.app.model.Media> Media;
-    RecyclerView.Adapter mAdapter;
 
     public ProductPageFragment() {
 
@@ -41,47 +39,18 @@ public class ProductPageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product_page, container, false);
 
-        // maybe need  String id = getIntent().getExtras().getString("Id");
-
-
-        Intent intent = getActivity().getIntent();
         String name = getArguments().getString("name");
         String id = getArguments().getString("appId");
         Log.i("passs",name);
         Log.i("passs",id);
         TextView appName = view.findViewById(R.id.product_page_txv_app_name);
         Toolbar toolbar = view.findViewById(R.id.toolbar);
-        //toolbarTitle.setText(name);
         appName.setText(name);
-        //toolbar.setTitle(name);
-//       ((MainActivity)getActivity()).setSupportActionBar(toolbar);
-//        ((MainActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        ((MainActivity)getActivity()).showUpButton();
-//        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-//        if (actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//        }
-//        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Your Title");
-//        toolbar.setTitle(name);
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-
-
-//        mRecyclerView = findViewById(R.id.recycler_screenshots);
-//        preparingList();
-//        mRecyclerView.setHasFixedSize(true);
-//        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//        mAdapter = new ProductScreenshotsAdapter(this,itemImage);
-//        mRecyclerView.setAdapter(mAdapter);
-//    }
-
 
         mRecyclerViewProduct = view.findViewById(R.id.recycler_screenshots);
         mRecyclerViewProduct.setHasFixedSize(true);
         mLayoutManagerProduct = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerViewProduct.setLayoutManager(mLayoutManagerProduct);
-        //mAdapter = new ProductScreenshotsAdapter(getContext(),itemImage);
-       // mRecyclerView.setAdapter(mAdapter);
 
         getAppData(Integer.parseInt(id));
 
@@ -107,9 +76,7 @@ public class ProductPageFragment extends Fragment {
                 Log.i("passs", response.body().getTag());
                 Log.i("passs", response.body().getSize());
                 Log.i("passs", response.body().getCost());
-                //               String a = response.body().getCost();
                 Log.i("passs", response.body().getImage());
-
             }
 
             @Override
