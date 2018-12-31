@@ -31,7 +31,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         checkConnection();
         super.onCreate(savedInstanceState);
-
     }
 
     protected int getAPI(){

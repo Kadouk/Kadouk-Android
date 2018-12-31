@@ -39,7 +39,6 @@ public class SignUpProfileActivity extends AppCompatActivity {
         //EditTextName.setTypeface(custom_font);
 
         fab = findViewById(R.id.fab_finish);
-       // fab.setEnabled(false);
         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
 
         Spinner SpinnerDay = findViewById(R.id.signup_name_gender_spinner_day);
@@ -102,15 +101,6 @@ public class SignUpProfileActivity extends AppCompatActivity {
         });
     }
 
-   // public void next(View view) {
-        //setContentView(R.layout.term_and_condition);
-   // }
-
-    public void back(View view) {
-        Intent intent = new Intent(SignUpProfileActivity.this, SignUpActivity.class);
-        startActivity(intent);
-    }
-
     public void onGenderItemClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
@@ -129,16 +119,9 @@ public class SignUpProfileActivity extends AppCompatActivity {
     public void finish(View view) {
         name = EditTextName.getText().toString();
         String birth = year + "/" + month + "/" + day;
-        Log.i("data", name +"/"+ kidGender + "/" + birth);
         String number = Globals.getNumber();
         Log.i("data", name +"/"+ kidGender +"/"+ number+ "/" + birth);
         sendUserInformation(name, kidGender, number, birth);
-    }
-
-    public void backOfTerm(View view) {
-        Intent intent = new Intent(SignUpProfileActivity.this, SignUpProfileActivity.class);
-        finish();
-        startActivity(intent);
     }
 
     private void sendUserInformation(String name, String kidGender, String number, String birth){
@@ -170,7 +153,6 @@ public class SignUpProfileActivity extends AppCompatActivity {
                 }else{
                     Log.i("RETROFIT", "not response");
                 }
-
             }
 
             @Override

@@ -274,6 +274,9 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             }
         });
     }
+              /////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////// bzese crash mishe vaghti app ro baz mikoni va back mizani, chon upButton nadare va in mikhad hide kone. /////////
+             //////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void onBackStackChanged() {
         if (getActivity().getSupportFragmentManager().getBackStackEntryCount() < 1) {

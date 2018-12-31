@@ -1,5 +1,6 @@
 package com.kadouk.app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -78,14 +79,12 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
         EditTextCode = findViewById(R.id.signup_edt_code);
         EditTextCode.addTextChangedListener(mTextEditorWatcher);
 
-        textViewResendCode = (TextView) findViewById(R.id.signup_txv_receive_code);
+        textViewResendCode = findViewById(R.id.signup_txv_receive_code);
         textViewTime = findViewById(R.id.signup_txv_time);
         EditTextCode = findViewById(R.id.signup_edt_code);
         startTimer(time);
 
-
         image.startAnimation(animation);
-
         animation.setAnimationListener(new Animation.AnimationListener(){
             @Override
             public void onAnimationStart(Animation arg0) {
@@ -141,17 +140,16 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
 //                Log.i("FABB",":)");
 //            }
 //        });
-
-
     }
 
     View.OnClickListener onclicklistener = new View.OnClickListener() {
 
+        @SuppressLint("ResourceAsColor")
         @Override
         public void onClick(View v) {
 
             startTimer(time);
-            textViewTime.setTextColor(BLACK);
+            textViewTime.setTextColor(R.color.black);
             textViewTime.setOnClickListener(null);
 
         }
@@ -179,13 +177,13 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
                     Log.i("LOGIN", String.valueOf(response.body().getError()));
                     if(String.valueOf(response.body().getError()).equals("Wrong Code") ){
                         EditTextCode.setError("wrong code");
-                        Log.i("LOGIN", "umad inja");
+                        Log.i("LOGIN", "wrong code");
                     }else if(String.valueOf(response.body().getError()).equals("Not Register")) {
-                        Log.i("LOGIN", "sabt nashode");
+                        Log.i("LOGIN", "Not Register");
                         intent = new Intent(SignUpEnterCodeActivity.this, SignUpProfileActivity.class);
                         startActivity(intent);
                     }else if(String.valueOf(response.body().getToken()).length() > 1) {
-                        Log.i("LOGIN", "sabt shode");
+                        Log.i("LOGIN", "submit");
                         String Token = String.valueOf(response.body().getToken());
                         intent = new Intent(SignUpEnterCodeActivity.this, MainActivity.class);
                         SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
@@ -197,18 +195,6 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
                         finish();
                         startActivity(intent);
                     }
-//                    Log.i("LOGIN", String.valueOf(response.body().getToken()));
-//
-//                    SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
-//                    SharedPreferences.Editor sEdit = SharedPreferences.edit();
-//                    sEdit.putString(FirstRun, String.valueOf("run"));
-//                    sEdit.apply();
-//
-//                    SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
-//                    Intent intent = new Intent(SignUpEnterCodeActivity.this, MainActivity.class);
-//                    finish();
-//                    startActivity(intent);
-
                 }
             }
 
@@ -217,12 +203,6 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    public void backToEnterNumber(View view) {
-        Intent intent = new Intent(SignUpEnterCodeActivity.this, SignUpActivity.class);
-        finish();
-        startActivity(intent);
     }
 
     private class timerTask extends TimerTask {

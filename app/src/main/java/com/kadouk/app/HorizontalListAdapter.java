@@ -104,11 +104,11 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                     int onClickPosition = getAdapterPosition()*2;
                     if(onClickPosition != RecyclerView.NO_POSITION){
 
-                        Bundle i = new Bundle();
-                        i.putString("name", contents.get(onClickPosition).getName());
-                        i.putString("appId", String.valueOf(contents.get(onClickPosition).getId()));
+                        Bundle appData = new Bundle();
+                        appData.putString("name", contents.get(onClickPosition).getName());
+                        appData.putString("appId", String.valueOf(contents.get(onClickPosition).getId()));
                         ProductPageFragment frag = new ProductPageFragment();
-                        frag.setArguments(i);
+                        frag.setArguments(appData);
 
                         MainActivity mainActivity = (MainActivity) adapterContext;
                         mainActivity.backStackGame = "Game1";
@@ -125,11 +125,11 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                     int onClickPosition = getAdapterPosition()*2+1;
                     if(onClickPosition != RecyclerView.NO_POSITION){
 
-                        Bundle i = new Bundle();
-                        i.putString("name", contents.get(onClickPosition).getName());
-                        i.putString("appId", String.valueOf(contents.get(onClickPosition).getId()));
+                        Bundle appData = new Bundle();
+                        appData.putString("name", contents.get(onClickPosition).getName());
+                        appData.putString("appId", String.valueOf(contents.get(onClickPosition).getId()));
                         ProductPageFragment frag = new ProductPageFragment();
-                        frag.setArguments(i);
+                        frag.setArguments(appData);
 
                         MainActivity mainActivity = (MainActivity) adapterContext;
                         mainActivity.backStackGame = "Game1";

@@ -41,7 +41,7 @@ public class ProductScreenshotsAdapter extends RecyclerView.Adapter<ProductScree
         Glide
                 .with(adapterContext)
                 .load(imageUrl)
-                .into(viewHolder.imgThumbnail);
+                .into(viewHolder.ImageViewScreenshot);
         //viewHolder.imgThumbnail.setImageResource(itemImage.get(position));
 
         Log.i("screenshots",imageUrl);
@@ -54,27 +54,19 @@ public class ProductScreenshotsAdapter extends RecyclerView.Adapter<ProductScree
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imgThumbnail;
+        ImageView ImageViewScreenshot;
 
         private ItemClickListener clickListener;
 
         public ViewHolder(View itemView) {
 
             super(itemView);
-            imgThumbnail = itemView.findViewById(R.id.product_screenshots);
+            ImageViewScreenshot = itemView.findViewById(R.id.product_screenshots);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-//                    int position = getAdapterPosition();
-//                    if(position != RecyclerView.NO_POSITION){
-//                        Intent intent = new Intent(adapterContext,ProductActivity.class);
-//                        intent.putExtra("Name",contents.get(position).getName());
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        adapterContext.startActivity(intent);
-//                        Log.i("Click","shomare " + position+ " - " + contents.get(position).getName());
-//                    }
+                // click on screenshot of product
                 }
             });
         }

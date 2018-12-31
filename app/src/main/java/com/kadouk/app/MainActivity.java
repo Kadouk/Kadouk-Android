@@ -1,8 +1,5 @@
 package com.kadouk.app;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -10,8 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.model.Details;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
@@ -27,25 +22,18 @@ import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 public class MainActivity extends AppCompatActivity {
 
-    Globals global = new Globals();
-
-    final Fragment fragment1 = new GameFragment();
-    final Fragment fragment2 = new DownloadsFragment();
-    final Fragment fragment3 = new SearchFragment();
-    final Fragment fragment4 = new AccountFragment();
+    final Fragment gameFragment = new GameFragment();
+    final Fragment downloadsFragment = new DownloadsFragment();
+    final Fragment searchFragment = new SearchFragment();
+    final Fragment accountFragment = new AccountFragment();
     Fragment fGame1;
-    Fragment active = fragment1;
-    int fragGameLevel = 1, fragDownloadLevel= 1;
+    Fragment active = gameFragment;
     final Fragment game = new GameFragment(), download = new DownloadsFragment(),
             search = new SearchFragment(), account = new AccountFragment();
     String FRAGMENT_OTHER = "other", backStackGame = "HOME", backStackDownload = "DOWNLOAD";
     public BottomBar bottomBar;
     public FragmentManager fragmentManager;
     BottomBarTab downloadTab;
-    Intent intent;
-    SharedPreferences SharedPreferences;
-    public static final String MyShPref = "MyPrefers", FirstRun = "run",
-            authenticationToken = "Token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,69 +41,51 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Globals.setActive(game);
 
-//        SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
-//        if (SharedPreferences.getString(FirstRun,null) == null) {
-//            sendAPI();
-//
-//            Log.i("token", "token1 = " + SharedPreferences.getString(FirstRun,null));
-//            intent = new Intent(MainActivity.this, SignUpActivity.class);
-//            finish();
-//            startActivity(intent);
-//        }
-//        if (SharedPreferences.getString(authenticationToken,null) != null) {
-//            String Token = SharedPreferences.getString(authenticationToken,null);
-//            Globals.setToken(Token);
-//            Log.i("token", "token = " + SharedPreferences.getString(authenticationToken,null));
-//
-//
-//        }
         fragmentManager = getSupportFragmentManager();
 
-            fragmentManager.beginTransaction().add(R.id.contentContainer, fragment4, "4").hide(fragment4).commit();
-            fragmentManager.beginTransaction().add(R.id.contentContainer, fragment3, "3").hide(fragment3).commit();
-            fragmentManager.beginTransaction().add(R.id.contentContainer, fragment2, "2").hide(fragment2).commit();
-            fragmentManager.beginTransaction().add(R.id.contentContainer,fragment1, "1").commit();
+            fragmentManager.beginTransaction().add(R.id.contentContainer, accountFragment, "4").hide(accountFragment).commit();
+            fragmentManager.beginTransaction().add(R.id.contentContainer, searchFragment, "3").hide(searchFragment).commit();
+            fragmentManager.beginTransaction().add(R.id.contentContainer, downloadsFragment, "2").hide(downloadsFragment).commit();
+            fragmentManager.beginTransaction().add(R.id.contentContainer,gameFragment, "1").commit();
 
-        bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar = findViewById(R.id.bottomBar);
         downloadTab = bottomBar.getTabWithId(R.id.download);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
+
                 if (tabId == R.id.account) {
 
-                    if(backStackGame.equals("HOME"))
-                    viewFragment(fragment1, backStackGame);
-                    else if(backStackGame.equals("game1"))
-                        viewFragment(fGame1, "game1");
-                    downloadTab.setBadgeCount(5);
+                    Log.i("tabs", FRAGMENT_OTHER);
+                    viewFragment(accountFragment, FRAGMENT_OTHER);
                 }
+
                 if (tabId == R.id.download) {
 
                     if(backStackDownload.equals("DOWNLOAD"))
-                        viewFragment(fragment2, backStackDownload);
+                        viewFragment(downloadsFragment, backStackDownload);
                     else if(backStackDownload.equals("download1"))
                         viewFragment(fGame1, "download1");
-                    //viewFragment(fragment2, FRAGMENT_OTHER);
-//                    else if(backStack.equals("Game1"))
-//                        viewFragment(f1, backStack);
-//                    else if(backStack.equals("Game2"))
-//                        viewFragment(fragment4, backStack);
 
                     Log.i("tabs","2");
                     downloadTab.removeBadge();
                 }
                 if (tabId == R.id.search) {
                     Log.i("tabs","3");
-                    viewFragment(fragment3, FRAGMENT_OTHER);
+                    viewFragment(searchFragment, FRAGMENT_OTHER);
                 }
-                if (tabId == R.id.game) {
 
-                    Log.i("tabs", FRAGMENT_OTHER);
-                    viewFragment(fragment4, FRAGMENT_OTHER);
+                if (tabId == R.id.game) {
+                    if(backStackGame.equals("HOME"))
+                        viewFragment(gameFragment, backStackGame);
+                    else if(backStackGame.equals("game1"))
+                        viewFragment(fGame1, "game1");
+                    downloadTab.setBadgeCount(5);
                 }
             }
         });
-        //details();
+
+        bottomBar.setDefaultTabPosition(3);
     }
     private void viewFragment(final Fragment fragment, String name){
         Log.i("backs", String.valueOf(active));
@@ -123,31 +93,31 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.hide(active).show(fragment).commit();
         active = fragment;
         Log.i("backs", String.valueOf(active));
-        final int count = fragmentManager.getBackStackEntryCount();
+        final int BackstackCount = fragmentManager.getBackStackEntryCount();
        // if( name.equals(FRAGMENT_OTHER)|| name.equals("game1") ) {
             fragmentTransaction.addToBackStack(name);
-            Log.i("backs", String.valueOf(count)+"   "+name);
+            Log.i("backs", String.valueOf(BackstackCount)+"   "+name);
         Log.i("backs", String.valueOf(fragmentManager.getBackStackEntryCount()));
        // }
         fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
-                if( fragmentManager.getBackStackEntryCount() <= count){
+                if( fragmentManager.getBackStackEntryCount() <= BackstackCount){
                     if(backStackDownload.equals("DOWNLOAD")){
-                        fragmentManager.beginTransaction().hide(fragment2).hide(fragment3).hide(fragment4).commit();
+                        fragmentManager.beginTransaction().hide(downloadsFragment).hide(searchFragment).hide(accountFragment).commit();
                         fragmentManager.popBackStack(backStackGame, POP_BACK_STACK_INCLUSIVE);
                         fragmentManager.removeOnBackStackChangedListener(this);
                         bottomBar.selectTabAtPosition(0, true);
                     }else if(backStackDownload.equals("download1")) {
-                        fragmentManager.beginTransaction().hide(fragment1).hide(fragment3).hide(fragment4).commit();
+                        fragmentManager.beginTransaction().hide(gameFragment).hide(searchFragment).hide(accountFragment).commit();
                         fragmentManager.popBackStack(backStackDownload, POP_BACK_STACK_INCLUSIVE);
                         fragmentManager.removeOnBackStackChangedListener(this);
                         backStackDownload = "DOWNLOAD";
-                        active = fragment2;
+                        active = downloadsFragment;
                     }
 
                     if(backStackGame.equals("HOME"))
-                        active = fragment1;
+                        active = gameFragment;
                     if(backStackGame.equals("game1"))
                         active = fGame1;
                 }
@@ -161,36 +131,9 @@ public class MainActivity extends AppCompatActivity {
         viewFragment(fGame1, "game1");
     }
 
-    protected int getAPI(){
-        int currentAPI = android.os.Build.VERSION.SDK_INT;
-        Log.i("API", currentAPI + "");
-
-        return currentAPI;
-    }
-    private void sendAPI() {
-
-        int API = getAPI();
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<ContentRespons> call = apiInterface.sendAPICode(String.valueOf(API));
-        call.enqueue(new Callback<ContentRespons>() {
-            @Override
-            public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
-                if(response.code() == 200){
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ContentRespons> call, Throwable t) {
-                Log.i("Retro","Fail");
-            }
-        });
-
-    }
 
     private void details() {
 
-        //int API = getAPI();
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
         Call<Details> call = apiInterface.details(0 + "","Bearer " + Globals.getToken());
@@ -208,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Retro","Fail");
             }
         });
-
     }
 
     public void showUpButton() { getSupportActionBar().setDisplayHomeAsUpEnabled(true); }

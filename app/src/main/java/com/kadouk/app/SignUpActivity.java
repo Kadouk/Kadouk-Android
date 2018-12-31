@@ -1,9 +1,7 @@
 package com.kadouk.app;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -31,8 +29,6 @@ public class SignUpActivity extends AppCompatActivity {
     FloatingActionButton fab;
     EditText EditTextNumber;
     private TextInputLayout inputLayoutNumber;
-    public static final String MyShPref = "MyPrefers",FirstRun = "run";
-    SharedPreferences SharedPreferences;
     Intent intent;
     Animation animation, animation1, animation2 ;
     ImageView image, image1, image2;
@@ -57,8 +53,6 @@ public class SignUpActivity extends AppCompatActivity {
         image = (ImageView)findViewById(R.id.imageView);
         image1 = (ImageView)findViewById(R.id.login_blue_circle);
         image2= (ImageView)findViewById(R.id.login_white_circle);
-
-        SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
 
         image.startAnimation(animation);
         // animation1.setAnimationListener
@@ -129,17 +123,11 @@ public class SignUpActivity extends AppCompatActivity {
             EditTextNumber.setError("There must be 11 numbers");
         } else {
             Log.i("number", String.valueOf(EditTextNumber.getText()));
-
-
-
-
             inputLayoutNumber.setVisibility(View.GONE);
             animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.back_blue_circle);
             animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.back_withe_circle);
 
-
             image2.startAnimation(animation2);
-
             animation2.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation arg0) {
@@ -177,16 +165,8 @@ public class SignUpActivity extends AppCompatActivity {
                     sendPhoneNumber(number);
                 }
             });
-
-
-//            intent = new Intent(SignUpActivity.this, SignUpEnterCodeActivity.class);
-//            finish();
-//            startActivity(intent);
         }
     }
-        //number = EditTextNumber.getText().toString();
-        // register(name, kidGender, birth, number, password, cPassword);
-   // }
 
     private void sendPhoneNumber(String Number){
 
@@ -204,15 +184,6 @@ public class SignUpActivity extends AppCompatActivity {
                        // finish();
                         startActivity(intent);
                     }
-
-//                    SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
-//                    SharedPreferences.Editor sEdit = SharedPreferences.edit();
-//                    sEdit.putString(Token, String.valueOf(response.body().getToken()));
-//                    sEdit.apply();
-//
-//                    intent = new Intent(SignUpActivity.this, MainActivity.class);
-//                    finish();
-//                    startActivity(intent);
                 }else {
                     Log.i("LOGIN", "not response");
                 }
@@ -223,18 +194,6 @@ public class SignUpActivity extends AppCompatActivity {
                 Log.i("LOGIN", "connection problem!");
             }
         });
-    }
-
-    public void signUpLater(View view) {
-
-        SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
-        SharedPreferences.Editor sEdit = SharedPreferences.edit();
-        sEdit.putString(FirstRun, String.valueOf("run"));
-        sEdit.apply();
-
-        intent = new Intent(SignUpActivity.this, MainActivity.class);
-        //finish();
-        startActivity(intent);
     }
 
     private final TextWatcher mTextEditorWatcher = new TextWatcher() {

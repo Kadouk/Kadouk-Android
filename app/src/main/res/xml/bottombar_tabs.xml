@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <tabs>
+
         <tab
             id="@+id/account"
             icon="@drawable/ic_launcher_background"
             title="account" />
+
         <tab
             id="@+id/download"
             icon="@drawable/ic_launcher_background"
             title="download" />
+
         <tab
             id="@+id/search"
             icon="@drawable/ic_launcher_background"
