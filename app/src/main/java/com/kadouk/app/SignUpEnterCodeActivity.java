@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kadouk.app.model.RegisterResponse;
@@ -56,19 +55,10 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_code);
 
-        final Animation animation, animation1, animation2 ;
-
         fab = findViewById(R.id.fab_code);
         fab.setEnabled(false);
         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
 
-        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move);
-        animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move1);
-        animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move2);
-
-        final ImageView image = (ImageView)findViewById(R.id.get_code_image);
-        final ImageView image1 = (ImageView)findViewById(R.id.get_code_image1);
-        final ImageView image2= (ImageView)findViewById(R.id.get_code_image2);
 
         Toolbar toolbar = findViewById(R.id.sifnup_enter_code_toolbar);
         setSupportActionBar(toolbar);
@@ -84,53 +74,9 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
         EditTextCode = findViewById(R.id.signup_edt_code);
         startTimer(time);
 
-        image.startAnimation(animation);
-        animation.setAnimationListener(new Animation.AnimationListener(){
-            @Override
-            public void onAnimationStart(Animation arg0) {
-                image1.startAnimation(animation1);
-            }
-            @Override
-            public void onAnimationRepeat(Animation arg0) {
-
-            }
-            @Override
-            public void onAnimationEnd(Animation arg0) {
-
-            }
-        });
-
-        animation1.setAnimationListener(new Animation.AnimationListener(){
-            @Override
-            public void onAnimationStart(Animation arg0) {
-                image2.startAnimation(animation2);
-            }
-            @Override
-            public void onAnimationRepeat(Animation arg0) {
-
-            }
-            @Override
-            public void onAnimationEnd(Animation arg0) {
-
-            }
-        });
-
-        animation2.setAnimationListener(new Animation.AnimationListener(){
-            @Override
-            public void onAnimationStart(Animation arg0) {
-                image2.startAnimation(animation2);
-            }
-            @Override
-            public void onAnimationRepeat(Animation arg0) {
-
-            }
-            @Override
-            public void onAnimationEnd(Animation arg0) {
-                EditTextCode.setVisibility(View.VISIBLE);
-                textViewResendCode.setVisibility(View.VISIBLE);
-                textViewTime.setVisibility(View.VISIBLE);
-            }
-        });
+        EditTextCode.setVisibility(View.VISIBLE);
+        textViewResendCode.setVisibility(View.VISIBLE);
+        textViewTime.setVisibility(View.VISIBLE);
 
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -157,7 +103,7 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
 
     public void sendCode(View view) {
 
-        if(EditTextCode.getText().length() < 11){
+        if(EditTextCode.getText().length() < EditTextMaxLength){
             EditTextCode.setError("There must be 11 numbers");
         }else{
             String code =  String.valueOf(EditTextCode.getText());

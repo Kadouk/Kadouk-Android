@@ -5,8 +5,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textStyle"></item>
-
     </style>
 
     <style name="toolbar" parent="AppTheme" >
@@ -45,12 +43,28 @@
         <item name="android:layout_weight">0.5</item>
     </style>
 
+    <style name="textInputLayout" parent="AppTheme" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_weight">0.5</item>
+        <item name="android:layout_marginLeft">@dimen/space_large</item>
+        <item name="android:layout_marginRight">@dimen/space_large</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintHorizontal_bias">0.0</item>
+
+    </style>
+
+
+
     <style name="openCatTextView" parent="textView">
         <item name="android:layout_marginTop">@dimen/normal</item>
         <item name="android:layout_marginEnd" tools:ignore="NewApi">@dimen/small</item>
         <item name="android:layout_marginRight">@dimen/small</item>
         <item name="android:layout_marginStart" tools:ignore="NewApi">@dimen/large</item>
-        <item name="android:text">@string/open_category</item>
     </style>
 
     <style name="catTextView" parent="textView">
@@ -137,5 +151,8 @@
     <style name="noAnimTheme" parent="android:Theme">
         <item name="android:windowAnimationStyle">@null</item>
     </style>
+
+
+
 
 </resources>
