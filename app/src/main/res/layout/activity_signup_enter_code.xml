@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,72 +7,75 @@
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/sifnup_enter_code_toolbar"
         style="@style/toolbar">
-
     </android.support.v7.widget.Toolbar>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_name"
-        style="@style/textInputLayout"
-        app:layout_constraintVertical_bias="0.159">
-
-        <EditText
-            android:id="@+id/signup_edt_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/enter_code"
-            android:inputType="number"
-            android:maxLength="11"
-            android:singleLine="true"
-            android:background="@null" />
-    </android.support.design.widget.TextInputLayout>
-
-
-    <TextView
-        android:id="@+id/signup_txv_time"
-        style="@style/textView"
-        android:layout_gravity="right"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/signup_txv_receive_code"
-        app:layout_constraintHorizontal_bias="0.905"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_layout_name" />
-
-    <TextView
-        android:id="@+id/signup_txv_receive_code"
-        style="@style/textView"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="right"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/wait_to_receive_code"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.962"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_layout_name" />
+        android:orientation="vertical"
+        android:layout_weight="0.5"
+        android:gravity="center">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_code"
-        style="@style/buttonNext"
-        android:layout_gravity="right"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="380dp"
-        android:onClick="sendCode"
-        app:fabSize="auto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942"
-        app:rippleColor="@color/colorPrimary"
-        android:clickable="false" />
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_name"
+            style="@style/textInputLayout"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="?attr/actionBarSize"> <!-- :D :D :D !-->
 
-</android.support.constraint.ConstraintLayout>
+            <EditText
+                android:id="@+id/signup_edt_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_code"
+                android:inputType="number"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:background="@null" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right">
+
+                <TextView
+                    android:id="@+id/signup_txv_time"
+                    style="@style/textView"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/signup_txv_receive_code"
+                    style="@style/textView"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/wait_to_receive_code"/>
+
+            </LinearLayout>
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_code"
+            style="@style/buttonNext"
+            android:layout_gravity="right"
+            android:onClick="sendCode"
+            app:fabSize="auto"
+            app:rippleColor="@color/colorPrimary"
+            android:clickable="false" />
+
+    </LinearLayout>
+
+</LinearLayout>
 
