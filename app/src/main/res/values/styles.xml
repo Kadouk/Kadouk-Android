@@ -50,6 +50,9 @@
         <!--<item name="android:layout_weight">0.5</item>-->
         <item name="android:layout_marginLeft">@dimen/space_large</item>
         <item name="android:layout_marginRight">@dimen/space_large</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginBottom">?attr/actionBarSize</item>
 
     </style>
 
@@ -78,6 +81,14 @@
         <item name="android:text">@string/next</item>
     </style>
 
+    <style name="signUpFab" parent="button">
+        <item name="android:layout_marginBottom">@dimen/normal</item>
+        <item name="android:layout_marginRight">@dimen/normal</item>
+        <item name="android:layout_marginEnd" tools:ignore="DuplicateDefinition,NewApi">@dimen/normal</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:clickable">false</item>
+    </style>
+
     <style name="buttonBack" parent="button">
         <item name="android:layout_marginBottom">@dimen/normal</item>
         <item name="android:layout_marginLeft">@dimen/normal</item>
@@ -104,8 +115,12 @@
     </style>
 
 
-    <style name="editTextNumber" parent="editText" >
+    <style name="signupEditText" parent="editText" >
         <item name="android:inputType">number</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@null</item>
     </style>
 
     <style name="radioButton">

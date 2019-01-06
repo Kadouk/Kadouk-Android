@@ -55,12 +55,12 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_code);
 
-        fab = findViewById(R.id.fab_code);
+        fab = findViewById(R.id.signup_fab_code);
         fab.setEnabled(false);
         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
 
 
-        Toolbar toolbar = findViewById(R.id.sifnup_enter_code_toolbar);
+        Toolbar toolbar = findViewById(R.id.signup_enter_code_toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

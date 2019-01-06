@@ -1,12 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,20 +15,13 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/small">
+            style="@style/textInputLayout">
 
             <EditText
                 android:id="@+id/signup_edt_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/xlarge"
+               style="@style/signupEditText"
                 android:hint="@string/enter_your_number"
-                android:inputType="number"
-                android:maxLength="11"
-                android:singleLine="true"
-                android:background="@null" />
+                android:maxLength="11" />
         </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
@@ -44,19 +35,9 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
-            style="@style/buttonNext"
-            android:layout_gravity="right"
+            style="@style/signUpFab"
             android:onClick="sendNumber"
             app:fabSize="auto"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:rippleColor="@color/colorPrimary"
-            android:fitsSystemWindows="true"
-            android:tint="@color/olivine" />
-
-
+            app:rippleColor="@color/colorPrimary"/>
     </LinearLayout>
-
-
-    
 </LinearLayout>
