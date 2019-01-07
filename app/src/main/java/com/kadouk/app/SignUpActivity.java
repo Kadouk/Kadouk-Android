@@ -32,17 +32,16 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_number);
 
-        fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.signup_number_fab);
         fab.setEnabled(false);
         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
-        EditTextNumber = findViewById(R.id.signup_edt_number);
+        EditTextNumber = findViewById(R.id.signup_number_edt);
         EditTextNumber.addTextChangedListener(mTextEditorWatcher);
     }
 
     @SuppressLint("WrongViewCast")
     public void sendNumber(View view) {
 
-        EditTextNumber = findViewById(R.id.signup_edt_number);
         if (EditTextNumber.getText().length() < EditTextMaxLength) {
             EditTextNumber.setError("There must be 11 numbers");
         } else {

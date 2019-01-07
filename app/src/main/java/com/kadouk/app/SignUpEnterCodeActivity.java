@@ -55,23 +55,22 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_code);
 
-        fab = findViewById(R.id.signup_fab_code);
+        fab = findViewById(R.id.signup_code_fab);
         fab.setEnabled(false);
         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
 
 
-        Toolbar toolbar = findViewById(R.id.signup_enter_code_toolbar);
+        Toolbar toolbar = findViewById(R.id.signup_code_toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
 
-        EditTextCode = findViewById(R.id.signup_edt_code);
+        EditTextCode = findViewById(R.id.signup_code_edt);
         EditTextCode.addTextChangedListener(mTextEditorWatcher);
 
-        textViewResendCode = findViewById(R.id.signup_txv_receive_code);
-        textViewTime = findViewById(R.id.signup_txv_time);
-        EditTextCode = findViewById(R.id.signup_edt_code);
+        textViewResendCode = findViewById(R.id.signup_code_txv_receive_code);
+        textViewTime = findViewById(R.id.signup_code_txv_time);
         startTimer(time);
 
         EditTextCode.setVisibility(View.VISIBLE);

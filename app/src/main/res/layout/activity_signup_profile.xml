@@ -3,37 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".SignUpProfileActivity"
     android:tileMode="disabled">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.8"
-        android:layout_marginLeft="@dimen/large"
-        android:layout_marginRight="@dimen/large"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/img_profile"
-            style="@style/imageViewProfile"
-            android:layout_width="@dimen/xlarge"
-            android:layout_height="@dimen/xlarge"
-            android:layout_marginTop="@dimen/large"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="fitXY" />
+            android:id="@+id/signup_profile_img"
+            style="@style/imageViewProfile" />
 
         <EditText
-            android:id="@+id/signup_edt_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/signup_profile_edt_name"
+            style="@style/signupEditText"
             android:hint="@string/enter_your_kid_name"
-            android:layout_marginTop="@dimen/normal"
+            android:layout_marginTop="@dimen/space_double"
             android:singleLine="true"
-            android:background="@null"
             android:layout_gravity="center_horizontal"
             android:gravity="center" />
 
@@ -51,17 +40,17 @@
                 android:text="@string/girl" />
 
             <RadioButton
-                android:id="@+id/signup_name_gender_radio_girl"
+                android:id="@+id/signup_profile_radio_girl"
                 style="@style/radioButtonGender"
-                android:layout_marginEnd="@dimen/normal"
-                android:layout_marginRight="@dimen/normal" />
+                android:layout_marginEnd="@dimen/space_large"
+                android:layout_marginRight="@dimen/space_large" />
 
             <TextView
                 style="@style/textView"
                 android:text="@string/boy" />
 
             <RadioButton
-                android:id="@+id/signup_name_gender_radio_boy"
+                android:id="@+id/signup_profile_radio_boy"
                 style="@style/radioButtonGender"
                 android:checked="true" />
 
@@ -72,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/normal"
+            android:layout_marginTop="@dimen/space_double"
             android:layout_gravity="center_horizontal">
 
             <LinearLayout
@@ -89,20 +78,17 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/smaller"
-                android:layout_marginBottom="@dimen/small"
                 android:orientation="horizontal">
                 <Spinner
-                    android:id="@+id/signup_name_gender_spinner_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:id="@+id/signup_profile_spinner_year"
+                   style="@style/spinner" />
 
                 <Spinner
-                    android:id="@+id/signup_name_gender_spinner_month"
+                    android:id="@+id/signup_profile_spinner_month"
                     style="@style/spinner" />
 
                 <Spinner
-                    android:id="@+id/signup_name_gender_spinner_day"
+                    android:id="@+id/signup_profile_spinner_day"
                     style="@style/spinner" />
 
             </LinearLayout>
@@ -120,19 +106,11 @@
         android:gravity="bottom">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_finish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="@dimen/normal"
-            android:layout_marginBottom="@dimen/normal"
+            android:id="@+id/signup_profile_fab"
+            style="@style/signUpFab"
             android:onClick="finish"
             app:fabSize="auto"
-            app:rippleColor="@color/colorPrimary"
-            android:fitsSystemWindows="true"
-            android:tint="@color/olivine" />
+            app:rippleColor="@color/colorPrimary" />
 
     </LinearLayout>
-
-
 </LinearLayout>

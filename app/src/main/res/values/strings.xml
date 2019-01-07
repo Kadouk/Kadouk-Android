@@ -119,6 +119,7 @@
     <string name="wait_to_receive_code">لطفا تا دریافت کد منتظر بمانید.</string>
     <string name="resend_code">ارسال دوباره</string>
     <string name="none_messages">پیامی دریافت نکردید؟</string>
+    <string name="select_parent_password">انتخاب کلمه عبور والدین</string>
 
 
 </resources>

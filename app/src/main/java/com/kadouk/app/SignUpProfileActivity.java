@@ -25,25 +25,25 @@ import retrofit2.Callback;
 public class SignUpProfileActivity extends AppCompatActivity {
     String name, kidGender = "boy", day, month, year;
     EditText EditTextName;
-    FloatingActionButton fab;
+    FloatingActionButton profileFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_profile);
-        EditTextName = findViewById(R.id.signup_edt_name);
+        EditTextName = findViewById(R.id.signup_profile_edt_name);
 
 
        // Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/B_Koodak_Bold_0.ttf");
 
         //EditTextName.setTypeface(custom_font);
 
-        fab = findViewById(R.id.fab_finish);
-        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
+        profileFab = findViewById(R.id.signup_profile_fab);
+        profileFab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
 
-        Spinner SpinnerDay = findViewById(R.id.signup_name_gender_spinner_day);
-        Spinner SpinnerMonth = findViewById(R.id.signup_name_gender_spinner_month);
-        Spinner SpinnerYear = findViewById(R.id.signup_name_gender_spinner_year);
+        Spinner SpinnerDay = findViewById(R.id.signup_profile_spinner_day);
+        Spinner SpinnerMonth = findViewById(R.id.signup_profile_spinner_month);
+        Spinner SpinnerYear = findViewById(R.id.signup_profile_spinner_year);
 
 
         ArrayAdapter<CharSequence> dayAdapter = ArrayAdapter.createFromResource(this,
@@ -105,11 +105,11 @@ public class SignUpProfileActivity extends AppCompatActivity {
         boolean checked = ((RadioButton) view).isChecked();
 
         switch(view.getId()) {
-            case R.id.signup_name_gender_radio_boy:
+            case R.id.signup_profile_radio_boy:
                 if (checked)
                     kidGender = "boy";
                 break;
-            case R.id.signup_name_gender_radio_girl:
+            case R.id.signup_profile_radio_girl:
                 if (checked)
                     kidGender = "girl";
                 break;
@@ -160,5 +160,8 @@ public class SignUpProfileActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void sendPassword(View view) {
     }
 }

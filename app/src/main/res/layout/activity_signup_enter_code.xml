@@ -7,7 +7,7 @@
     android:focusableInTouchMode="true">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/signup_enter_code_toolbar"
+        android:id="@+id/signup_code_toolbar"
         style="@style/toolbar">
     </android.support.v7.widget.Toolbar>
 
@@ -19,11 +19,11 @@
         android:gravity="center">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_name"
+            android:id="@+id/signup_code_input_layout"
             style="@style/textInputLayout">
 
             <EditText
-                android:id="@+id/signup_edt_code"
+                android:id="@+id/signup_code_edt"
                 style="@style/signupEditText"
                 android:hint="@string/enter_code"
                 android:maxLength="11"/>
@@ -35,12 +35,12 @@
                 android:gravity="right">
 
                 <TextView
-                    android:id="@+id/signup_txv_time"
+                    android:id="@+id/signup_code_txv_time"
                     style="@style/textView"
                     android:layout_marginTop="8dp" />
 
                 <TextView
-                    android:id="@+id/signup_txv_receive_code"
+                    android:id="@+id/signup_code_txv_receive_code"
                     style="@style/textView"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
@@ -59,7 +59,7 @@
         android:gravity="bottom">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/signup_fab_code"
+            android:id="@+id/signup_code_fab"
             style="@style/signUpFab"
             android:onClick="sendCode"
             app:fabSize="auto"
