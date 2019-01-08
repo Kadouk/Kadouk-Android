@@ -19,13 +19,7 @@
 
         <EditText
             android:id="@+id/signup_profile_edt_name"
-            style="@style/signupEditText"
-            android:hint="@string/enter_your_kid_name"
-            android:layout_marginTop="@dimen/space_double"
-            android:singleLine="true"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center" />
-
+            style="@style/profileEditText" />
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -107,7 +101,7 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/signup_profile_fab"
-            style="@style/signUpFab"
+            style="@style/signUpFinishFab"
             android:onClick="finish"
             app:fabSize="auto"
             app:rippleColor="@color/colorPrimary" />

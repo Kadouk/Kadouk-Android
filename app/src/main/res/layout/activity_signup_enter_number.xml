@@ -19,7 +19,7 @@
 
             <EditText
                 android:id="@+id/signup_number_edt"
-                style="@style/signupEditText"
+                style="@style/numbersEditText"
                 android:hint="@string/enter_your_number"
                 android:maxLength="11" />
         </android.support.design.widget.TextInputLayout>
@@ -35,7 +35,7 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/signup_number_fab"
-            style="@style/signUpFab"
+            style="@style/signUpNextFab"
             android:onClick="sendNumber"
             app:fabSize="auto"
             app:rippleColor="@color/colorPrimary"/>

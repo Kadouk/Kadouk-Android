@@ -16,7 +16,6 @@
     <style name="recyclerView" parent="AppTheme" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-
     </style>
 
     <style name="button" parent="AppTheme" >
@@ -51,10 +50,7 @@
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginBottom">?attr/actionBarSize</item>
-
     </style>
-
-
 
     <style name="openCatTextView" parent="textView">
         <item name="android:layout_marginTop">@dimen/normal</item>
@@ -72,20 +68,20 @@
 
     </style>
 
-    <style name="buttonNext" parent="button">
-        <item name="android:layout_marginBottom">@dimen/normal</item>
-        <item name="android:layout_marginRight">@dimen/normal</item>
-        <item name="android:layout_marginEnd" tools:ignore="DuplicateDefinition,NewApi">@dimen/normal</item>
-        <item name="android:text">@string/next</item>
-    </style>
-
     <style name="signUpFab" parent="button">
-        <item name="android:layout_marginBottom">@dimen/normal</item>
-        <item name="android:layout_marginRight">@dimen/normal</item>
+        <item name="android:layout_marginBottom">@dimen/space_double</item>
+        <item name="android:layout_marginRight">@dimen/space_double</item>
         <item name="android:layout_marginEnd" tools:ignore="DuplicateDefinition,NewApi">@dimen/normal</item>
         <item name="android:layout_gravity">right</item>
+    </style>
+
+    <style name="signUpNextFab" parent="signUpFab">
         <item name="android:clickable">false</item>
         <item name="android:src">@mipmap/ic_next</item>
+    </style>
+
+    <style name="signUpFinishFab" parent="signUpFab">
+        <item name="android:src">@mipmap/ic_check</item>
     </style>
 
     <style name="buttonBack" parent="button">
@@ -104,8 +100,7 @@
     <style name="spinner">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginLeft">@dimen/normal</item>
-
+        <item name="android:layout_marginLeft">@dimen/space_single</item>
     </style>
 
     <style name="textViewTitle" parent="textView">
@@ -115,11 +110,24 @@
 
 
     <style name="signupEditText" >
-        <item name="android:inputType">number</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@null</item>
+    </style>
 
+    <style name="numbersEditText" parent="signupEditText">
+        <item name="android:inputType">number</item>
+        <item name="android:gravity">right</item>
+        <item name="android:paddingTop">@dimen/space_single</item>
+    </style>
+
+    <style name="profileEditText" parent="signupEditText" >
+
+        <item name="android:gravity">center</item>
+        <item name="android:hint">@string/enter_your_kid_name</item>
+        <item name="android:layout_marginTop">@dimen/space_double</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
     </style>
 
     <style name="radioButton">
@@ -163,8 +171,5 @@
     <style name="noAnimTheme" parent="android:Theme">
         <item name="android:windowAnimationStyle">@null</item>
     </style>
-
-
-
 
 </resources>
