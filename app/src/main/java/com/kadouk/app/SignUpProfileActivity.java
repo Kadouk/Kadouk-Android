@@ -73,7 +73,7 @@ public class SignUpProfileActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                month = adapterView.getItemAtPosition(i).toString();
+                month = String.valueOf(i+1);
                 Log.i("birthmonth",month);
             }
 
