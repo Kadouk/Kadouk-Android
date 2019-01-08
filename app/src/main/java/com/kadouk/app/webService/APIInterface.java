@@ -46,4 +46,8 @@ public interface APIInterface{
  @POST ("content/show/page?id=")
  @FormUrlEncoded
  Call<Content> getAppDataByID (@Field("id") int ID) ;
+
+ @POST("pass")
+ @FormUrlEncoded
+ Call<Details> sendParentPassword (@Field("pass") String pass, @Header("Authorization") String Token);
 }

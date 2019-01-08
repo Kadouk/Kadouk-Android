@@ -55,7 +55,7 @@ public class SignUpProfileActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 day = adapterView.getItemAtPosition(i).toString();
-                Log.i("SPINNER",adapterView.getItemAtPosition(i).toString());
+                Log.i("birthday",day);
             }
 
             @Override
@@ -74,7 +74,7 @@ public class SignUpProfileActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 month = adapterView.getItemAtPosition(i).toString();
-                Log.i("SPINNER",adapterView.getItemAtPosition(i).toString());
+                Log.i("birthmonth",month);
             }
 
             @Override
@@ -92,7 +92,7 @@ public class SignUpProfileActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 year = adapterView.getItemAtPosition(i).toString();
-                Log.i("SPINNER",adapterView.getItemAtPosition(i).toString());
+                Log.i("birthyear",year);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -119,6 +119,7 @@ public class SignUpProfileActivity extends AppCompatActivity {
     public void finish(View view) {
         name = EditTextName.getText().toString();
         String birth = year + "/" + month + "/" + day;
+        Log.i("birth",birth);
         String number = Globals.getNumber();
         Log.i("data", name +"/"+ kidGender +"/"+ number+ "/" + birth);
         sendUserInformation(name, kidGender, number, birth);
@@ -137,17 +138,15 @@ public class SignUpProfileActivity extends AppCompatActivity {
                     Log.i("RETROFIT", String.valueOf(response.body().getToken()));
 
                     String Token = String.valueOf(response.body().getToken());
-                    final String MyShPref = "MyPrefers",FirstRun = "run",
-                            authenticationToken = "Token";
+                    final String MyShPref = "MyPrefers", authenticationToken = "Token";
                     SharedPreferences SharedPreferences;
                     SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
                     SharedPreferences.Editor sEdit = SharedPreferences.edit();
-                    sEdit.putString(FirstRun, String.valueOf("run"));
                     sEdit.putString(authenticationToken, String.valueOf(Token));
                     Globals.setToken(Token);
                     sEdit.apply();
 
-                    Intent intent = new Intent(SignUpProfileActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SignUpProfileActivity.this, ParentPasswordActivity.class);
                     startActivity(intent);
 
                 }else{
