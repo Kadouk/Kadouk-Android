@@ -79,7 +79,31 @@
         <item name="android:text">@string/app_category</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
 
+    <style name="appNameTextView" parent="textView">
+        <item name="android:layout_gravity">end</item>
+        <item name="android:layout_marginRight">@dimen/space_double</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="appDescTextView" parent="textView">
+        <item name="android:layout_gravity">end</item>
+        <item name="android:layout_marginRight">@dimen/space_double</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_caption</item>
+        <item name="android:layout_marginTop">@dimen/space_single</item>
+    </style>
+
+    <style name="appPriceTextView" parent="textView">
+        <item name="android:layout_gravity">end</item>
+        <item name="android:layout_marginRight">@dimen/space_double</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_caption</item>
+        <item name="android:layout_marginTop">@dimen/space_single</item>
     </style>
 
     <style name="signUpFab" parent="button">
