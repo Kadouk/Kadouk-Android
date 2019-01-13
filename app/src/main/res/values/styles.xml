@@ -34,12 +34,21 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="categoryTitleLinearLayout" parent="AppTheme" >
+    <style name="catOpenTitleLayout" parent="AppTheme" >
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:layout_weight">0.5</item>
+        <item name="android:layout_weight">0.3</item>
         <item name="android:layout_marginTop">@dimen/space_single</item>
+    </style>
+
+    <style name="catNameTitleLayout" parent="AppTheme" >
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_weight">0.7</item>
+        <item name="android:layout_marginTop">@dimen/space_single</item>
+        <item name="android:gravity">end</item>
 
     </style>
 
@@ -60,12 +69,15 @@
         <item name="android:layout_marginLeft">@dimen/space_large</item>
         <item name="android:text">@string/open_category</item>
         <item name="android:textColor">@color/color_accent</item>
+        <item name="android:textSize">12sp</item>
+
     </style>
 
     <style name="catNameTextView" parent="textView">
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_marginRight">@dimen/space_large</item>
         <item name="android:text">@string/app_category</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>
 
     </style>

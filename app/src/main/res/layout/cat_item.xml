@@ -48,6 +48,12 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/small"
                 android:layout_marginRight="@dimen/small" />
+            <TextView
+                android:id="@+id/txv_app_cost1"
+                style="@style/textView"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/small"
+                android:layout_marginRight="@dimen/small" />
 
         </LinearLayout>
 
@@ -107,6 +113,12 @@
                 android:layout_marginRight="@dimen/small" />
             <TextView
                 android:id="@+id/txv_app_desc2"
+                style="@style/textView"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/small"
+                android:layout_marginRight="@dimen/small" />
+            <TextView
+                android:id="@+id/txv_app_cost2"
                 style="@style/textView"
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/small"
