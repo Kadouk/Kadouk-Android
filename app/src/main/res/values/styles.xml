@@ -10,12 +10,13 @@
     <style name="toolbar" parent="AppTheme" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
-        <item name="android:elevation" tools:ignore="NewApi">@dimen/smaller</item>
     </style>
 
     <style name="recyclerView" parent="AppTheme" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/space_double</item>
+        <item name="android:layout_marginBottom">@dimen/space_double</item>
     </style>
 
     <style name="button" parent="AppTheme" >
@@ -35,9 +36,11 @@
 
     <style name="categoryTitleLinearLayout" parent="AppTheme" >
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_weight">0.5</item>
+        <item name="android:layout_marginTop">@dimen/space_single</item>
+
     </style>
 
     <style name="textInputLayout" parent="AppTheme" >
@@ -53,16 +56,15 @@
     </style>
 
     <style name="openCatTextView" parent="textView">
-        <item name="android:layout_marginTop">@dimen/normal</item>
-        <item name="android:layout_marginEnd" tools:ignore="NewApi">@dimen/small</item>
-        <item name="android:layout_marginRight">@dimen/small</item>
-        <item name="android:layout_marginStart" tools:ignore="NewApi">@dimen/large</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/space_large</item>
+        <item name="android:text">@string/open_category</item>
+        <item name="android:textColor">@color/color_accent</item>
     </style>
 
-    <style name="catTextView" parent="textView">
-        <item name="android:layout_marginTop">@dimen/normal</item>
-        <item name="android:layout_marginEnd" tools:ignore="NewApi">@dimen/small</item>
-        <item name="android:layout_marginRight">@dimen/small</item>
+    <style name="catNameTextView" parent="textView">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginRight">@dimen/space_large</item>
         <item name="android:text">@string/app_category</item>
         <item name="android:textStyle">bold</item>
 

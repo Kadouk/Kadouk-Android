@@ -30,4 +30,22 @@
 
     <color name="orange_overlay">#fbebaa</color>
 
+
+
+    <color name="text_primary">#4a4a4a</color>
+
+    <color name="color_primary">#7cd8d9</color>
+
+    <color name="color_accent">#ca3074</color>
+
+    <color name="color_secondary">#9ccc65</color>
+
+    <color name="bg">#ffffff</color>
+
+    <color name="component_inactive">#d9d9d9</color>
+
+    <color name="color_tertiary">#f6c667</color>
+
+    <color name="text_caption">#757575</color>
+
 </resources>

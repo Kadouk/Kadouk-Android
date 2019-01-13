@@ -5,21 +5,20 @@
     tools:context="com.kadouk.app.GameFragment"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar"
         style="@style/toolbar"
         android:elevation="@dimen/space_large"
-        app:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-        app:popupTheme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        app:popupTheme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        app:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
 
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_games"
             android:layout_gravity="end"
-            android:layout_marginRight="@dimen/space_double"/>
+            android:layout_marginRight="@dimen/space_double"
+            android:src="@mipmap/ic_games" />
 
         <TextView
             android:id="@+id/show_cat_title"
@@ -47,12 +46,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                   style="@style/categoryTitleLinearLayout">
+                <LinearLayout style="@style/categoryTitleLinearLayout">
 
                     <TextView
-                        style="@style/openCatTextView"
-                        android:id="@+id/cat1_txv_open" />
+                        android:id="@+id/cat1_txv_open"
+                        style="@style/openCatTextView" />
 
                 </LinearLayout>
 
@@ -62,9 +60,7 @@
 
                     <TextView
                         android:id="@+id/cat1_txv_name"
-                        style="@style/catTextView" />
-
-
+                        style="@style/catNameTextView" />
 
                 </LinearLayout>
 
@@ -95,7 +91,7 @@
 
                     <TextView
                         android:id="@+id/cat2_txv_name"
-                        style="@style/catTextView" />
+                        style="@style/catNameTextView" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -124,7 +120,7 @@
 
                     <TextView
                         android:id="@+id/cat3_txv_name"
-                        style="@style/catTextView" />
+                        style="@style/catNameTextView" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -153,7 +149,7 @@
 
                     <TextView
                         android:id="@+id/cat4_txv_name"
-                        style="@style/catTextView" />
+                        style="@style/catNameTextView" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -182,7 +178,7 @@
 
                     <TextView
                         android:id="@+id/cat5_txv_name"
-                        style="@style/catTextView" />
+                        style="@style/catNameTextView" />
                 </LinearLayout>
             </LinearLayout>
 
