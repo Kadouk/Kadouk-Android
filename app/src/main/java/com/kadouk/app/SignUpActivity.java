@@ -3,6 +3,7 @@ package com.kadouk.app;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
@@ -25,6 +26,7 @@ public class SignUpActivity extends AppCompatActivity {
     FloatingActionButton fab;
     EditText EditTextNumber;
     Intent intent;
+    Typeface typeface;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -32,10 +34,13 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_number);
 
+        typeface = Typeface.createFromAsset(this.getAssets(), "fonts/B Koodak Bold_0.ttf");
+
         fab = findViewById(R.id.signup_number_fab);
         fab.setEnabled(false);
         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
         EditTextNumber = findViewById(R.id.signup_number_edt);
+        EditTextNumber.setTypeface(typeface);
         EditTextNumber.addTextChangedListener(mTextEditorWatcher);
     }
 

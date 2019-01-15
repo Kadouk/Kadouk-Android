@@ -5,6 +5,7 @@ package com.kadouk.app;
  */
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,6 +26,7 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
     List<Contents> contents;
     Context adapterContext;
+    Typeface typeface;
 
     public HorizontalListAdapter(Context context, List<Contents> contents) {
         super();
@@ -32,6 +34,7 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
         this.contents = contents;
         Glide.get(context).clearMemory();
         Log.i("LOADPIC2", String.valueOf(contents));
+        typeface = Typeface.createFromAsset(adapterContext.getAssets(), "fonts/B Koodak Bold_0.ttf");
     }
 
     @Override
@@ -46,6 +49,12 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") int position) {
 
         int appPosition = position * 2;
+        viewHolder.txvAppName1.setTypeface(typeface);
+        viewHolder.txvAppDesc1.setTypeface(typeface);
+        viewHolder.txvAppName2.setTypeface(typeface);
+        viewHolder.txvAppDesc2.setTypeface(typeface);
+        viewHolder.txvAppCost1.setTypeface(typeface);
+        viewHolder.txvAppCost2.setTypeface(typeface);
 
         viewHolder.txvAppName1.setText(contents.get(appPosition).getName());
         viewHolder.txvAppDesc1.setText(contents.get(appPosition).getDesc());

@@ -1,5 +1,6 @@
 package com.kadouk.app;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -33,6 +34,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     List<Contents> contents;
     ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
     MainActivity mainActivity = (MainActivity) getContext();
+    Typeface typeface;
     public GameFragment() {
 
     }
@@ -42,9 +44,10 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
 
+        typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/B Koodak Bold_0.ttf");
 
         TextView openCat1 = view.findViewById(R.id.cat1_txv_open);
-
+        openCat1.setTypeface(typeface);
         openCat1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +61,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
 
         TextView openCat2 = view.findViewById(R.id.cat2_txv_open);
+        openCat2.setTypeface(typeface);
         openCat2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +75,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         });
 
         TextView openCat3 = view.findViewById(R.id.cat3_txv_open);
+        openCat3.setTypeface(typeface);
         openCat3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +89,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         });
 
         TextView openCat4 = view.findViewById(R.id.cat4_txv_open);
+        openCat4.setTypeface(typeface);
         openCat4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +103,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         });
 
         TextView openCat5 = view.findViewById(R.id.cat5_txv_open);
+        openCat5.setTypeface(typeface);
         openCat5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,6 +177,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 if(response.code() == 200){
                     contents = response.body().getContents();
                     txv_cat1_name.setText(response.body().getCatName());
+                    txv_cat1_name.setTypeface(typeface);
 
                     mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
@@ -193,6 +201,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 if(response.code() == 200){
 
                     contents = response.body().getContents();
+                    txv_cat2_name.setTypeface(typeface);
                     txv_cat2_name.setText(response.body().getCatName());
 
                     mRecyclerViewCat2.setAdapter(new HorizontalListAdapter(getContext(), contents));
@@ -216,6 +225,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 if(response.code() == 200){
 
                     contents = response.body().getContents();
+                    txv_cat3_name.setTypeface(typeface);
                     txv_cat3_name.setText(response.body().getCatName());
 
                     mRecyclerViewCat3.setAdapter(new HorizontalListAdapter(getContext(), contents));
@@ -240,6 +250,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
                     contents = response.body().getContents();
                     txv_cat4_name.setText(response.body().getCatName());
+                    txv_cat4_name.setTypeface(typeface);
 
                     mRecyclerViewCat4.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
@@ -263,6 +274,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
                     contents = response.body().getContents();
                     txv_cat5_name.setText(response.body().getCatName());
+                    txv_cat5_name.setTypeface(typeface);
 
                     mRecyclerViewCat5.setAdapter(new HorizontalListAdapter(getContext(), contents));
                 }
