@@ -45,7 +45,10 @@
     <string name="enter_your_kid_name">نام فرزند خود را وارد کنید</string>
     <string name="your_kid_birthday">تاریخ تولد:</string>
     <string name="enter_code">کد تایید را وارد کنید</string>
-
+    <string name="tab_account">حساب کاربری</string>
+    <string name="tab_download">دانلودها</string>
+    <string name="tab_search">جستوجو</string>
+    <string name="tab_game">بازی ها</string>
 
     <string-array name="day">
         <item>01</item>

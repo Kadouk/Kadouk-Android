@@ -4,23 +4,31 @@
 
         <tab
             id="@+id/account"
-            icon="@drawable/ic_launcher_background"
-            title="account" />
+            icon="@mipmap/ic_tab_profile"
+            inActiveColor="@color/component_inactive"
+            activeColor="@color/color_primary"
+            title="@string/tab_account" />
 
         <tab
             id="@+id/download"
-            icon="@drawable/ic_launcher_background"
-            title="download" />
+            icon="@mipmap/ic_tab_updates"
+            inActiveColor="@color/component_inactive"
+            activeColor="@color/color_primary"
+            title="@string/tab_download"/>
 
         <tab
             id="@+id/search"
-            icon="@drawable/ic_launcher_background"
-            title="search" />
+            icon="@mipmap/ic_tab_search"
+            inActiveColor="@color/component_inactive"
+            activeColor="@color/color_primary"
+            title="@string/tab_search" />
 
         <tab
             id="@+id/game"
-            icon="@drawable/ic_launcher_background"
-            title="game" />
+            icon="@mipmap/ic_tab_game"
+            inActiveColor="@color/component_inactive"
+            activeColor="@color/color_primary"
+            title="@string/tab_game" />
 
     </tabs>
 </PreferenceScreen>
