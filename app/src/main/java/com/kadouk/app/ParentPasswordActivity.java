@@ -48,9 +48,6 @@ public class ParentPasswordActivity extends AppCompatActivity {
         sendParentPassword(password);
     }
 
-
-
-
     private void sendParentPassword(String password) {
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
         Log.i("tokennnnn", Globals.getToken());
