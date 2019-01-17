@@ -1,5 +1,6 @@
 package com.kadouk.app;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -155,4 +157,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void showUpButton() { getSupportActionBar().setDisplayHomeAsUpEnabled(true); }
     public void hideUpButton() { getSupportActionBar().setDisplayHomeAsUpEnabled(false); }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
 }

@@ -18,6 +18,7 @@ import com.kadouk.app.model.RegisterResponse;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -96,4 +97,9 @@ public class ParentPasswordActivity extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
         }
     };
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
 }

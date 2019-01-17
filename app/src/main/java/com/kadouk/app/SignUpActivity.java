@@ -1,6 +1,7 @@
 package com.kadouk.app;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
@@ -17,6 +18,7 @@ import com.kadouk.app.model.RegisterResponse;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -42,6 +44,11 @@ public class SignUpActivity extends AppCompatActivity {
         EditTextNumber = findViewById(R.id.signup_number_edt);
         EditTextNumber.setTypeface(typeface);
         EditTextNumber.addTextChangedListener(mTextEditorWatcher);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     @SuppressLint("WrongViewCast")

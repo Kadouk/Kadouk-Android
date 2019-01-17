@@ -19,6 +19,7 @@ import com.kadouk.app.model.RegisterResponse;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -32,11 +33,6 @@ public class SignUpProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_profile);
         EditTextName = findViewById(R.id.signup_profile_edt_name);
-
-
-       // Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/B_Koodak_Bold_0.ttf");
-
-        //EditTextName.setTypeface(custom_font);
 
         profileFab = findViewById(R.id.signup_profile_fab);
         profileFab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
@@ -161,6 +157,8 @@ public class SignUpProfileActivity extends AppCompatActivity {
         });
     }
 
-    public void sendPassword(View view) {
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 }

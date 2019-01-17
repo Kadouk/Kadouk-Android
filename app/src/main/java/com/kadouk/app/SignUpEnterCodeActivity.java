@@ -26,6 +26,7 @@ import com.kadouk.app.webService.APIInterface;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -85,6 +86,11 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
 //                Log.i("FABB",":)");
 //            }
 //        });
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     View.OnClickListener onclicklistener = new View.OnClickListener() {

@@ -85,7 +85,5 @@ public class ShowCategoryFragment extends Fragment {
                 Log.i("Retro","Fail");
             }
         });
-
     }
-
 }
