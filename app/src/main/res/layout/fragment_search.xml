@@ -5,15 +5,29 @@
     android:layout_height="match_parent"
     tools:context=".SearchFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        style="@style/toolbar"
+        android:elevation="@dimen/space_large"
+        app:popupTheme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        app:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
 
-        <RadioButton
-            android:id="@+id/radioButton"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginRight="@dimen/space_double"
+            android:src="@mipmap/ic_mic" />
+
+        <EditText
+            android:id="@+id/search_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
-    </ScrollView>
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/space_double"
+            android:layout_marginLeft="@dimen/space_double"
+            android:hint="@string/editText_search_hint"/>
+
+    </android.support.v7.widget.Toolbar>
 
 </FrameLayout>

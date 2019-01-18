@@ -124,6 +124,7 @@
     <string name="none_messages">پیامی دریافت نکردید؟</string>
     <string name="select_parent_password">انتخاب کلمه عبور والدین</string>
     <string name="games">بازی ها</string>
+    <string name="editText_search_hint">دنبال چی میگردی؟</string>
 
 
 </resources>

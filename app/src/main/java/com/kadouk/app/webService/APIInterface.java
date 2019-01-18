@@ -50,4 +50,8 @@ public interface APIInterface{
  @POST("pass")
  @FormUrlEncoded
  Call<Details> sendParentPassword (@Field("pass") String pass, @Header("Authorization") String Token);
+
+ @POST ("content/search")
+ @FormUrlEncoded
+ Call<Content> searchAppDataByDetails (@Field("s") int name) ;
 }
