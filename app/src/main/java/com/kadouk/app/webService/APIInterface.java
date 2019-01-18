@@ -4,6 +4,7 @@ package com.kadouk.app.webService;
 import com.kadouk.app.model.CatagoryResponse;
 import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.model.Content;
+import com.kadouk.app.model.Contents;
 import com.kadouk.app.model.Details;
 import com.kadouk.app.model.RegisterResponse;
 
@@ -53,5 +54,5 @@ public interface APIInterface{
 
  @POST ("content/search")
  @FormUrlEncoded
- Call<Content> searchAppDataByDetails (@Field("s") int name) ;
+ Call<CatagoryResponse> searchAppDataByDetails (@Field("s") String searchText) ;
 }

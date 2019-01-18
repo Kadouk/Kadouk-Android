@@ -60,12 +60,12 @@ public class ShowCategoryFragment extends Fragment {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        getContentCat(Integer.parseInt(id));
+        getCatContent(Integer.parseInt(id));
 
         return view;
     }
 
-    private void getContentCat(int id) {
+    private void getCatContent(int id) {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
         Call<CatagoryResponse> call = apiInterface.getContentByID(id);
