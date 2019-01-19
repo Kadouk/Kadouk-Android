@@ -9,8 +9,8 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/smaller"
-        android:layout_marginBottom="@dimen/smaller"
+        android:layout_marginTop="@dimen/space_single"
+        android:layout_marginBottom="@dimen/space_single"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/install_app"
-                android:layout_width="@dimen/large"
-                android:layout_height="@dimen/large"
+                android:layout_width="@dimen/space_large"
+                android:layout_height="@dimen/space_large"
                 android:layout_gravity="center"
                 android:contentDescription="@string/install_icon"
                 app:srcCompat="@drawable/ic_launcher_background" />
@@ -41,14 +41,14 @@
                 android:id="@+id/txv_app_name"
                 style="@style/textView"
                 android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/small"
-                android:layout_marginRight="@dimen/small" />
+                android:layout_marginEnd="@dimen/space_single"
+                android:layout_marginRight="@dimen/space_single" />
             <TextView
                 android:id="@+id/txv_app_desc"
                 style="@style/textView"
                 android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/small"
-                android:layout_marginRight="@dimen/small" />
+                android:layout_marginEnd="@dimen/space_single"
+                android:layout_marginRight="@dimen/space_single" />
 
         </LinearLayout>
 
@@ -63,8 +63,8 @@
                 android:id="@+id/img_app"
                 android:layout_width="@dimen/xlarge"
                 android:layout_height="@dimen/xlarge"
-                android:layout_marginEnd="@dimen/normal"
-                android:layout_marginRight="@dimen/normal"
+                android:layout_marginEnd="@dimen/space_double"
+                android:layout_marginRight="@dimen/space_double"
                 android:contentDescription="@string/app_icon" />
 
         </LinearLayout>

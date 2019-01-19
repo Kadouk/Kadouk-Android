@@ -114,7 +114,7 @@
     <style name="signUpFab" parent="button">
         <item name="android:layout_marginBottom">@dimen/space_double</item>
         <item name="android:layout_marginRight">@dimen/space_double</item>
-        <item name="android:layout_marginEnd" tools:ignore="DuplicateDefinition,NewApi">@dimen/normal</item>
+        <item name="android:layout_marginEnd" tools:ignore="DuplicateDefinition,NewApi">@dimen/space_double</item>
         <item name="android:layout_gravity">right</item>
     </style>
 
@@ -128,15 +128,15 @@
     </style>
 
     <style name="buttonBack" parent="button">
-        <item name="android:layout_marginBottom">@dimen/normal</item>
-        <item name="android:layout_marginLeft">@dimen/normal</item>
-        <item name="android:layout_marginStart" tools:ignore="DuplicateDefinition,NewApi">@dimen/normal</item>
+        <item name="android:layout_marginBottom">@dimen/space_double</item>
+        <item name="android:layout_marginLeft">@dimen/space_double</item>
+        <item name="android:layout_marginStart" tools:ignore="DuplicateDefinition,NewApi">@dimen/space_double</item>
         <item name="android:text">@string/back</item>
     </style>
 
     <style name="buttonTopRight" parent="button">
-        <item name="android:layout_marginRight">@dimen/normal</item>
-        <item name="android:layout_marginEnd" tools:ignore="NewApi">@dimen/normal</item>
+        <item name="android:layout_marginRight">@dimen/space_double</item>
+        <item name="android:layout_marginEnd" tools:ignore="NewApi">@dimen/space_double</item>
         <item name="android:layout_gravity">right</item>
     </style>
 
@@ -148,7 +148,7 @@
 
     <style name="textViewTitle" parent="textView">
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_marginTop">@dimen/normal</item>
+        <item name="android:layout_marginTop">@dimen/space_double</item>
     </style>
 
 
@@ -184,10 +184,10 @@
     </style>
 
     <style name="radioButtonCategory" parent="radioButton">
-        <item name="android:layout_marginRight">@dimen/small</item>
-        <item name="android:layout_marginEnd" tools:ignore="NewApi">@dimen/small</item>
-        <item name="android:layout_marginLeft">@dimen/small</item>
-        <item name="android:layout_marginStart" tools:ignore="NewApi">@dimen/small</item>
+        <item name="android:layout_marginRight">@dimen/space_single</item>
+        <item name="android:layout_marginEnd" tools:ignore="NewApi">@dimen/space_single</item>
+        <item name="android:layout_marginLeft">@dimen/space_single</item>
+        <item name="android:layout_marginStart" tools:ignore="NewApi">@dimen/space_single</item>
         <item name="android:onClick">onCategoryClicked</item>
     </style>
 

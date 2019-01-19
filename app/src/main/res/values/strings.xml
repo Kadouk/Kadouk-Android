@@ -125,6 +125,7 @@
     <string name="select_parent_password">انتخاب کلمه عبور والدین</string>
     <string name="games">بازی ها</string>
     <string name="editText_search_hint">دنبال چی میگردی؟</string>
-
+    <string name="not_suport">این قابلیت در تلفن همراه شما قابل اجرا نیست</string>
+    <string name="speech_to_text_title">برنامه ای که میخوای رو بگو</string>
 
 </resources>

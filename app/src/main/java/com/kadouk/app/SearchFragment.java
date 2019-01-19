@@ -1,7 +1,10 @@
 package com.kadouk.app;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,8 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kadouk.app.model.CatagoryResponse;
 import com.kadouk.app.model.Content;
@@ -20,11 +26,14 @@ import com.kadouk.app.model.Contents;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
 
 public class SearchFragment extends Fragment {
 
@@ -33,6 +42,8 @@ public class SearchFragment extends Fragment {
     RecyclerView mRecyclerViewCat;
     RecyclerView.LayoutManager mLayoutManagerCat;
     List<Contents> contents;
+    private final int REQ_CODE_SPEECH_INPUT = 100;
+    View view;
 
     public SearchFragment() {
 
@@ -41,7 +52,7 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        view = inflater.inflate(R.layout.fragment_search, container, false);
         EditTextSearch = view.findViewById(R.id.search_edt);
 
         EditTextSearch.addTextChangedListener(mTextEditorWatcher);
@@ -52,9 +63,28 @@ public class SearchFragment extends Fragment {
         mRecyclerViewCat.setLayoutManager(mLayoutManagerCat);
         mRecyclerViewCat.setLayoutManager(mLayoutManagerCat);
 
+        ImageView voiceRecognizing = view.findViewById(R.id.search_voice_btn);
+        voiceRecognizing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                        RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "fa");
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                       "برنامه ای که میخوای رو بگو");
+                try {
+                    startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+                } catch (ActivityNotFoundException a) {
+                    Toast.makeText(getContext(), R.string.not_suport, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         return view;
     }
-
 
     private void getSearchList(String searchText) {
 
@@ -88,4 +118,21 @@ public class SearchFragment extends Fragment {
         public void afterTextChanged(Editable s) {
         }
     };
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+                    EditText EditTextSearch = view.findViewById(R.id.search_edt);
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    EditTextSearch.setText(result.get(0));
+                }
+                break;
+            }
+        }
+    }
 }

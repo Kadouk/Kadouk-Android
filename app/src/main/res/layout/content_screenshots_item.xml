@@ -15,10 +15,10 @@
             android:layout_width="@dimen/screenshots_width"
             android:layout_height="@dimen/screenshots_width"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/small"
-            android:layout_marginLeft="@dimen/smaller"
-            android:layout_marginRight="@dimen/smaller"
-            android:layout_marginTop="@dimen/small"
+            android:layout_marginBottom="@dimen/space_single"
+            android:layout_marginLeft="@dimen/space_single"
+            android:layout_marginRight="@dimen/space_single"
+            android:layout_marginTop="@dimen/space_single"
             android:scaleType="fitXY"/>
 
     </RelativeLayout>

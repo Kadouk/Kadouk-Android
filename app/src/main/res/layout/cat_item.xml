@@ -9,7 +9,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/small"
+        android:layout_marginBottom="@dimen/space_single"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -60,10 +60,10 @@
 
             <ImageView
                 android:id="@+id/img_app1"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_marginEnd="@dimen/normal"
-                android:layout_marginRight="@dimen/normal"
+                android:layout_width="@dimen/list_image"
+                android:layout_height="@dimen/list_image"
+                android:layout_marginEnd="@dimen/space_double"
+                android:layout_marginRight="@dimen/space_double"
                 android:contentDescription="@string/app_icon" />
 
         </LinearLayout>
@@ -72,7 +72,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/small"
+        android:layout_marginBottom="@dimen/space_single"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -120,10 +120,10 @@
 
             <ImageView
                 android:id="@+id/img_app2"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_marginEnd="@dimen/normal"
-                android:layout_marginRight="@dimen/normal"
+                android:layout_width="@dimen/list_image"
+                android:layout_height="@dimen/list_image"
+                android:layout_marginEnd="@dimen/space_double"
+                android:layout_marginRight="@dimen/space_double"
                 android:contentDescription="@string/app_icon" />
 
         </LinearLayout>

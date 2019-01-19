@@ -7,8 +7,6 @@
     tools:context="com.kadouk.app.ShowCategoryFragment"
     android:orientation="vertical">
 
-
-
         <!-- Toolbar -->
         <android.support.v7.widget.Toolbar
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            android:elevation="@dimen/small"
+            android:elevation="@dimen/space_single"
             app:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             app:popupTheme="@style/Theme.AppCompat.DayNight.NoActionBar">
 
@@ -25,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginRight="@dimen/small"
+                android:layout_marginRight="@dimen/space_single"
                 android:text="TextView"
                 android:visibility="gone"/>
 
