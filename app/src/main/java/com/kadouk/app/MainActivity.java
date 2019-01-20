@@ -21,7 +21,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
-
+//10
+//in activity e hast ke fragment tab haro bayad tush manage kone, yekam sholughe ,
+// ehtemale kheyli ziad ye seri chizash taghir kone ziad khodeto azyat nakone tu in.
+// bad az inke ino kamel check kardi GameFragment ro baz kon
 public class MainActivity extends AppCompatActivity {
 
     final Fragment gameFragment = new GameFragment();
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
+                // marbut be select kardane har tab e
 
                 if (tabId == R.id.account) {
 
@@ -89,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomBar.setDefaultTabPosition(3);
     }
+
     private void viewFragment(final Fragment fragment, String name){
         Log.i("backs", String.valueOf(active));
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -106,11 +111,14 @@ public class MainActivity extends AppCompatActivity {
             public void onBackStackChanged() {
                 if( fragmentManager.getBackStackEntryCount() <= BackstackCount){
                     if(backStackDownload.equals("DOWNLOAD")){
+
                         fragmentManager.beginTransaction().hide(downloadsFragment).hide(searchFragment).hide(accountFragment).commit();
                         fragmentManager.popBackStack(backStackGame, POP_BACK_STACK_INCLUSIVE);
                         fragmentManager.removeOnBackStackChangedListener(this);
                         bottomBar.selectTabAtPosition(0, true);
+
                     }else if(backStackDownload.equals("download1")) {
+
                         fragmentManager.beginTransaction().hide(gameFragment).hide(searchFragment).hide(accountFragment).commit();
                         fragmentManager.popBackStack(backStackDownload, POP_BACK_STACK_INCLUSIVE);
                         fragmentManager.removeOnBackStackChangedListener(this);
@@ -158,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
     public void showUpButton() { getSupportActionBar().setDisplayHomeAsUpEnabled(true); }
     public void hideUpButton() { getSupportActionBar().setDisplayHomeAsUpEnabled(false); }
 
+
+    //in hamun tabeyi hast ke vase font bayad be har activity ezafe she
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));

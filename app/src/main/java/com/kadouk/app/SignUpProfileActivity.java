@@ -22,6 +22,9 @@ import com.kadouk.app.webService.APIInterface;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import retrofit2.Call;
 import retrofit2.Callback;
+//8
+
+// bad az inke ino kamel check kardi ParentPasswordActivity ro baz kon
 
 public class SignUpProfileActivity extends AppCompatActivity {
     String name, kidGender = "boy", day, month, year;
@@ -35,7 +38,7 @@ public class SignUpProfileActivity extends AppCompatActivity {
         EditTextName = findViewById(R.id.signup_profile_edt_name);
 
         profileFab = findViewById(R.id.signup_profile_fab);
-        profileFab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
+        profileFab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_secondary)));
 
         Spinner SpinnerDay = findViewById(R.id.signup_profile_spinner_day);
         Spinner SpinnerMonth = findViewById(R.id.signup_profile_spinner_month);
@@ -97,6 +100,8 @@ public class SignUpProfileActivity extends AppCompatActivity {
         });
     }
 
+    // check mishe user kodum radio button ro entekhab karde, boy or girl,
+    // nemidunam chera zade estefadeh nashode, be harhal darim estefadash mikonm
     public void onGenderItemClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
@@ -133,6 +138,7 @@ public class SignUpProfileActivity extends AppCompatActivity {
                     Log.i("RETROFIT", String.valueOf(response.body().getName()));
                     Log.i("RETROFIT", String.valueOf(response.body().getToken()));
 
+                    // token ro zikhire mikonim, ehtemal inam bebarim tuye ParentPasswordActivity
                     String Token = String.valueOf(response.body().getToken());
                     final String MyShPref = "MyPrefers", authenticationToken = "Token";
                     SharedPreferences SharedPreferences;

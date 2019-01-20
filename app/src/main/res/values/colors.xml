@@ -3,32 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="charcoal">#4a4a4a</color>
-    <color name="olivine">#9ccc65</color>
-    <color name="charlotte">#9ae1e2</color>
-    <color name="biloba">#b39ddb</color>
-    <color name="scarlet">#ca3074</color>
-    <color name="grandis">#f6c667</color>
 
-    <color name="black">#4a4a4a</color>
-
-    <color name="blue">#7cd8d9</color>
-
-    <color name="red">#ca3074</color>
-
-    <color name="green">#9ccc65</color>
-
-    <color name="white">#ffffff</color>
-
-    <color name="grey">#d9d9d9</color>
 
     <color name="snow">#B3fafafa</color>
-
-    <color name="orange">#f6c667</color>
-
-    <color name="transparent">#00ffffff</color>
-
-    <color name="orange_overlay">#fbebaa</color>
 
 
 

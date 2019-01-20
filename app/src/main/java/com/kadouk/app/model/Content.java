@@ -9,6 +9,10 @@ import java.util.List;
  * Created by zoli on 11/06/2018.
  */
 
+//3
+// in class vase product page ya harjayi ke hameye etela@te app ro niaz dashte bashim karbord dare
+// masalan vase category ha az Contents estefadeh kardim, ama tu product page az Content
+// bad az inke ino kamel check kardi APIClient ro az tu pusheye webService baz kon.
 public class Content {
 
     @SerializedName("id")

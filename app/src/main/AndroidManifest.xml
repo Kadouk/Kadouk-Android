@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <!-- bekhatere inke aval az hame .Font ro init konim ino inja gozashtam -->
     <application
         android:name=".Font"
         android:allowBackup="true"
@@ -22,8 +23,8 @@
         <activity
             android:name=".SignUpActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".ShowCategoryFragment" />
-        <activity android:name=".SignUpProfileActivity" />
+        <activity android:name=".SignUpProfileActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".SignUpEnterCodeActivity"
             android:parentActivityName=".SignUpActivity"
@@ -43,7 +44,9 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.kadouk.app.SignUpActivity" />
 
-        <activity android:name=".ParentPasswordActivity"></activity>
+        <activity android:name=".ParentPasswordActivity"
+            android:windowSoftInputMode="adjustResize"/>
+
     </application>
 
 </manifest>

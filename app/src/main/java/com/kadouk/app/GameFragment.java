@@ -24,6 +24,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//11
+// in fragment marbut be tab e GAME hast, 5 ta category tushe ke harkodum yek recyclerView daran
+// bad az inke ino kamel check kardi SearchFragment ro baz kon
 public class GameFragment extends Fragment implements FragmentManager.OnBackStackChangedListener {
 
     TextView txv_cat1_name, txv_cat2_name, txv_cat3_name, txv_cat4_name, txv_cat5_name;
@@ -32,7 +35,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3, mLayoutManagerCat4, mLayoutManagerCat5;
     List<Contents> contents;
     ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
-    MainActivity mainActivity = (MainActivity) getContext();
+   // MainActivity mainActivity = (MainActivity) getContext();
     public GameFragment() {
 
     }
@@ -41,16 +44,21 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
+        // moadele hamun setContentView tu activity hast,
+        // too fragment vase set kardane layout az in dastur estefadeh mikonim.
 
         TextView openCat1 = view.findViewById(R.id.cat1_txv_open);
+        // in textView hamun نمایش همه  joloye har category hast
         openCat1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle i = new Bundle();
                 i.putString("id", "1");
                 showCategoryFragment.setArguments(i);
+                //3 khate bala vase ferestadane data be fragment jadid estefadeh shode
                 ((MainActivity) getActivity()).backStackGame = "Game1";
                 ((MainActivity) getActivity()).addFragmentOnTop(showCategoryFragment);
+                //inam ke moadele startActivity tuye activity hast vase load fragment jadid
             }
         });
 
@@ -107,7 +115,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         });
 
         getActivity().getSupportFragmentManager().addOnBackStackChangedListener(this);
-        getContentCat1();
+        getContentCat1(); // tabeyi hast ke datahaye ye activity ro migire
         getContentCat2();
         getContentCat3();
         getContentCat4();
@@ -120,6 +128,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         SnapHelper snapHelperCat1 = new PagerSnapHelper();
         mRecyclerViewCat1.setLayoutManager(mLayoutManagerCat1);
         snapHelperCat1.attachToRecyclerView(mRecyclerViewCat1);
+        // init kardane recyclerView
 
         mRecyclerViewCat2 = view.findViewById(R.id.main_recycler_cat2);
         mRecyclerViewCat2.setHasFixedSize(true);
@@ -164,20 +173,24 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         call.enqueue(new Callback<CatagoryResponse>() {
             @Override
             public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
-                if(response.code() == 200){
+                if(response.code() == 200){ // dar surate bargharar shodane ertebate sahih
                     contents = response.body().getContents();
+                    // inja getContents kardim, contents e ke tuye CatagoryResponse tarif kardim,
+                    // ke khode contents shamele ye seri tag ha hast
                     txv_cat1_name.setText(response.body().getCatName());
 
                     mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(), contents));
+                    // inja recycler view ro ba tavajoh be datahayi ke behesh midim nemayesh midim,
+                    // bagheye kara tu adapter anjam mishe
                 }
             }
 
             @Override
             public void onFailure(Call<CatagoryResponse> call, Throwable t) {
+                // dar surate bar gharar nashode ertebat miad inja
                 Log.i("Retro","Fail");
             }
         });
-
     }
 
     private void getContentCat2() {

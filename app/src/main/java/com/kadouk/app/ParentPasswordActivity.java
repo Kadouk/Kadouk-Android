@@ -22,6 +22,8 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+//9
+// bad az inke ino kamel check kardi MainActivity ro baz kon
 
 public class ParentPasswordActivity extends AppCompatActivity {
 
@@ -37,7 +39,7 @@ public class ParentPasswordActivity extends AppCompatActivity {
 
         fab = findViewById(R.id.signup_password_fab);
         fab.setEnabled(false);
-        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_tertiary)));
         EditTextPassword = findViewById(R.id.signup_password_edt);
         EditTextPassword.addTextChangedListener(mTextEditorWatcher);
     }
@@ -50,7 +52,7 @@ public class ParentPasswordActivity extends AppCompatActivity {
 
     private void sendParentPassword(String password) {
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Log.i("tokennnnn", Globals.getToken());
+        Log.i("token", Globals.getToken());
         Call<Details> call = apiInterface.sendParentPassword(password,"Bearer " + Globals.getToken());
         call.enqueue(new Callback<Details>() {
             @Override
@@ -83,10 +85,10 @@ public class ParentPasswordActivity extends AppCompatActivity {
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(s.length() == EditTextMaxLength){
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.olivine)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_secondary)));
                 fab.setEnabled(true);
             }else {
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_tertiary)));
                 fab.setEnabled(false);
             }
         }

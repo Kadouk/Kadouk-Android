@@ -35,6 +35,9 @@ import static android.graphics.Color.BLACK;
 /**
  * Created by zoli on 08/28/2018.
  */
+//7
+// kare in activity daryafte code az user( code e ke vase user sms kardim) hast.
+// bad az inke ino kamel check kardi SignUpProfileActivity ro baz kon
 
 public class SignUpEnterCodeActivity extends AppCompatActivity {
 
@@ -58,7 +61,7 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
 
         fab = findViewById(R.id.signup_code_fab);
         fab.setEnabled(false);
-        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.text_primary)));
 
 
         Toolbar toolbar = findViewById(R.id.signup_code_toolbar);
@@ -88,11 +91,7 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
 //        });
     }
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
-    }
-
+    // darkhaste dobareye code az server tavasote user
     View.OnClickListener onclicklistener = new View.OnClickListener() {
 
         @SuppressLint("ResourceAsColor")
@@ -100,7 +99,7 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             startTimer(time);
-            textViewTime.setTextColor(R.color.black);
+            textViewTime.setTextColor(R.color.text_primary);
             textViewTime.setOnClickListener(null);
 
         }
@@ -172,6 +171,7 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
 
                     timeLeft = lastPeriod - timeCounter;
                     textViewResendCode.setText( getString(R.string.wait_to_receive_code));
+                    //baraye inke time tu adade zire 10 takraghami nabashe
                     textViewTime.setText(String.format("%02d",00) + ":"+ String.format("%02d",timeLeft));
                     if(timeLeft == 0){
                         timeCounter = 0;
@@ -204,10 +204,10 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(s.length() == EditTextMaxLength){
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.olivine)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_secondary)));
                 fab.setEnabled(true);
             }else {
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_tertiary)));
                 fab.setEnabled(false);
             }
         }
@@ -215,4 +215,9 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
         }
     };
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
 }

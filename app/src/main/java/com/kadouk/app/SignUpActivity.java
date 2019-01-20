@@ -21,14 +21,18 @@ import com.kadouk.app.webService.APIInterface;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import retrofit2.Call;
 import retrofit2.Callback;
+// 6
+// in avalin activity e hast ke bad az splash baz mishe(dar surate ke user sabtenam nakarde bashe)
+// bad az inke ino kamel check kardi SignUpEnterCodeActivity ro baz kon
 
 public class SignUpActivity extends AppCompatActivity {
 
+    // EditTextMaxLength tedad char hayi ke mikhaym type shode bashe, chon shomarast 11 ta gozashtim
+    // zire 11 ta fab fa@l nemishe
     Short EditTextMaxLength = 11;
     FloatingActionButton fab;
     EditText EditTextNumber;
     Intent intent;
-    Typeface typeface;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -36,19 +40,15 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_enter_number);
 
-        typeface = Typeface.createFromAsset(this.getAssets(), "fonts/B Koodak Bold_0.ttf");
-
         fab = findViewById(R.id.signup_number_fab);
         fab.setEnabled(false);
-        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
-        EditTextNumber = findViewById(R.id.signup_number_edt);
-        EditTextNumber.setTypeface(typeface);
-        EditTextNumber.addTextChangedListener(mTextEditorWatcher);
-    }
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_tertiary)));
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+        EditTextNumber = findViewById(R.id.signup_number_edt);
+
+        // taghirate char haye tuye EditText ro tashkhis mide
+        // harbar ke text e EditText taghir mikone check mikonim chandta char type shode.
+        EditTextNumber.addTextChangedListener(mTextEditorWatcher);
     }
 
     @SuppressLint("WrongViewCast")
@@ -64,19 +64,21 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
+    // ersale number be server,
     private void sendPhoneNumber(String Number){
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        // call hamun darkhastie ke tu APIInterfac ham tarif shode
         Call<RegisterResponse> call =  apiInterface.sendPhoneNumber(Number);
         call.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, retrofit2.Response<RegisterResponse> response){
                 if(response.isSuccessful()) {
-
                     if (String.valueOf(response.body().getStatus()).equals("200")){
                         Log.i("LOGIN", String.valueOf(response.body().getStatus()));
+                        // vaghti ke server data ro gereft  SignUpEnterCodeActivity ro start mikonim
                         intent = new Intent(SignUpActivity.this, SignUpEnterCodeActivity.class).
-                                addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                addFlags(intent.FLAG_ACTIVITY_NO_ANIMATION); // animation nadashtane taghire activity
                        // finish();
                         startActivity(intent);
                     }
@@ -97,11 +99,13 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // inja taghirate text e editText ro motevajeh mishim,
+            // ba taghire har char check mikonim ke char ha 11 ta hastan ya na
             if(s.length() == EditTextMaxLength){
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.olivine)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_secondary)));
                 fab.setEnabled(true);
             }else {
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.grandis)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_tertiary)));
                 fab.setEnabled(false);
             }
         }
@@ -109,4 +113,12 @@ public class SignUpActivity extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
         }
     };
+
+    // tabe marbut be font hast
+    // tuye har activity e ke mikhaym font hash custom ma beshe bayad ino ezafe konim,
+    // class e Font ro badan bekhun motevajeh mishi
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
 }

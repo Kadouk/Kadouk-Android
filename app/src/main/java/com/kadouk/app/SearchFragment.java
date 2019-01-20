@@ -34,7 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
-
+//12
 public class SearchFragment extends Fragment {
 
 
@@ -75,6 +75,8 @@ public class SearchFragment extends Fragment {
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "fa");
                 intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
                        "برنامه ای که میخوای رو بگو");
+                // title text ro gozashtam tu String nemidunam chera nemikhundesh,
+                // dg majbur shodam hardCode konam code khate ghabl ro
                 try {
                     startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
                 } catch (ActivityNotFoundException a) {
@@ -86,7 +88,26 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+                    EditText EditTextSearch = view.findViewById(R.id.search_edt);
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    EditTextSearch.setText(result.get(0));
+                    // marbut be voice recognizing hast ke result ro tuye editText type mikone
+                }
+                break;
+            }
+        }
+    }
+
     private void getSearchList(String searchText) {
+        //ba tavajoh be text e ke be jahan midam behem ye list az app ha barmigardune
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
         Call<CatagoryResponse> call = apiInterface.searchAppDataByDetails(searchText);
@@ -107,32 +128,17 @@ public class SearchFragment extends Fragment {
     }
 
     private final TextWatcher mTextEditorWatcher = new TextWatcher() {
+
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         }
 
         public void onTextChanged(CharSequence s, int start, int before, int count){
-
+            // inja taghirate text e editText ro motevajeh mishim,
+            // ba taghire har char yebar darkhaste list un text e jadid ro mikonim
            getSearchList(String.valueOf(EditTextSearch.getText()));
         }
 
         public void afterTextChanged(Editable s) {
         }
     };
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case REQ_CODE_SPEECH_INPUT: {
-                if (resultCode == RESULT_OK && null != data) {
-                    EditText EditTextSearch = view.findViewById(R.id.search_edt);
-                    ArrayList<String> result = data
-                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    EditTextSearch.setText(result.get(0));
-                }
-                break;
-            }
-        }
-    }
 }
