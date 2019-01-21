@@ -8,7 +8,8 @@
     <dimen name="space_large">24dp</dimen>
 
     <dimen name="list_image">96dp</dimen>
-    <dimen name="screenshots_width">150dp</dimen>
+    <dimen name="screenshots_width">320dp</dimen>
+    <dimen name="screenshots_height">183dp</dimen>
     <dimen name="profile_pic">48dp</dimen>
     <dimen name="zero">0dp</dimen>
     <dimen name="xlarge">64dp</dimen>

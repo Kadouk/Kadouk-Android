@@ -51,7 +51,7 @@ public class ShowCategoryFragment extends Fragment {
         String id = getArguments().getString("id");
         Log.i("passs",id);
         //toolbarTitle.setText(name);
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        Toolbar toolbar = view.findViewById(R.id.show_category_toolbar);
         ((MainActivity)getActivity()).setSupportActionBar(toolbar);
         ((MainActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         //((MainActivity)getActivity()).showUpButton();

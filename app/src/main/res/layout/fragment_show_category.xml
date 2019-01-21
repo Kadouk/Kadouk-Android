@@ -10,13 +10,11 @@
         <!-- Toolbar -->
         <android.support.v7.widget.Toolbar
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:elevation="@dimen/space_single"
-            app:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            app:popupTheme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:id="@+id/show_category_toolbar"
+            style="@style/toolbar"
+            android:elevation="@dimen/toolbar_shadow"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
 
             <TextView
                 android:id="@+id/show_cat_title"

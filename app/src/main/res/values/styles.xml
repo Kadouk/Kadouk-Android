@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:homeAsUpIndicator">@mipmap/ic_upbutton</item>
     </style>
 
     <style name="toolbar" parent="AppTheme" >
@@ -120,7 +121,6 @@
 
     <style name="ProductProfileTextView" parent="textView">
         <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:layout_marginRight">@dimen/space_double</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/textPrimary</item>
         <item name="android:layout_marginTop">@dimen/space_single</item>
