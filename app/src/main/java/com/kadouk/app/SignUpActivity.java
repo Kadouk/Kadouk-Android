@@ -42,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         fab = findViewById(R.id.signup_number_fab);
         fab.setEnabled(false);
-        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_tertiary)));
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorTertiary)));
 
         EditTextNumber = findViewById(R.id.signup_number_edt);
 
@@ -102,10 +102,10 @@ public class SignUpActivity extends AppCompatActivity {
             // inja taghirate text e editText ro motevajeh mishim,
             // ba taghire har char check mikonim ke char ha 11 ta hastan ya na
             if(s.length() == EditTextMaxLength){
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_secondary)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSecondary)));
                 fab.setEnabled(true);
             }else {
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_tertiary)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorTertiary)));
                 fab.setEnabled(false);
             }
         }

@@ -39,7 +39,7 @@ public class ParentPasswordActivity extends AppCompatActivity {
 
         fab = findViewById(R.id.signup_password_fab);
         fab.setEnabled(false);
-        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_tertiary)));
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorTertiary)));
         EditTextPassword = findViewById(R.id.signup_password_edt);
         EditTextPassword.addTextChangedListener(mTextEditorWatcher);
     }
@@ -85,10 +85,10 @@ public class ParentPasswordActivity extends AppCompatActivity {
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(s.length() == EditTextMaxLength){
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_secondary)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSecondary)));
                 fab.setEnabled(true);
             }else {
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_tertiary)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorTertiary)));
                 fab.setEnabled(false);
             }
         }

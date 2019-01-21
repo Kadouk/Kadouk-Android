@@ -38,7 +38,7 @@ public class SignUpProfileActivity extends AppCompatActivity {
         EditTextName = findViewById(R.id.signup_profile_edt_name);
 
         profileFab = findViewById(R.id.signup_profile_fab);
-        profileFab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.color_secondary)));
+        profileFab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSecondary)));
 
         Spinner SpinnerDay = findViewById(R.id.signup_profile_spinner_day);
         Spinner SpinnerMonth = findViewById(R.id.signup_profile_spinner_month);

@@ -5,29 +5,29 @@
         <tab
             id="@+id/account"
             icon="@mipmap/ic_tab_profile"
-            inActiveColor="@color/component_inactive"
-            activeColor="@color/color_primary"
+            inActiveColor="@color/componentInactive"
+            activeColor="@color/colorPrimary"
             title="@string/tab_account" />
 
         <tab
             id="@+id/download"
             icon="@mipmap/ic_tab_updates"
-            inActiveColor="@color/component_inactive"
-            activeColor="@color/color_primary"
+            inActiveColor="@color/componentInactive"
+            activeColor="@color/colorPrimary"
             title="@string/tab_download"/>
 
         <tab
             id="@+id/search"
             icon="@mipmap/ic_tab_search"
-            inActiveColor="@color/component_inactive"
-            activeColor="@color/color_primary"
+            inActiveColor="@color/componentInactive"
+            activeColor="@color/colorPrimary"
             title="@string/tab_search" />
 
         <tab
             id="@+id/game"
             icon="@mipmap/ic_tab_game"
-            inActiveColor="@color/component_inactive"
-            activeColor="@color/color_primary"
+            inActiveColor="@color/componentInactive"
+            activeColor="@color/colorPrimary"
             title="@string/tab_game" />
 
     </tabs>

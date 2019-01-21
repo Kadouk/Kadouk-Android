@@ -3,13 +3,14 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.kadouk.app.GameFragment"
+    android:background="@color/bg"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar"
         style="@style/toolbar"
-        android:elevation="@dimen/space_large"
-        app:popupTheme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:elevation="@dimen/toolbar_shadow"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
 
 
@@ -21,11 +22,8 @@
             android:src="@mipmap/ic_games" />
 
         <TextView
-            android:id="@+id/show_cat_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginRight="@dimen/space_single"
+            android:id="@+id/game_toolbar_title"
+            style="@style/toolbarTitle"
             android:text="@string/games" />
 
     </android.support.v7.widget.Toolbar>

@@ -9,7 +9,18 @@
 
     <style name="toolbar" parent="AppTheme" >
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_height">@dimen/toolbar_height</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@color/bg</item>
+    </style>
+
+    <style name="toolbarTitle" parent="textView" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:layout_marginRight">@dimen/space_single</item>
     </style>
 
     <style name="recyclerView" parent="AppTheme" >
@@ -68,7 +79,7 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_marginLeft">@dimen/space_large</item>
         <item name="android:text">@string/open_category</item>
-        <item name="android:textColor">@color/color_accent</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">12sp</item>
 
     </style>
@@ -77,9 +88,9 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_marginRight">@dimen/space_large</item>
         <item name="android:text">@string/app_category</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColor">@color/textPrimary</item>
     </style>
 
     <style name="appNameTextView" parent="textView">
@@ -87,14 +98,14 @@
         <item name="android:layout_marginRight">@dimen/space_double</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColor">@color/textPrimary</item>
     </style>
 
     <style name="appDescTextView" parent="textView">
         <item name="android:layout_gravity">end</item>
         <item name="android:layout_marginRight">@dimen/space_double</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/text_caption</item>
+        <item name="android:textColor">@color/textCaption</item>
         <item name="android:layout_marginTop">@dimen/space_single</item>
     </style>
 
@@ -102,7 +113,7 @@
         <item name="android:layout_gravity">end</item>
         <item name="android:layout_marginRight">@dimen/space_double</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/text_caption</item>
+        <item name="android:textColor">@color/textCaption</item>
         <item name="android:layout_marginTop">@dimen/space_single</item>
     </style>
 
