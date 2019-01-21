@@ -39,15 +39,15 @@
 
             <TextView
                 android:id="@+id/txv_app_name1"
-                style="@style/appNameTextView" />
+                style="@style/ProductNameTextView" />
 
             <TextView
                 android:id="@+id/txv_app_desc1"
-                style="@style/appDescTextView" />
+                style="@style/ProductDetailsTextView" />
 
             <TextView
                 android:id="@+id/txv_app_cost1"
-                style="@style/appPriceTextView" />
+                style="@style/ProductDetailsTextView" />
 
         </LinearLayout>
 
@@ -101,13 +101,13 @@
 
             <TextView
                 android:id="@+id/txv_app_name2"
-                style="@style/appNameTextView" />
+                style="@style/ProductNameTextView" />
             <TextView
                 android:id="@+id/txv_app_desc2"
-                style="@style/appDescTextView" />
+                style="@style/ProductDetailsTextView" />
             <TextView
                 android:id="@+id/txv_app_cost2"
-                style="@style/appPriceTextView" />
+                style="@style/ProductDetailsTextView"/>
 
         </LinearLayout>
 

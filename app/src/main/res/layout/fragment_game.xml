@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/game_toolbar_title"
-            style="@style/toolbarTitle"
+            style="@style/gameToolbarTitle"
             android:text="@string/games" />
 
     </android.support.v7.widget.Toolbar>

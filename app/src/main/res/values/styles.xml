@@ -19,8 +19,15 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textSize">@dimen/title_text_size</item>
+    </style>
+
+    <style name="gameToolbarTitle" parent="toolbarTitle" >
         <item name="android:layout_gravity">end</item>
         <item name="android:layout_marginRight">@dimen/space_single</item>
+    </style>
+
+    <style name="productToolbarTitle" parent="toolbarTitle" >
+        <item name="android:layout_gravity">center_horizontal</item>
     </style>
 
     <style name="recyclerView" parent="AppTheme" >
@@ -93,29 +100,33 @@
         <item name="android:textColor">@color/textPrimary</item>
     </style>
 
-    <style name="appNameTextView" parent="textView">
+    <style name="ProductTextView" parent="textView">
         <item name="android:layout_gravity">end</item>
         <item name="android:layout_marginRight">@dimen/space_double</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ProductNameTextView" parent="ProductTextView">
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/textPrimary</item>
     </style>
 
-    <style name="appDescTextView" parent="textView">
-        <item name="android:layout_gravity">end</item>
-        <item name="android:layout_marginRight">@dimen/space_double</item>
+    <style name="ProductDetailsTextView" parent="ProductTextView">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/textCaption</item>
         <item name="android:layout_marginTop">@dimen/space_single</item>
     </style>
 
-    <style name="appPriceTextView" parent="textView">
-        <item name="android:layout_gravity">end</item>
+    <style name="ProductProfileTextView" parent="textView">
+        <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_marginRight">@dimen/space_double</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/textCaption</item>
+        <item name="android:textColor">@color/textPrimary</item>
         <item name="android:layout_marginTop">@dimen/space_single</item>
     </style>
+
+
 
     <style name="tab_title" parent="textView">
         <item name="android:layout_gravity">center_horizontal</item>

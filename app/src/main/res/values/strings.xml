@@ -128,5 +128,8 @@
     <string name="not_suport">این قابلیت در تلفن همراه شما قابل اجرا نیست</string>
     <string name="speech_to_text_title">برنامه ای که میخوای رو بگو</string>
     <string name="year">سال</string>
+    <string name="producer">سازنده</string>
+    <string name="ages">رده سنی</string>
+    <string name="category">دسته بندی</string>
 
 </resources>
