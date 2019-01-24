@@ -21,12 +21,11 @@
             android:layout_gravity="center">
 
             <ImageView
-                android:id="@+id/install_app1"
+                android:id="@+id/download_icon_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:contentDescription="@string/install_icon"
-                app:srcCompat="@mipmap/ic_download" />
+                android:contentDescription="@string/install_icon" />
 
         </LinearLayout>
 
@@ -83,12 +82,11 @@
             android:layout_gravity="center">
 
             <ImageView
-                android:id="@+id/install_app2"
+                android:id="@+id/download_icon_down"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:contentDescription="@string/install_icon"
-                app:srcCompat="@mipmap/ic_purchase" />
+                android:contentDescription="@string/install_icon" />
 
         </LinearLayout>
 
