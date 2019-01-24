@@ -20,11 +20,15 @@ public class Contents {
     @SerializedName("image")
     private String image;
 
-    public Contents(int id, String name, String desc, String image){
+    @SerializedName("cost")
+    private String cost;
+
+    public Contents(int id, String name, String desc, String image, String cost) {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.image = image;
+        this.cost = cost;
     }
 
     public int getId() {
@@ -57,5 +61,13 @@ public class Contents {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCost() {
+        return cost;
+    }
+
+    public void setCost(String cost) {
+        this.cost = cost;
     }
 }

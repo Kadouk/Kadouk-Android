@@ -58,8 +58,7 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
         viewHolder.txvAppName1.setText(contents.get(appPosition).getName());
         viewHolder.txvAppDesc1.setText(contents.get(appPosition).getDesc());
-        //viewHolder.txvAppCost1.setText(contents.get(appPosition).getCost());
-        viewHolder.txvAppCost1.setText("cost1");
+        viewHolder.txvAppCost1.setText(contents.get(appPosition).getCost());
         String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/" + contents.get(appPosition).getImage();
         Log.i("LOADPIC", imageUrl + appPosition);
 
@@ -73,8 +72,7 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
         //////////////////////////////////////////////////////////////////////////
         viewHolder.txvAppName2.setText(contents.get(appPosition + 1).getName());
         viewHolder.txvAppDesc2.setText(contents.get(appPosition + 1).getDesc());
-        //viewHolder.txvAppCost2.setText(contents.get(appPosition + 1).getCost());
-        viewHolder.txvAppCost2.setText("cost2");
+        viewHolder.txvAppCost2.setText(contents.get(appPosition + 1).getCost());
         String imageUrl2 = "http://kadouk.com/kadouk/public/api/download/image/" + contents.get(appPosition + 1).getImage();
         Log.i("LOADPIC", imageUrl + appPosition+1 + "  "+ contents.size());
 
