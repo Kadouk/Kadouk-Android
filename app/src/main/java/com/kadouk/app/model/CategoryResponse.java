@@ -13,7 +13,7 @@ import java.util.List;
 // ke tuye class e APPIInterface(darkhasthamun az server) va activity ha estefadashun kardim
 // bad az inke ino kamel check kardi content ro baz kon
 
-public class CatagoryResponse {
+public class CategoryResponse {
 
     // contents datayi hast ke vase category ha migirim,
     // tuye contents esme app va desc va image va cost ro migirim vase nemayesh tu category
@@ -23,7 +23,7 @@ public class CatagoryResponse {
     @SerializedName("catName")
     private String catName;
 
-    public CatagoryResponse(List<Contents> contents, String catName) {
+    public CategoryResponse(List<Contents> contents, String catName) {
         this.contents = contents;
         this.catName = catName;
     }

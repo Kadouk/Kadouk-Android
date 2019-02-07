@@ -21,7 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 //1
 //avalin activity hast ke baz mishe
-// bad az inke ino kamel check kardi CatagoryResponse ro az tu pushe model baz kon,
+// bad az inke ino kamel check kardi CategoryResponse ro az tu pushe model baz kon,
 // ke aval model ha va get o post ro bebini chejurie bad edame bedi
 
 public class SplashActivity extends AppCompatActivity {

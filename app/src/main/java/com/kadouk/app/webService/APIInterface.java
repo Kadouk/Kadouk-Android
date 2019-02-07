@@ -1,9 +1,9 @@
 package com.kadouk.app.webService;
 
-import com.kadouk.app.model.CatagoryResponse;
+import com.kadouk.app.model.AllCategoryResponse;
+import com.kadouk.app.model.CategoryResponse;
 import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.model.Content;
-import com.kadouk.app.model.Contents;
 import com.kadouk.app.model.Details;
 import com.kadouk.app.model.RegisterResponse;
 
@@ -46,7 +46,11 @@ public interface APIInterface{
 
  @POST ("content/show/cat?cat=")
  @FormUrlEncoded
- Call<CatagoryResponse> getContentByID (@Field("cat") int ID) ;
+ Call<CategoryResponse> getContentByID (@Field("cat") int ID) ;
+
+ @POST ("content/show/cat?cat=")
+ @FormUrlEncoded
+ Call<AllCategoryResponse> getAllCategory (@Field("cat") int ID) ;
 
  @POST ("content/show/page?id=")
  @FormUrlEncoded
@@ -58,5 +62,5 @@ public interface APIInterface{
 
  @POST ("content/search")
  @FormUrlEncoded
- Call<CatagoryResponse> searchAppDataByDetails (@Field("s") String searchText) ;
+ Call<CategoryResponse> searchAppDataByDetails (@Field("s") String searchText) ;
 }

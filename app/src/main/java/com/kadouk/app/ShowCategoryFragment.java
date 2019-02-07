@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.kadouk.app.model.CatagoryResponse;
+import com.kadouk.app.model.CategoryResponse;
 import com.kadouk.app.model.Contents;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
@@ -68,10 +68,10 @@ public class ShowCategoryFragment extends Fragment {
     private void getCatContent(int id) {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CatagoryResponse> call = apiInterface.getContentByID(id);
-        call.enqueue(new Callback<CatagoryResponse>() {
+        Call<CategoryResponse> call = apiInterface.getContentByID(id);
+        call.enqueue(new Callback<CategoryResponse>() {
             @Override
-            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if(response.code() == 200){
                     contents = response.body().getContents();
                     toolbarTitle.setVisibility(View.VISIBLE);
@@ -81,7 +81,7 @@ public class ShowCategoryFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
+            public void onFailure(Call<CategoryResponse> call, Throwable t) {
                 Log.i("Retro","Fail");
             }
         });

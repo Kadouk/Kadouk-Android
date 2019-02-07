@@ -13,7 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.kadouk.app.model.CatagoryResponse;
+import com.kadouk.app.model.AllCategoryResponse;
+import com.kadouk.app.model.CategoryResponse;
 import com.kadouk.app.model.Contents;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
@@ -168,38 +169,73 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
     private void getContentCat1() {
 
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CatagoryResponse> call = apiInterface.getContentByID(1);
-        call.enqueue(new Callback<CatagoryResponse>() {
-            @Override
-            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
-                if(response.code() == 200){ // dar surate bargharar shodane ertebate sahih
-                    contents = response.body().getContents();
-                    // inja getContents kardim, contents e ke tuye CatagoryResponse tarif kardim,
-                    // ke khode contents shamele ye seri tag ha hast
-                    txv_cat1_name.setText(response.body().getCatName());
 
-                    mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(), contents));
+
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<AllCategoryResponse> call = apiInterface.getAllCategory(-1);
+        call.enqueue(new Callback<AllCategoryResponse>() {
+            @Override
+            public void onResponse(Call<AllCategoryResponse> call, Response<AllCategoryResponse> response) {
+                if(response.code() == 200){ // dar surate bargharar shodane ertebate sahih
+                     Globals.allCategories = response.body().getCategoryRespons();
+                    // inja getContents kardim, contents e ke tuye CategoryResponse tarif kardim,
+                    // ke khode contents shamele ye seri tag ha hast
+                    txv_cat1_name.setText(Globals.allCategories.get(0).getCatName());
+                    mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(),Globals.allCategories.get(0).getContents()));
+//                    for (int i=0; i<=3; i++) {
+//                        //Log.i("category1 app" + i, String.valueOf(Globals.allCategories.get(i).getContents().get(i).getId()));
+//                        Log.i("category1 app" + i, String.valueOf(Globals.allCategories.get(i).getCatName()));
+//                        Log.i("category1 app" + i, Globals.allCategories.get(i).getContents().get(i).getName());
+//                        Log.i("category1 app" + i, Globals.allCategories.get(i).getContents().get(i).getDesc());
+//                    }
+
+                   // mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(), contents));
                     // inja recycler view ro ba tavajoh be datahayi ke behesh midim nemayesh midim,
                     // bagheye kara tu adapter anjam mishe
                 }
             }
 
             @Override
-            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
-                // dar surate bar gharar nashode ertebat miad inja
-                Log.i("Retro","Fail");
+            public void onFailure(Call<AllCategoryResponse> call, Throwable t) {
+
             }
         });
+
+
+
+
+//        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+//        Call<CategoryResponse> call = apiInterface.getContentByID(1);
+//        call.enqueue(new Callback<CategoryResponse>() {
+//            @Override
+//            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
+//                if(response.code() == 200){ // dar surate bargharar shodane ertebate sahih
+//                    contents = response.body().getContents();
+//                    // inja getContents kardim, contents e ke tuye CategoryResponse tarif kardim,
+//                    // ke khode contents shamele ye seri tag ha hast
+//                    txv_cat1_name.setText(response.body().getCatName());
+//
+//                    mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(), contents));
+//                    // inja recycler view ro ba tavajoh be datahayi ke behesh midim nemayesh midim,
+//                    // bagheye kara tu adapter anjam mishe
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<CategoryResponse> call, Throwable t) {
+//                // dar surate bar gharar nashode ertebat miad inja
+//                Log.i("Retro","Fail");
+//            }
+//        });
     }
 
     private void getContentCat2() {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CatagoryResponse> call = apiInterface.getContentByID(2);
-        call.enqueue(new Callback<CatagoryResponse>() {
+        Call<CategoryResponse> call = apiInterface.getContentByID(2);
+        call.enqueue(new Callback<CategoryResponse>() {
             @Override
-            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if(response.code() == 200){
 
                     contents = response.body().getContents();
@@ -210,7 +246,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             }
 
             @Override
-            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
+            public void onFailure(Call<CategoryResponse> call, Throwable t) {
                 Log.i("Retro","Fail");
             }
         });
@@ -219,10 +255,10 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     private void getContentCat3() {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CatagoryResponse> call = apiInterface.getContentByID(3);
-        call.enqueue(new Callback<CatagoryResponse>() {
+        Call<CategoryResponse> call = apiInterface.getContentByID(3);
+        call.enqueue(new Callback<CategoryResponse>() {
             @Override
-            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if(response.code() == 200){
 
                     contents = response.body().getContents();
@@ -233,7 +269,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             }
 
             @Override
-            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
+            public void onFailure(Call<CategoryResponse> call, Throwable t) {
                 Log.i("Retro","Fail");
             }
         });
@@ -242,10 +278,10 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     private void getContentCat4() {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CatagoryResponse> call = apiInterface.getContentByID(4);
-        call.enqueue(new Callback<CatagoryResponse>() {
+        Call<CategoryResponse> call = apiInterface.getContentByID(4);
+        call.enqueue(new Callback<CategoryResponse>() {
             @Override
-            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if(response.code() == 200){
 
                     contents = response.body().getContents();
@@ -256,7 +292,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             }
 
             @Override
-            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
+            public void onFailure(Call<CategoryResponse> call, Throwable t) {
                 Log.i("Retro","Fail");
             }
         });
@@ -265,10 +301,10 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     private void getContentCat5() {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CatagoryResponse> call = apiInterface.getContentByID(5);
-        call.enqueue(new Callback<CatagoryResponse>() {
+        Call<CategoryResponse> call = apiInterface.getContentByID(5);
+        call.enqueue(new Callback<CategoryResponse>() {
             @Override
-            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if(response.code() == 200){
 
                     contents = response.body().getContents();
@@ -279,7 +315,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             }
 
             @Override
-            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
+            public void onFailure(Call<CategoryResponse> call, Throwable t) {
                 Log.i("Retro","Fail");
             }
         });

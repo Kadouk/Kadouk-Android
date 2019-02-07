@@ -2,7 +2,6 @@ package com.kadouk.app;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
@@ -14,14 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kadouk.app.model.CatagoryResponse;
-import com.kadouk.app.model.Content;
+import com.kadouk.app.model.CategoryResponse;
 import com.kadouk.app.model.Contents;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
@@ -110,10 +106,10 @@ public class SearchFragment extends Fragment {
         //ba tavajoh be text e ke be jahan midam behem ye list az app ha barmigardune
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CatagoryResponse> call = apiInterface.searchAppDataByDetails(searchText);
-        call.enqueue(new Callback<CatagoryResponse>() {
+        Call<CategoryResponse> call = apiInterface.searchAppDataByDetails(searchText);
+        call.enqueue(new Callback<CategoryResponse>() {
             @Override
-            public void onResponse(Call<CatagoryResponse> call, Response<CatagoryResponse> response) {
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if(response.code() == 200){
                     contents = response.body().getContents();
                     mRecyclerViewCat.setAdapter(new VerticalListAdapter(getContext(), contents));
@@ -121,7 +117,7 @@ public class SearchFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<CatagoryResponse> call, Throwable t) {
+            public void onFailure(Call<CategoryResponse> call, Throwable t) {
                 Log.i("Retro","Fail");
             }
         });

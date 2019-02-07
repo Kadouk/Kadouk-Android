@@ -4,6 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.support.v4.app.Fragment;
 
+import com.kadouk.app.model.CategoryResponse;
+
+import java.util.List;
+
 @SuppressLint("Registered")
 public class Globals extends Application {
 
@@ -12,6 +16,8 @@ public class Globals extends Application {
     public static String number;
 
     public static String Token;
+
+    public static List<CategoryResponse> allCategories;
 
     public static Fragment getActive() {
         return active;
