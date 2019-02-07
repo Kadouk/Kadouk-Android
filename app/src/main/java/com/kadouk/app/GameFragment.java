@@ -116,11 +116,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         });
 
         getActivity().getSupportFragmentManager().addOnBackStackChangedListener(this);
-        getContentCat1(); // tabeyi hast ke datahaye ye activity ro migire
-        getContentCat2();
-        getContentCat3();
-        getContentCat4();
-        getContentCat5();
 
         mRecyclerViewCat1 = view.findViewById(R.id.main_recycler_cat1);
         mRecyclerViewCat1.setHasFixedSize(true);
@@ -164,161 +159,28 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         txv_cat3_name = view.findViewById(R.id.cat3_txv_name);
         txv_cat4_name = view.findViewById(R.id.cat4_txv_name);
         txv_cat5_name = view.findViewById(R.id.cat5_txv_name);
+
+        txv_cat1_name.setText(Globals.getAllCategories().get(0).getCatName());
+        mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(),
+                Globals.getAllCategories().get(0).getContents()));
+
+        txv_cat2_name.setText(Globals.allCategories.get(1).getCatName());
+        mRecyclerViewCat2.setAdapter(new HorizontalListAdapter(getContext(),
+                Globals.getAllCategories().get(1).getContents()));
+
+        txv_cat3_name.setText(Globals.allCategories.get(2).getCatName());
+        mRecyclerViewCat3.setAdapter(new HorizontalListAdapter(getContext(),
+                Globals.getAllCategories().get(2).getContents()));
+
+        txv_cat4_name.setText(Globals.allCategories.get(3).getCatName());
+        mRecyclerViewCat4.setAdapter(new HorizontalListAdapter(getContext(),
+                Globals.getAllCategories().get(3).getContents()));
+
+        txv_cat5_name.setText(Globals.allCategories.get(4).getCatName());
+        mRecyclerViewCat5.setAdapter(new HorizontalListAdapter(getContext(),
+                Globals.getAllCategories().get(4).getContents()));
+
         return view;
-    }
-
-    private void getContentCat1() {
-
-
-
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<AllCategoryResponse> call = apiInterface.getAllCategory(-1);
-        call.enqueue(new Callback<AllCategoryResponse>() {
-            @Override
-            public void onResponse(Call<AllCategoryResponse> call, Response<AllCategoryResponse> response) {
-                if(response.code() == 200){ // dar surate bargharar shodane ertebate sahih
-                     Globals.allCategories = response.body().getCategoryRespons();
-                    // inja getContents kardim, contents e ke tuye CategoryResponse tarif kardim,
-                    // ke khode contents shamele ye seri tag ha hast
-                    txv_cat1_name.setText(Globals.allCategories.get(0).getCatName());
-                    mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(),Globals.allCategories.get(0).getContents()));
-//                    for (int i=0; i<=3; i++) {
-//                        //Log.i("category1 app" + i, String.valueOf(Globals.allCategories.get(i).getContents().get(i).getId()));
-//                        Log.i("category1 app" + i, String.valueOf(Globals.allCategories.get(i).getCatName()));
-//                        Log.i("category1 app" + i, Globals.allCategories.get(i).getContents().get(i).getName());
-//                        Log.i("category1 app" + i, Globals.allCategories.get(i).getContents().get(i).getDesc());
-//                    }
-
-                   // mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(), contents));
-                    // inja recycler view ro ba tavajoh be datahayi ke behesh midim nemayesh midim,
-                    // bagheye kara tu adapter anjam mishe
-                }
-            }
-
-            @Override
-            public void onFailure(Call<AllCategoryResponse> call, Throwable t) {
-
-            }
-        });
-
-
-
-
-//        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-//        Call<CategoryResponse> call = apiInterface.getContentByID(1);
-//        call.enqueue(new Callback<CategoryResponse>() {
-//            @Override
-//            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-//                if(response.code() == 200){ // dar surate bargharar shodane ertebate sahih
-//                    contents = response.body().getContents();
-//                    // inja getContents kardim, contents e ke tuye CategoryResponse tarif kardim,
-//                    // ke khode contents shamele ye seri tag ha hast
-//                    txv_cat1_name.setText(response.body().getCatName());
-//
-//                    mRecyclerViewCat1.setAdapter(new HorizontalListAdapter(getContext(), contents));
-//                    // inja recycler view ro ba tavajoh be datahayi ke behesh midim nemayesh midim,
-//                    // bagheye kara tu adapter anjam mishe
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<CategoryResponse> call, Throwable t) {
-//                // dar surate bar gharar nashode ertebat miad inja
-//                Log.i("Retro","Fail");
-//            }
-//        });
-    }
-
-    private void getContentCat2() {
-
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CategoryResponse> call = apiInterface.getContentByID(2);
-        call.enqueue(new Callback<CategoryResponse>() {
-            @Override
-            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-                if(response.code() == 200){
-
-                    contents = response.body().getContents();
-                    txv_cat2_name.setText(response.body().getCatName());
-
-                    mRecyclerViewCat2.setAdapter(new HorizontalListAdapter(getContext(), contents));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                Log.i("Retro","Fail");
-            }
-        });
-    }
-
-    private void getContentCat3() {
-
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CategoryResponse> call = apiInterface.getContentByID(3);
-        call.enqueue(new Callback<CategoryResponse>() {
-            @Override
-            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-                if(response.code() == 200){
-
-                    contents = response.body().getContents();
-                    txv_cat3_name.setText(response.body().getCatName());
-
-                    mRecyclerViewCat3.setAdapter(new HorizontalListAdapter(getContext(), contents));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                Log.i("Retro","Fail");
-            }
-        });
-    }
-
-    private void getContentCat4() {
-
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CategoryResponse> call = apiInterface.getContentByID(4);
-        call.enqueue(new Callback<CategoryResponse>() {
-            @Override
-            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-                if(response.code() == 200){
-
-                    contents = response.body().getContents();
-                    txv_cat4_name.setText(response.body().getCatName());
-
-                    mRecyclerViewCat4.setAdapter(new HorizontalListAdapter(getContext(), contents));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                Log.i("Retro","Fail");
-            }
-        });
-    }
-
-    private void getContentCat5() {
-
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CategoryResponse> call = apiInterface.getContentByID(5);
-        call.enqueue(new Callback<CategoryResponse>() {
-            @Override
-            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-                if(response.code() == 200){
-
-                    contents = response.body().getContents();
-                    txv_cat5_name.setText(response.body().getCatName());
-
-                    mRecyclerViewCat5.setAdapter(new HorizontalListAdapter(getContext(), contents));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                Log.i("Retro","Fail");
-            }
-        });
     }
               /////////////////////////////////////////////////////////////////////////////////////////////////
     ///////// bzese crash mishe vaghti app ro baz mikoni va back mizani, chon upButton nadare va in mikhad hide kone. /////////

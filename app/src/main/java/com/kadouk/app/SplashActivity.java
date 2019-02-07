@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.kadouk.app.model.AllCategoryResponse;
 import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
@@ -89,10 +90,8 @@ public class SplashActivity extends AppCompatActivity {
     public void checkConnection(){
 
         if(isOnline()){
-
             SharedPreferences = getSharedPreferences(MyShPref, Context.MODE_PRIVATE);
 
-            //age avalin bar bud ke app run mishod(sabtenam nakarde bud), SignUpActivity ro baz mikone
             if (SharedPreferences.getString(FirstRun,null) == null) {
                 sendAPI();
 
@@ -107,10 +106,8 @@ public class SplashActivity extends AppCompatActivity {
                 Globals.setToken(Token);
                 Log.i("token", "eshtebah = " + SharedPreferences.getString(authenticationToken,null));
             }
-             //age sabtenam karde bud MainActivity ro baz mikone
             if (SharedPreferences.getString(FirstRun,null) != null) {
-                Log.i("token", "eshteba = " + SharedPreferences.getString(FirstRun,null));
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                getCategories();
             }
 
         }else{
@@ -119,5 +116,27 @@ public class SplashActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
 
         }
+    }
+
+    private void getCategories() {
+
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<AllCategoryResponse> call = apiInterface.getAllCategory(-1);
+        call.enqueue(new Callback<AllCategoryResponse>() {
+            @Override
+            public void onResponse(Call<AllCategoryResponse> call, Response<AllCategoryResponse> response) {
+                if(response.code() == 200){
+                    Globals.setAllCategories(response.body().getCategoryRespons());
+                     Log.i("allCat",Globals.allCategories.get(0).getCatName());
+                    Log.i("token", "eshteba = " + SharedPreferences.getString(FirstRun,null));
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AllCategoryResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

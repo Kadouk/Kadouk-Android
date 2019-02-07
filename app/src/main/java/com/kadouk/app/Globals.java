@@ -42,4 +42,12 @@ public class Globals extends Application {
     public static void setToken(String Token) {
         Globals.Token = Token;
     }
+
+    public static List<CategoryResponse> getAllCategories() {
+        return allCategories;
+    }
+
+    public static void setAllCategories(List<CategoryResponse> allCategories) {
+        Globals.allCategories = allCategories;
+    }
 }
