@@ -41,7 +41,7 @@ import static android.graphics.Color.BLACK;
 
 public class SignUpEnterCodeActivity extends AppCompatActivity {
 
-    Short EditTextMaxLength = 11;
+    Short EditTextMaxLength = 8;
     EditText EditTextCode;
     public static final String MyShPref = "MyPrefers", FirstRun = "run",
             authenticationToken = "Token";

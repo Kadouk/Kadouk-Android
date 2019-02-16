@@ -74,7 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<RegisterResponse> call, retrofit2.Response<RegisterResponse> response){
                 if(response.isSuccessful()) {
-                    if (String.valueOf(response.body().getStatus()).equals("200")){
+                    if (String.valueOf(response.body().getStatus()).equals("200") || String.valueOf(response.body().getStatus()).equals("100")){
                         Log.i("LOGIN", String.valueOf(response.body().getStatus()));
                         // vaghti ke server data ro gereft  SignUpEnterCodeActivity ro start mikonim
                         intent = new Intent(SignUpActivity.this, SignUpEnterCodeActivity.class).
