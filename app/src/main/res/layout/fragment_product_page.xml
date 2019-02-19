@@ -94,7 +94,9 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/space_large"/>
+                    android:layout_marginRight="@dimen/space_large"
+                    android:text="Download"
+                    android:id="@+id/btn-download" />
 
             </LinearLayout>
 

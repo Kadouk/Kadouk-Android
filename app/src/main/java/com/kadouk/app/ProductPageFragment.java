@@ -1,8 +1,10 @@
 package com.kadouk.app;
 
-import android.content.Context;
-import android.support.v4.app.Fragment;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -20,18 +24,22 @@ import com.bumptech.glide.request.RequestOptions;
 import com.kadouk.app.model.Content;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
+
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductPageFragment extends Fragment {
+public class ProductPageFragment extends Fragment  {
 
     RecyclerView mRecyclerViewProduct;
     RecyclerView.LayoutManager mLayoutManagerProduct;
     List<com.kadouk.app.model.Media> Media;
     ImageView ImageViewApp;
     TextView TextViewAppName, TextViewAppDesc, TextViewAppSize, TextViewAppCost;
+
+    Button BtnDownload;
 
     public ProductPageFragment() {
 
@@ -40,7 +48,7 @@ public class ProductPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_product_page, container, false);
+        final View view = inflater.inflate(R.layout.fragment_product_page, container, false);
 
         String name = getArguments().getString("name");
         String id = getArguments().getString("appId");
@@ -58,6 +66,8 @@ public class ProductPageFragment extends Fragment {
         mLayoutManagerProduct = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerViewProduct.setLayoutManager(mLayoutManagerProduct);
 
+        BtnDownload = (Button) view.findViewById(R.id.download_btn);
+
         Toolbar toolbar = view.findViewById(R.id.product_toolbar);
         ((MainActivity)getActivity()).setSupportActionBar(toolbar);
         ((MainActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -66,10 +76,78 @@ public class ProductPageFragment extends Fragment {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
         getAppData(Integer.parseInt(id));
+
+        Intent i;
+        PackageManager manager = getActivity().getPackageManager();
+        try {
+            i = manager.getLaunchIntentForPackage("com.mycompany.mygame");
+            if (i == null)
+                throw new PackageManager.NameNotFoundException();
+            i.addCategory(Intent.CATEGORY_LAUNCHER);
+            startActivity(i);
+        } catch (PackageManager.NameNotFoundException e) {
+            InstallAPK downloadAndInstall = new InstallAPK();
+            ProgressBar progressBar = view.findViewById(R.id.pbProcessing);
+            ProgressDialog progress = new ProgressDialog(getActivity());
+            progress.setCancelable(false);
+            progress.setMessage("Downloading...");
+            downloadAndInstall.setContext(getActivity(), progressBar);
+            downloadAndInstall.execute("http://kadouk.com/kadouk/public/api/download/apk/1/app/43/test.apk");
+        }
+
+        Button btnDownload = view.findViewById(R.id.download_btn);
+//        btnDownload.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i;
+//                PackageManager manager = getActivity().getPackageManager();
+//                try {
+//                    i = manager.getLaunchIntentForPackage("com.mycompany.mygame");
+//                    if (i == null)
+//                        throw new PackageManager.NameNotFoundException();
+//                    i.addCategory(Intent.CATEGORY_LAUNCHER);
+//                    startActivity(i);
+//                } catch (PackageManager.NameNotFoundException e) {
+//                    InstallAPK downloadAndInstall = new InstallAPK();
+//                    ProgressDialog progress = new ProgressDialog(getActivity());
+//                    progress.setCancelable(false);
+//                    progress.setMessage("Downloading...");
+//                    downloadAndInstall.setContext(getActivity(), progress);
+//                    downloadAndInstall.execute("http://kadouk.com/kaouk/public/api/download/app/1/app/43/test.apk");
+//                }
+//            }
+//        });
+
+
+//        BtnDownload.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent i;
+//                PackageManager manager = getActivity().getPackageManager();
+//                try {
+//                    i = manager.getLaunchIntentForPackage("com.mycompany.mygame");
+//                    if (i == null)
+//                        throw new PackageManager.NameNotFoundException();
+//                    i.addCategory(Intent.CATEGORY_LAUNCHER);
+//                    startActivity(i);
+//                } catch (PackageManager.NameNotFoundException e) {
+//                    InstallAPK downloadAndInstall = new InstallAPK();
+//                    ProgressDialog progress = new ProgressDialog(getActivity());
+//                    progress.setCancelable(false);
+//                    progress.setMessage("Downloading...");
+//                    downloadAndInstall.setContext(getActivity(), progress);
+//                    downloadAndInstall.execute("http://kadouk.com/kaouk/public/api/download/app/1/app/43/test.apk");
+//                }
+//            }
+//        });
+
+
         return view;
     }
+
 
     private void getAppData(int id) {
 

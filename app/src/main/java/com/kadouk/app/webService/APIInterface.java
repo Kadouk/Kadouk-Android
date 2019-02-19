@@ -41,6 +41,7 @@ public interface APIInterface{
  Call<RegisterResponse> register (@Field("name") String name, @Field("gender") String kidGender, @Field("phone") String phone, @Field("birth") String birth) ;
 
  @POST ("get/version?version=")
+//@POST ("payment?version=")
  @FormUrlEncoded
  Call<ContentRespons> sendAPICode (@Field("version") String API) ;
 

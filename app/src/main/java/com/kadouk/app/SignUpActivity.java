@@ -4,16 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
 import com.kadouk.app.model.RegisterResponse;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
@@ -83,13 +82,13 @@ public class SignUpActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }else {
-                    Log.i("LOGIN", "not response");
+                    Log.i("LOGIN", "not response" + String.valueOf(response.body()));
                 }
             }
 
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                Log.i("LOGIN", "connection problem!");
+                Log.i("LOGIN", "connection problem!" + t.getMessage());
             }
         });
     }
