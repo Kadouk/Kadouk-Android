@@ -3,17 +3,18 @@ package com.kadouk.app;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
+
 import com.kadouk.app.model.Details;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.BottomBarTab;
-import com.roughike.bottombar.OnTabSelectListener;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import retrofit2.Call;
@@ -21,10 +22,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
-//10
-//in activity e hast ke fragment tab haro bayad tush manage kone, yekam sholughe ,
-// ehtemale kheyli ziad ye seri chizash taghir kone ziad khodeto azyat nakone tu in.
-// bad az inke ino kamel check kardi GameFragment ro baz kon
 public class MainActivity extends AppCompatActivity {
 
     final Fragment gameFragment = new GameFragment();
@@ -36,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
     final Fragment game = new GameFragment(), download = new DownloadsFragment(),
             search = new SearchFragment(), account = new AccountFragment();
     String FRAGMENT_OTHER = "other", backStackGame = "HOME", backStackDownload = "DOWNLOAD";
-    public BottomBar bottomBar;
     public FragmentManager fragmentManager;
-    BottomBarTab downloadTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,45 +51,45 @@ public class MainActivity extends AppCompatActivity {
                     .hide(downloadsFragment).commit();
             fragmentManager.beginTransaction().add(R.id.contentContainer,gameFragment, "1").commit();
 
-        bottomBar = findViewById(R.id.bottomBar);
-        downloadTab = bottomBar.getTabWithId(R.id.download);
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelected(@IdRes int tabId) {
-                // marbut be select kardane har tab e
 
-                if (tabId == R.id.account) {
 
-                    Log.i("tabs", FRAGMENT_OTHER);
-                    viewFragment(accountFragment, FRAGMENT_OTHER);
-                }
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                findViewById(R.id.navigation);
+        bottomNavigationView.setSelectedItemId(R.id.game);
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.account:
+                                Log.i("tabs", FRAGMENT_OTHER);
+                                viewFragment(accountFragment, FRAGMENT_OTHER);
+                                break;
 
-                if (tabId == R.id.download) {
+                            case R.id.download:
+                                if(backStackDownload.equals("DOWNLOAD"))
+                                    viewFragment(downloadsFragment, backStackDownload);
+                                else if(backStackDownload.equals("download1"))
+                                    viewFragment(fGame1, "download1");
 
-                    if(backStackDownload.equals("DOWNLOAD"))
-                        viewFragment(downloadsFragment, backStackDownload);
-                    else if(backStackDownload.equals("download1"))
-                        viewFragment(fGame1, "download1");
+                                Log.i("tabs","2");
+                                break;
 
-                    Log.i("tabs","2");
-                    downloadTab.removeBadge();
-                }
-                if (tabId == R.id.search) {
-                    Log.i("tabs","3");
-                    viewFragment(searchFragment, FRAGMENT_OTHER);
-                }
+                            case R.id.search:
+                                Log.i("tabs","3");
+                                viewFragment(searchFragment, FRAGMENT_OTHER);
+                                break;
 
-                if (tabId == R.id.game) {
-                    if(backStackGame.equals("HOME"))
-                        viewFragment(gameFragment, backStackGame);
-                    else if(backStackGame.equals("game1"))
-                        viewFragment(fGame1, "game1");
-                    downloadTab.setBadgeCount(5);
-                }
-            }
-        });
-
-        bottomBar.setDefaultTabPosition(3);
+                            case R.id.game:
+                                if(backStackGame.equals("HOME"))
+                                    viewFragment(gameFragment, backStackGame);
+                                else if(backStackGame.equals("game1"))
+                                    viewFragment(fGame1, "game1");
+                                break;
+                        }
+                        return true;
+                    }
+                });
     }
 
     private void viewFragment(final Fragment fragment, String name){
@@ -119,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                                 .hide(searchFragment).hide(accountFragment).commit();
                         fragmentManager.popBackStack(backStackGame, POP_BACK_STACK_INCLUSIVE);
                         fragmentManager.removeOnBackStackChangedListener(this);
-                        bottomBar.selectTabAtPosition(0, true);
 
                     }else if(backStackDownload.equals("download1")) {
 

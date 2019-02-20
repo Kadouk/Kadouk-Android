@@ -8,13 +8,16 @@
         android:id="@+id/contentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomBar" />
+        android:layout_above="@+id/navigation" />
 
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottomBar"
+    <android.support.design.widget.BottomNavigationView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_gravity="start"
         android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_tabs" />
+        app:menu="@menu/navigation" />
 
 </RelativeLayout>
