@@ -20,10 +20,6 @@ import java.net.InetAddress;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-//1
-//avalin activity hast ke baz mishe
-// bad az inke ino kamel check kardi CategoryResponse ro az tu pushe model baz kon,
-// ke aval model ha va get o post ro bebini chejurie bad edame bedi
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -44,9 +40,7 @@ public class SplashActivity extends AppCompatActivity {
 
         return currentAPI;
     }
-    // sendAPI marbut mishe be ersal API be server,
-    // felan behesh deghat nakon,
-    // in ersalo daryaft ro jolotar bekhun, ke hamrah ba model ha bashe,
+
     private void sendAPI() {
 
         int API = getAPI();

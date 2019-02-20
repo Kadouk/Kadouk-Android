@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#7cd8d9</color>
-    <color name="colorPrimaryDark">#7cd8d9</color>
-    <color name="colorAccent">#ca3074</color>
 
-    <color name="snow">#B3fafafa</color>
+    <!-- App Colors -->
 
-    <color name="textPrimary">#4a4a4a</color>
-
-    <color name="colorSecondary">#9ccc65</color>
-
-    <color name="bg">#ffffff</color>
-
+    <color name="colorPrimary">#fa7b53</color>
+    <color name="colorAccent">#bbd444</color>
+    <color name="colorBg">#ffffff</color>
+    <color name="colorBgDark">#fafafa</color>
     <color name="componentInactive">#d9d9d9</color>
 
-    <color name="colorTertiary">#f6c667</color>
+    <!-- Text Colors -->
 
-    <color name="textCaption">#757575</color>
+    <color name="textPrimary">#4a4a4a</color>
+    <color name="textSecondary">#757575</color>
 
 </resources>

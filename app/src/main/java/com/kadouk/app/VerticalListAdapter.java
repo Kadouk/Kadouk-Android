@@ -46,7 +46,9 @@ public class VerticalListAdapter extends RecyclerView.Adapter<VerticalListAdapte
 
         viewHolder.txvAppName.setText(contents.get(position).getName());
         viewHolder.txvAppDesc.setText(contents.get(position).getDesc());
-        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/" + contents.get(position).getImage();
+        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/"
+                + contents.get(position).getImage();
+
         Log.i("LOADPIC", imageUrl + position);
 
         Glide
@@ -86,7 +88,8 @@ public class VerticalListAdapter extends RecyclerView.Adapter<VerticalListAdapte
 //                        intent.putExtra("Id",contents.get(onClickPosition).getId());
 //                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                        adapterContext.startActivity(intent);
-                        Log.i("Click","shomare " + onClickPosition + " - " + contents.get(onClickPosition).getName());
+                        Log.i("Click","shomare " + onClickPosition + " - "
+                                + contents.get(onClickPosition).getName());
                     }
                 }
             });

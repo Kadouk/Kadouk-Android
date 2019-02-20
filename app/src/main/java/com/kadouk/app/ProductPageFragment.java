@@ -48,7 +48,8 @@ public class ProductPageFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_product_page, container, false);
+        final View view = inflater.inflate(R.layout.fragment_product_page, container,
+                false);
 
         String name = getArguments().getString("name");
         String id = getArguments().getString("appId");
@@ -63,7 +64,8 @@ public class ProductPageFragment extends Fragment  {
 
         mRecyclerViewProduct = view.findViewById(R.id.recycler_screenshots);
         mRecyclerViewProduct.setHasFixedSize(true);
-        mLayoutManagerProduct = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mLayoutManagerProduct = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
+                false);
         mRecyclerViewProduct.setLayoutManager(mLayoutManagerProduct);
 
         BtnDownload = (Button) view.findViewById(R.id.download_btn);
@@ -156,7 +158,8 @@ public class ProductPageFragment extends Fragment  {
         call.enqueue(new Callback<Content>() {
             @Override
             public void onResponse(Call<Content> call, Response<Content> response) {
-                String appImageUrl ="http://kadouk.com/kadouk/public/api/download/image/" + response.body().getImage();
+                String appImageUrl ="http://kadouk.com/kadouk/public/api/download/image/"
+                        + response.body().getImage();
                 //Log.i("appImageUrl",appImageUrl);
 
                 Glide
@@ -172,7 +175,8 @@ public class ProductPageFragment extends Fragment  {
                 TextViewAppCost.setText(response.body().getCost());
 
                 Media = response.body().getMedia();
-                mRecyclerViewProduct.setAdapter(new ProductScreenshotsAdapter(getContext(), response.body().getMedia()));
+                mRecyclerViewProduct.setAdapter(new ProductScreenshotsAdapter(getContext(),
+                        response.body().getMedia()));
             }
 
             @Override

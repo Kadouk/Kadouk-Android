@@ -35,7 +35,8 @@ public class ProductScreenshotsAdapter extends RecyclerView.Adapter<ProductScree
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") int position) {
-        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/"+screenshots.get(position).getPath();
+        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/"
+                + screenshots.get(position).getPath();
         //"http://kadouk.com/kadouk/public/api/download/Path/" +itemName.get(position).getImage();
 //"http://kadouk.com/kadouk/public/api/download/Path/" +
         Glide

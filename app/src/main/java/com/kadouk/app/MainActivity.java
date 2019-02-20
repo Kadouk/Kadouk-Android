@@ -48,9 +48,12 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
-            fragmentManager.beginTransaction().add(R.id.contentContainer, accountFragment, "4").hide(accountFragment).commit();
-            fragmentManager.beginTransaction().add(R.id.contentContainer, searchFragment, "3").hide(searchFragment).commit();
-            fragmentManager.beginTransaction().add(R.id.contentContainer, downloadsFragment, "2").hide(downloadsFragment).commit();
+            fragmentManager.beginTransaction().add(R.id.contentContainer, accountFragment, "4")
+                    .hide(accountFragment).commit();
+            fragmentManager.beginTransaction().add(R.id.contentContainer, searchFragment, "3")
+                    .hide(searchFragment).commit();
+            fragmentManager.beginTransaction().add(R.id.contentContainer, downloadsFragment, "2")
+                    .hide(downloadsFragment).commit();
             fragmentManager.beginTransaction().add(R.id.contentContainer,gameFragment, "1").commit();
 
         bottomBar = findViewById(R.id.bottomBar);
@@ -112,14 +115,16 @@ public class MainActivity extends AppCompatActivity {
                 if( fragmentManager.getBackStackEntryCount() <= BackstackCount){
                     if(backStackDownload.equals("DOWNLOAD")){
 
-                        fragmentManager.beginTransaction().hide(downloadsFragment).hide(searchFragment).hide(accountFragment).commit();
+                        fragmentManager.beginTransaction().hide(downloadsFragment)
+                                .hide(searchFragment).hide(accountFragment).commit();
                         fragmentManager.popBackStack(backStackGame, POP_BACK_STACK_INCLUSIVE);
                         fragmentManager.removeOnBackStackChangedListener(this);
                         bottomBar.selectTabAtPosition(0, true);
 
                     }else if(backStackDownload.equals("download1")) {
 
-                        fragmentManager.beginTransaction().hide(gameFragment).hide(searchFragment).hide(accountFragment).commit();
+                        fragmentManager.beginTransaction().hide(gameFragment).hide(searchFragment)
+                                .hide(accountFragment).commit();
                         fragmentManager.popBackStack(backStackDownload, POP_BACK_STACK_INCLUSIVE);
                         fragmentManager.removeOnBackStackChangedListener(this);
                         backStackDownload = "DOWNLOAD";

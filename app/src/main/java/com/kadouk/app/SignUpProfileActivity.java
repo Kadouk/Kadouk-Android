@@ -38,7 +38,7 @@ public class SignUpProfileActivity extends AppCompatActivity {
         EditTextName = findViewById(R.id.signup_profile_edt_name);
 
         profileFab = findViewById(R.id.signup_profile_fab);
-        profileFab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSecondary)));
+        profileFab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
 
         Spinner SpinnerDay = findViewById(R.id.signup_profile_spinner_day);
         Spinner SpinnerMonth = findViewById(R.id.signup_profile_spinner_month);
@@ -100,8 +100,6 @@ public class SignUpProfileActivity extends AppCompatActivity {
         });
     }
 
-    // check mishe user kodum radio button ro entekhab karde, boy or girl,
-    // nemidunam chera zade estefadeh nashode, be harhal darim estefadash mikonm
     public void onGenderItemClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 

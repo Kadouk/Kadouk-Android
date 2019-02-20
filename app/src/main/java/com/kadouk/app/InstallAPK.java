@@ -84,7 +84,9 @@ public class InstallAPK extends AsyncTask<String,Void,Void> {
             is.close();
             Log.e("File", "FileNotFoundException! lllp");
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.fromFile(new File(sdcard,"Android/data/com.mycompany.android.games/temp/temp.apk")), "application/vnd.android.package-archive");
+            intent.setDataAndType(Uri.fromFile(new File(sdcard,
+                    "Android/data/com.mycompany.android.games/temp/temp.apk")),
+                    "application/vnd.android.package-archive");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // without this flag android returned a intent error!
             context.startActivity(intent);
 

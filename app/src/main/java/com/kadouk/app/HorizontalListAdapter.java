@@ -34,7 +34,8 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
         this.contents = contents;
         Glide.get(context).clearMemory();
         Log.i("LOADPIC2", String.valueOf(contents));
-        typeface = Typeface.createFromAsset(adapterContext.getAssets(), "fonts/B Koodak Bold_0.ttf");
+        typeface = Typeface.createFromAsset(adapterContext.getAssets(),
+                "fonts/B Koodak Bold_0.ttf");
     }
 
     @Override
@@ -66,7 +67,8 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
         else
             viewHolder.imgDownloadIconUp.setImageResource(R.mipmap.ic_download);
 
-        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/" + contents.get(appPosition).getImage();
+        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/"
+                + contents.get(appPosition).getImage();
         Log.i("LOADPIC", imageUrl + appPosition);
 
         Glide
@@ -87,7 +89,8 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
         else
             viewHolder.imgDownloadIconDown.setImageResource(R.mipmap.ic_download);
 
-        String imageUrl2 = "http://kadouk.com/kadouk/public/api/download/image/" + contents.get(appPosition + 1).getImage();
+        String imageUrl2 = "http://kadouk.com/kadouk/public/api/download/image/"
+                + contents.get(appPosition + 1).getImage();
         Log.i("LOADPIC", imageUrl + appPosition+1 + "  "+ contents.size());
 
         Glide
@@ -135,7 +138,8 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
                         Bundle appData = new Bundle();
                         appData.putString("name", contents.get(onClickPosition).getName());
-                        appData.putString("appId", String.valueOf(contents.get(onClickPosition).getId()));
+                        appData.putString("appId",
+                                String.valueOf(contents.get(onClickPosition).getId()));
                         ProductPageFragment frag = new ProductPageFragment();
                         frag.setArguments(appData);
 
@@ -143,7 +147,8 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                         mainActivity.backStackGame = "Game1";
                         mainActivity.addFragmentOnTop(frag);
 
-                        Log.i("Click","shomare " + onClickPosition + " - " + contents.get(onClickPosition).getName());
+                        Log.i("Click","shomare " + onClickPosition + " - "
+                                + contents.get(onClickPosition).getName());
                     }
                 }
             });
@@ -156,7 +161,8 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
 
                         Bundle appData = new Bundle();
                         appData.putString("name", contents.get(onClickPosition).getName());
-                        appData.putString("appId", String.valueOf(contents.get(onClickPosition).getId()));
+                        appData.putString("appId",
+                                String.valueOf(contents.get(onClickPosition).getId()));
                         ProductPageFragment frag = new ProductPageFragment();
                         frag.setArguments(appData);
 
@@ -164,7 +170,8 @@ public class HorizontalListAdapter extends RecyclerView.Adapter<HorizontalListAd
                         mainActivity.backStackGame = "Game1";
                         mainActivity.addFragmentOnTop(frag);
 
-                        Log.i("Click","shomare " + onClickPosition + " - " + contents.get(onClickPosition).getName());
+                        Log.i("Click","shomare " + onClickPosition + " - "
+                                + contents.get(onClickPosition).getName());
                    }
                 }
             });

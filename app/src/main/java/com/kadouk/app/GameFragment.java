@@ -28,8 +28,11 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
     TextView txv_cat1_name, txv_cat2_name, txv_cat3_name, txv_cat4_name, txv_cat5_name;
 
-    RecyclerView mRecyclerViewCat1, mRecyclerViewCat2, mRecyclerViewCat3, mRecyclerViewCat4, mRecyclerViewCat5;
-    RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3, mLayoutManagerCat4, mLayoutManagerCat5;
+    RecyclerView mRecyclerViewCat1, mRecyclerViewCat2, mRecyclerViewCat3, mRecyclerViewCat4,
+            mRecyclerViewCat5;
+    RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3,
+            mLayoutManagerCat4, mLayoutManagerCat5;
+
     List<Contents> contents;
     ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
 
@@ -117,7 +120,8 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
         mRecyclerViewCat1 = view.findViewById(R.id.main_recycler_cat1);
         mRecyclerViewCat1.setHasFixedSize(true);
-        mLayoutManagerCat1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mLayoutManagerCat1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
+                false);
         mRecyclerViewCat1.setLayoutManager(mLayoutManagerCat1);
         SnapHelper snapHelperCat1 = new PagerSnapHelper();
         mRecyclerViewCat1.setLayoutManager(mLayoutManagerCat1);
@@ -126,28 +130,32 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
         mRecyclerViewCat2 = view.findViewById(R.id.main_recycler_cat2);
         mRecyclerViewCat2.setHasFixedSize(true);
-        mLayoutManagerCat2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mLayoutManagerCat2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
+                false);
         SnapHelper snapHelperCat2 = new PagerSnapHelper();
         mRecyclerViewCat2.setLayoutManager(mLayoutManagerCat2);
         snapHelperCat2.attachToRecyclerView(mRecyclerViewCat2);
 
         mRecyclerViewCat3 = view.findViewById(R.id.main_recycler_cat3);
         mRecyclerViewCat3.setHasFixedSize(true);
-        mLayoutManagerCat3 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mLayoutManagerCat3 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
+                false);
         SnapHelper snapHelperCat3 = new PagerSnapHelper();
         mRecyclerViewCat3.setLayoutManager(mLayoutManagerCat3);
         snapHelperCat3.attachToRecyclerView(mRecyclerViewCat3);
 
         mRecyclerViewCat4 = view.findViewById(R.id.main_recycler_cat4);
         mRecyclerViewCat4.setHasFixedSize(true);
-        mLayoutManagerCat4 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mLayoutManagerCat4 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
+                false);
         SnapHelper snapHelperCat4 = new PagerSnapHelper();
         mRecyclerViewCat4.setLayoutManager(mLayoutManagerCat4);
         snapHelperCat4.attachToRecyclerView(mRecyclerViewCat4);
 
         mRecyclerViewCat5 = view.findViewById(R.id.main_recycler_cat5);
         mRecyclerViewCat5.setHasFixedSize(true);
-        mLayoutManagerCat5 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mLayoutManagerCat5 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
+                false);
         SnapHelper snapHelperCat5 = new PagerSnapHelper();
         mRecyclerViewCat5.setLayoutManager(mLayoutManagerCat5);
         snapHelperCat5.attachToRecyclerView(mRecyclerViewCat5);

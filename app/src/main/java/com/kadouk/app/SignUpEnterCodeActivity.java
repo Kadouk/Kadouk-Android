@@ -204,10 +204,10 @@ public class SignUpEnterCodeActivity extends AppCompatActivity {
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(s.length() == EditTextMaxLength){
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSecondary)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
                 fab.setEnabled(true);
             }else {
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorTertiary)));
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
                 fab.setEnabled(false);
             }
         }

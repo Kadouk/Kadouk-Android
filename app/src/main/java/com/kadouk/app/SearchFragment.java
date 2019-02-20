@@ -76,7 +76,8 @@ public class SearchFragment extends Fragment {
                 try {
                     startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
                 } catch (ActivityNotFoundException a) {
-                    Toast.makeText(getContext(), R.string.not_suport, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.not_suport,
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -95,7 +96,6 @@ public class SearchFragment extends Fragment {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     EditTextSearch.setText(result.get(0));
-                    // marbut be voice recognizing hast ke result ro tuye editText type mikone
                 }
                 break;
             }
@@ -103,7 +103,6 @@ public class SearchFragment extends Fragment {
     }
 
     private void getSearchList(String searchText) {
-        //ba tavajoh be text e ke be jahan midam behem ye list az app ha barmigardune
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
         Call<CategoryResponse> call = apiInterface.searchAppDataByDetails(searchText);
@@ -129,8 +128,6 @@ public class SearchFragment extends Fragment {
         }
 
         public void onTextChanged(CharSequence s, int start, int before, int count){
-            // inja taghirate text e editText ro motevajeh mishim,
-            // ba taghire har char yebar darkhaste list un text e jadid ro mikonim
            getSearchList(String.valueOf(EditTextSearch.getText()));
         }
 

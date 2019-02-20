@@ -14,16 +14,12 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
-//5
-//inja darkhast hamuno anjam dadim
-// bad az inke ino kamel check kardi SignUpActivity ro baz kon
 public interface APIInterface{
 
  @POST("details")
- // masalan "details" ezafe mishe be BaseURL, va albate moshakhast kardim ke darkhastemun POST hast
+
  @FormUrlEncoded
  Call<Details> details (@Field("phone") String phone, @Header("Authorization") String Token);
- // bad az Call az model estefadeh kardim, Call<model>
 
  @GET("content/show/all")
  Call<ContentRespons> content() ;
@@ -34,11 +30,13 @@ public interface APIInterface{
 
  @POST ("login?code=…&phone=…")
  @FormUrlEncoded
- Call<RegisterResponse> sendVerificationCode (@Field("code") String verificationCode, @Field("phone") String number) ;
+ Call<RegisterResponse> sendVerificationCode (@Field("code") String verificationCode,
+                                              @Field("phone") String number) ;
 
  @POST ("register")
  @FormUrlEncoded
- Call<RegisterResponse> register (@Field("name") String name, @Field("gender") String kidGender, @Field("phone") String phone, @Field("birth") String birth) ;
+ Call<RegisterResponse> register (@Field("name") String name, @Field("gender") String kidGender,
+                                  @Field("phone") String phone, @Field("birth") String birth) ;
 
  @POST ("get/version?version=")
 //@POST ("payment?version=")

@@ -3,7 +3,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:homeAsUpIndicator">@mipmap/ic_upbutton</item>
     </style>
@@ -12,7 +12,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/toolbar_height</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:background">@color/bg</item>
+        <item name="android:background">@color/colorBg</item>
     </style>
 
     <style name="toolbarTitle" parent="textView" >
@@ -115,7 +115,7 @@
 
     <style name="ProductDetailsTextView" parent="ProductTextView">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/textCaption</item>
+        <item name="android:textColor">@color/textSecondary</item>
         <item name="android:layout_marginTop">@dimen/space_single</item>
     </style>
 
@@ -134,7 +134,8 @@
     <style name="signUpFab" parent="button">
         <item name="android:layout_marginBottom">@dimen/space_double</item>
         <item name="android:layout_marginRight">@dimen/space_double</item>
-        <item name="android:layout_marginEnd" tools:ignore="DuplicateDefinition,NewApi">@dimen/space_double</item>
+        <item name="android:layout_marginEnd"
+            tools:ignore="DuplicateDefinition,NewApi">@dimen/space_double</item>
         <item name="android:layout_gravity">right</item>
     </style>
 
@@ -150,7 +151,8 @@
     <style name="buttonBack" parent="button">
         <item name="android:layout_marginBottom">@dimen/space_double</item>
         <item name="android:layout_marginLeft">@dimen/space_double</item>
-        <item name="android:layout_marginStart" tools:ignore="DuplicateDefinition,NewApi">@dimen/space_double</item>
+        <item name="android:layout_marginStart"
+            tools:ignore="DuplicateDefinition,NewApi">@dimen/space_double</item>
         <item name="android:text">@string/back</item>
     </style>
 
@@ -228,7 +230,7 @@
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowBackground">@drawable/background_light</item>
 
     </style>
 
