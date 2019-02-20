@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "484317972407",
+    "firebase_url": "https://newkadouk.firebaseio.com",
+    "project_id": "newkadouk",
+    "storage_bucket": "newkadouk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484317972407:android:9e36c20922616d57",
+        "android_client_info": {
+          "package_name": "com.kadouk.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484317972407-t3vujuhjco23ieftlrm4npj5ahf472hi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kadouk.app",
+            "certificate_hash": "3702f7d72109bdf10fb45849bc08832a62054056"
+          }
+        },
+        {
+          "client_id": "484317972407-dgki475gj530gspqqka8trhdt6nme37g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvihY0Jbhi_X6lg7BqfZra2jyAWB1Usp4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484317972407-dgki475gj530gspqqka8trhdt6nme37g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
