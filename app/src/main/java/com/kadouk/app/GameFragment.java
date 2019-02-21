@@ -1,12 +1,14 @@
 package com.kadouk.app;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +46,21 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
+
+        CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) view.findViewById(R.id.home_collapsing_toolbar);
+        ctl.setTitle("Best Coupons Deals");
+        ctl.setCollapsedTitleTextAppearance(R.style.coll_toolbar_title);
+        ctl.setExpandedTitleTextAppearance(R.style.exp_toolbar_title);
+
+        Toolbar myToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        ((MainActivity)getActivity()).setSupportActionBar(myToolbar);
+
+        ((MainActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((MainActivity)getActivity()). getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //TextView tv =(TextView)view.findViewById(R.id.coupons_lst);
+        //tv.setText(CouponStoreData.arrayOfCoupons.toString());
+
 
         TextView openCat1 = view.findViewById(R.id.cat1_txv_open);
         openCat1.setOnClickListener(new View.OnClickListener() {
