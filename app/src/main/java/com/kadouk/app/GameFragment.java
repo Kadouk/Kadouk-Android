@@ -1,5 +1,6 @@
 package com.kadouk.app;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
@@ -16,10 +17,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kadouk.app.model.CategoryResponse;
+import com.kadouk.app.model.Content;
+import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.model.Contents;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,8 +39,12 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     RecyclerView.LayoutManager mLayoutManagerCat1, mLayoutManagerCat2, mLayoutManagerCat3,
             mLayoutManagerCat4, mLayoutManagerCat5;
 
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
+    List<Contents> content;
     List<Contents> contents;
     ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
+
 
     public GameFragment() {
 
@@ -47,20 +55,8 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_game, container, false);
 
-        CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) view.findViewById(R.id.home_collapsing_toolbar);
-        ctl.setTitle("Best Coupons Deals");
-        ctl.setCollapsedTitleTextAppearance(R.style.coll_toolbar_title);
-        ctl.setExpandedTitleTextAppearance(R.style.exp_toolbar_title);
-
         Toolbar myToolbar = (Toolbar) view.findViewById(R.id.toolbar);
         ((MainActivity)getActivity()).setSupportActionBar(myToolbar);
-
-        ((MainActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((MainActivity)getActivity()). getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //TextView tv =(TextView)view.findViewById(R.id.coupons_lst);
-        //tv.setText(CouponStoreData.arrayOfCoupons.toString());
-
 
         TextView openCat1 = view.findViewById(R.id.cat1_txv_open);
         openCat1.setOnClickListener(new View.OnClickListener() {
@@ -182,6 +178,13 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         txv_cat3_name = view.findViewById(R.id.cat3_txv_name);
         txv_cat4_name = view.findViewById(R.id.cat4_txv_name);
         txv_cat5_name = view.findViewById(R.id.cat5_txv_name);
+
+
+        mRecyclerView = view.findViewById(R.id.category_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        getContent();
         return view;
     }
 
@@ -309,4 +312,36 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             ((MainActivity) getActivity()).hideUpButton();
         }
     }
+
+
+    private void getContent() {
+
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<ContentRespons> call = apiInterface.content();
+        call.enqueue(new Callback<ContentRespons>() {
+            @Override
+            public void onResponse(Call<ContentRespons> call, Response<ContentRespons> response) {
+                if(response.code() == 200){
+
+                    content = response.body().getContents();
+                    mRecyclerView.setAdapter(new CategoryAdapter(getContext(),content));
+//                    for (Content content1 : content){
+//                        contentName.add(String.valueOf(content1.getName()));
+//                        contentImageUrl.add(String.valueOf(content1.getImage()));
+//                        Log.i("LOGIN", String.valueOf(content1.getId()));
+//                        Log.i("LOGIN", String.valueOf(content1.getName()));
+//                        Log.i("LOGIN", String.valueOf(content1.getDesc()));
+//                        Log.i("LOGIN", String.valueOf(content1.getImage()));
+//                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ContentRespons> call, Throwable t) {
+                Log.i("Retrofit","Connect your internet");
+            }
+        });
+
+    }
+
 }

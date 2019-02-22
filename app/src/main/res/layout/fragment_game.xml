@@ -17,24 +17,53 @@
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <TextView
-                android:id="@+id/page_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorAccent"
-                android:height="250dp"
-                app:layout_collapseMode="parallax">
-
-            </TextView>
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 android:elevation="4dp"
-                app:layout_collapseMode="pin">
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp">
+
+                <ImageView
+                    android:id="@+id/search_voice_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginRight="@dimen/space_double"
+                    android:src="@mipmap/ic_mic"/>
+
+                <EditText
+                    android:id="@+id/search_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/space_double"
+                    android:layout_marginLeft="@dimen/space_double"
+                    android:hint="@string/editText_search_hint"
+                    android:background="@null" />
 
             </android.support.v7.widget.Toolbar>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:gravity="center_vertical"
+                app:layout_collapseMode="pin">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/category_recycler_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+
+
+
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
