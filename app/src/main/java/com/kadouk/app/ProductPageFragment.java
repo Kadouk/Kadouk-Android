@@ -68,7 +68,7 @@ public class ProductPageFragment extends Fragment  {
                 false);
         mRecyclerViewProduct.setLayoutManager(mLayoutManagerProduct);
 
-        BtnDownload = (Button) view.findViewById(R.id.download_btn);
+       // BtnDownload = (Button) view.findViewById(R.id.download_btn);
 
         Toolbar toolbar = view.findViewById(R.id.product_toolbar);
         ((MainActivity)getActivity()).setSupportActionBar(toolbar);
@@ -98,7 +98,7 @@ public class ProductPageFragment extends Fragment  {
             downloadAndInstall.execute("http://kadouk.com/kadouk/public/api/download/apk/1/app/43/test.apk");
         }
 
-        Button btnDownload = view.findViewById(R.id.download_btn);
+        //Button btnDownload = view.findViewById(R.id.download_btn);
 //        btnDownload.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

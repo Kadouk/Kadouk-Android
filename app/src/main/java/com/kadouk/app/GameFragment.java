@@ -35,9 +35,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     RecyclerView mRecyclerViewApps, mRecyclerViewCategories;
     RecyclerView.LayoutManager mLayoutManagerApps, mLayoutManagerCategories;
 
-    List<Contents> contents;
     public GameFragment() {
-
     }
 
     @Override
@@ -52,7 +50,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         getActivity().getSupportFragmentManager().addOnBackStackChangedListener(this);
         getCatContent(1);
 
-        mRecyclerViewApps = view.findViewById(R.id.main_recycler_cat1);
+        mRecyclerViewApps = view.findViewById(R.id.game_recycler_apps);
         mRecyclerViewApps.setHasFixedSize(true);
         mLayoutManagerApps = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,
                 false);
@@ -74,9 +72,9 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if(response.code() == 200) {
-                    contents = response.body().getContents();
-                  // Log.i("RecyclerView","shooood"+id);
 
+                    List<Contents> contents;
+                    contents = response.body().getContents();
                     mRecyclerViewApps.setAdapter(new VerticalListAdapter(getContext(), contents));
 
                 }
