@@ -6,6 +6,7 @@ package com.kadouk.app;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -83,11 +84,18 @@ public class VerticalListAdapter extends RecyclerView.Adapter<VerticalListAdapte
 
                     int onClickPosition = getAdapterPosition();
                     if(onClickPosition != RecyclerView.NO_POSITION){
-//                        Intent intent = new Intent(adapterContext,ShowCategoryFragment.class);
-//                        intent.putExtra("Name",contents.get(onClickPosition).getName());
-//                        intent.putExtra("Id",contents.get(onClickPosition).getId());
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        adapterContext.startActivity(intent);
+
+                        Bundle appData = new Bundle();
+                        appData.putString("name", contents.get(onClickPosition).getName());
+                        appData.putString("appId",
+                                String.valueOf(contents.get(onClickPosition).getId()));
+                        ProductPageFragment frag = new ProductPageFragment();
+                        frag.setArguments(appData);
+
+                        MainActivity mainActivity = (MainActivity) adapterContext;
+                        mainActivity.backStackGame = "Game1";
+                        mainActivity.addFragmentOnTop(frag);
+
                         Log.i("Click","shomare " + onClickPosition + " - "
                                 + contents.get(onClickPosition).getName());
                     }

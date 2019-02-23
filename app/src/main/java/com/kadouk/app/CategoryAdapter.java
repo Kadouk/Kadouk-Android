@@ -2,7 +2,7 @@ package com.kadouk.app;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.kadouk.app.model.Content;
 import com.kadouk.app.model.Contents;
 
 import java.util.List;
@@ -37,7 +36,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.category_item_horizontal, viewGroup, false);
+                .inflate(R.layout.categories_item_horizontal, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
@@ -75,21 +74,31 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             super(itemView);
             imgThumbnail = itemView.findViewById(R.id.img_thumbnail);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                    int onClickPosition = getAdapterPosition();
-                    if(onClickPosition != RecyclerView.NO_POSITION){
-//                        Intent intent = new Intent(adapterContext,ProductActivity.class);
-//                        intent.putExtra("Name",content.get(onClickPosition).getName());
-//                        intent.putExtra("Id",content.get(onClickPosition).getId());
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        adapterContext.startActivity(intent);
-                        Log.i("Click","shomare " + onClickPosition + " - " + content.get(onClickPosition).getName());
-                    }
-                }
-            });
+//            imgThumbnail.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                    int onClickPosition = getAdapterPosition();
+//                    if(onClickPosition != RecyclerView.NO_POSITION){
+//
+//                        Bundle appData = new Bundle();
+//                        appData.putString("name", content.get(onClickPosition).getName());
+//                        appData.putString("appId",
+//                                String.valueOf(content.get(onClickPosition).getId()));
+//                        ProductPageFragment frag = new ProductPageFragment();
+//                        frag.setArguments(appData);
+//
+//                        MainActivity mainActivity = (MainActivity) adapterContext;
+//                        mainActivity.backStackGame = "Game1";
+//                        mainActivity.addFragmentOnTop(frag);
+//
+//                        Log.i("Click","shomare " + onClickPosition + " - "
+//                                + content.get(onClickPosition).getName());
+//                    }
+//                }
+//            });
+
         }
     }
 }
