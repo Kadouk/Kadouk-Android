@@ -34,9 +34,8 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
 
     RecyclerView mRecyclerViewApps, mRecyclerViewCategories;
     RecyclerView.LayoutManager mLayoutManagerApps, mLayoutManagerCategories;
-    List<Contents> contents;
-    ShowCategoryFragment showCategoryFragment = new ShowCategoryFragment();
 
+    List<Contents> contents;
     public GameFragment() {
 
     }
@@ -51,17 +50,13 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         getContent();
 
         getActivity().getSupportFragmentManager().addOnBackStackChangedListener(this);
-        getContentCat1();
+        getCatContent(1);
 
         mRecyclerViewApps = view.findViewById(R.id.main_recycler_cat1);
         mRecyclerViewApps.setHasFixedSize(true);
         mLayoutManagerApps = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,
                 false);
         mRecyclerViewApps.setLayoutManager(mLayoutManagerApps);
-
-
-        //txv_cat1_name = view.findViewById(R.id.cat1_txv_name);
-
 
         mRecyclerViewCategories = view.findViewById(R.id.category_recycler_view);
         mRecyclerViewCategories.setHasFixedSize(true);
@@ -71,15 +66,16 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         return view;
     }
 
-    private void getContentCat1() {
+    public void getCatContent(int id) {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CategoryResponse> call = apiInterface.getContentByID(2);
+        Call<CategoryResponse> call = apiInterface.getContentByID(id);
         call.enqueue(new Callback<CategoryResponse>() {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if(response.code() == 200) {
                     contents = response.body().getContents();
+                  // Log.i("RecyclerView","shooood"+id);
 
                     mRecyclerViewApps.setAdapter(new VerticalListAdapter(getContext(), contents));
 
@@ -103,7 +99,6 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         }
     }
 
-
     private void getContent() {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
@@ -114,7 +109,9 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
                 if(response.code() == 200){
                     List<Contents> categories;
                     categories = response.body().getContents();
-                    mRecyclerViewCategories.setAdapter(new CategoryAdapter(getContext(),categories));
+
+                    mRecyclerViewCategories.setAdapter(new CategoryAdapter(getContext(),categories,
+                            GameFragment.this));
                 }
             }
 
