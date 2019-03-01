@@ -2,6 +2,9 @@ package com.kadouk.app;
 
 import android.app.Application;
 
+import com.downloader.PRDownloader;
+import com.downloader.PRDownloaderConfig;
+
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
 import io.github.inflationx.viewpump.ViewPump;
@@ -22,5 +25,12 @@ public class Font extends Application {
                                     .setFontAttrId(R.attr.fontPath)
                                     .build()))
                     .build());
+
+        PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
+                .setDatabaseEnabled(true)
+                .build();
+        PRDownloader.initialize(this, config);
+
+
         }
 }

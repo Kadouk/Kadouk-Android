@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:indeterminateOnly="true"
+
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="@dimen/space_large"
                     android:layout_marginLeft="@dimen/space_large"/>

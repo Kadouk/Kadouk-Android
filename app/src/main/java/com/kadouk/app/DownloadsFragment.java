@@ -1,31 +1,19 @@
 package com.kadouk.app;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-
-import com.kadouk.app.model.CategoryResponse;
-import com.kadouk.app.model.ContentRespons;
-import com.kadouk.app.model.Contents;
-import com.kadouk.app.webService.APIClient;
-import com.kadouk.app.webService.APIInterface;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class DownloadsFragment extends Fragment {
 
     RecyclerView mRecyclerViewApps;
     RecyclerView.LayoutManager mLayoutManagerApps;
+
 
     public DownloadsFragment() {
     }
@@ -43,30 +31,51 @@ public class DownloadsFragment extends Fragment {
                 false);
         mRecyclerViewApps.setLayoutManager(mLayoutManagerApps);
 
+        mRecyclerViewApps.setAdapter(postsAdapter);
 
         return view;
     }
-
+    private DownloadListAdapter postsAdapter;
+    private LiveDataDownloadViewModel postViewModel;
     public void getContent(int id) {
 
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<CategoryResponse> call = apiInterface.getContentByID(id);
-        call.enqueue(new Callback<CategoryResponse>() {
-            @Override
-            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-                if(response.code() == 200) {
 
-                    List<Contents> contents;
-                    contents = response.body().getContents();
-                    mRecyclerViewApps.setAdapter(new DownloadListAdapter(getContext(), contents));
 
-                }
-            }
+        postViewModel = ViewModelProviders.of(this).get(LiveDataDownloadViewModel.class);
+        postViewModel.getElapsedTime().observe(this, contents -> postsAdapter.setData(contents));
 
-            @Override
-            public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                Log.i("Retro","Fail");
-            }
-        });
+//        postViewModel = ViewModelProviders.of(this).get(MovieListViewModel.class);
+//        postViewModel.init();
+//        postViewModel.getMovies().observe(this, new Observer<MovieModel>() {
+//            @Override
+//            public void onChanged(@Nullable MovieModel movieModels) {
+//                movieList.addAll(movieModels.getData());
+//                postsAdapter.notifyDataSetChanged();
+//            }
+//        });
+        postsAdapter = new DownloadListAdapter(getContext(), 10);
+
+
+
+
+//        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+//        Call<CategoryResponse> call = apiInterface.getContentByID(id);
+//        call.enqueue(new Callback<CategoryResponse>() {
+//            @Override
+//            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
+//                if(response.code() == 200) {
+//
+//                    List<Contents> contents;
+//                    contents = response.body().getContents();
+//                    mRecyclerViewApps.setAdapter(new DownloadListAdapter(getContext() 10));
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<CategoryResponse> call, Throwable t) {
+//                Log.i("Retro","Fail");
+//            }
+//        });
     }
 }

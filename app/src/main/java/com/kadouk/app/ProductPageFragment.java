@@ -1,10 +1,10 @@
 package com.kadouk.app;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.app.Notification;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,30 +17,57 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.downloader.Error;
+import com.downloader.OnCancelListener;
+import com.downloader.OnDownloadListener;
+import com.downloader.OnPauseListener;
+import com.downloader.OnProgressListener;
+import com.downloader.OnStartOrResumeListener;
+import com.downloader.PRDownloader;
+import com.downloader.Progress;
+import com.downloader.Status;
+import com.kadouk.app.DownloadUtils.DownloadUtils;
 import com.kadouk.app.model.Content;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
+import java.io.File;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductPageFragment extends Fragment  {
+//import com.downloader.
+
+public class ProductPageFragment extends Fragment {
 
     RecyclerView mRecyclerViewProduct;
     RecyclerView.LayoutManager mLayoutManagerProduct;
     List<com.kadouk.app.model.Media> Media;
     ImageView ImageViewApp;
-    TextView TextViewAppName, TextViewAppDesc, TextViewAppSize, TextViewAppCost;
+    static TextView TextViewAppName, TextViewAppDesc, TextViewAppSize, TextViewAppCost;
 
-    Button BtnDownload;
+    static Button BtnDownload;
 
+//    final String URL1 = "http://www.appsapk.com/downloading/latest/WeChat-6.5.7.apk";
+    final String URL1 = "http://192.168.183.130:8000/api/download/apk/1/app/43/anaconda.zip";
+
+
+    static ProgressBar pbDownload;
+
+    int downloadIdOne = 0;
+
+    private static String dirPath;
+
+    Notification.Builder builder;
+    NotificationManagerCompat nmc;
+    File sdcard;
     public ProductPageFragment() {
 
     }
@@ -51,7 +78,7 @@ public class ProductPageFragment extends Fragment  {
         final View view = inflater.inflate(R.layout.fragment_product_page, container,
                 false);
 
-        String name = getArguments().getString("name");
+        final String name = getArguments().getString("name");
         String id = getArguments().getString("appId");
         TextView appName = view.findViewById(R.id.product_toolbar_title);
         appName.setText(name);
@@ -68,7 +95,32 @@ public class ProductPageFragment extends Fragment  {
                 false);
         mRecyclerViewProduct.setLayoutManager(mLayoutManagerProduct);
 
-       // BtnDownload = (Button) view.findViewById(R.id.download_btn);
+        BtnDownload = view.findViewById(R.id.btn_download);
+
+        pbDownload = view.findViewById(R.id.pbProcessing);
+        pbDownload.setMax(100);
+
+
+
+        for(int i = 0; i< PRDownloader.getAll().length; i++) {
+            if (PRDownloader.getAll()[i] != null) {
+                Log.e("Progress", PRDownloader.getAll()[i].getFileName() + "");
+                if(PRDownloader.getAll()[i].getFileName().equals(name + ".apk")){
+                    downloadIdOne = PRDownloader.getAll()[i].getDownloadId();
+//                        break;
+                }
+            }
+
+        }
+        if (Status.RUNNING == PRDownloader.getStatus(downloadIdOne)) {
+            BtnDownload.setText("pause");
+        }
+
+        if (Status.PAUSED == PRDownloader.getStatus(downloadIdOne)) {
+            BtnDownload.setText("Resume");
+        }
+
+
 
         Toolbar toolbar = view.findViewById(R.id.product_toolbar);
         ((MainActivity)getActivity()).setSupportActionBar(toolbar);
@@ -80,72 +132,106 @@ public class ProductPageFragment extends Fragment  {
         }
         getAppData(Integer.parseInt(id));
 
-        Intent i;
-        PackageManager manager = getActivity().getPackageManager();
-        try {
-            i = manager.getLaunchIntentForPackage("com.mycompany.mygame");
-            if (i == null)
-                throw new PackageManager.NameNotFoundException();
-            i.addCategory(Intent.CATEGORY_LAUNCHER);
-            startActivity(i);
-        } catch (PackageManager.NameNotFoundException e) {
-            InstallAPK downloadAndInstall = new InstallAPK();
-            ProgressBar progressBar = view.findViewById(R.id.pbProcessing);
-            ProgressDialog progress = new ProgressDialog(getActivity());
-            progress.setCancelable(false);
-            progress.setMessage("Downloading...");
-            downloadAndInstall.setContext(getActivity(), progressBar);
-            downloadAndInstall.execute("http://kadouk.com/kadouk/public/api/download/apk/1/app/43/test.apk");
-        }
+        dirPath = DownloadUtils.getRootDirPath(getActivity().getApplicationContext());
 
-        //Button btnDownload = view.findViewById(R.id.download_btn);
-//        btnDownload.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i;
-//                PackageManager manager = getActivity().getPackageManager();
-//                try {
-//                    i = manager.getLaunchIntentForPackage("com.mycompany.mygame");
-//                    if (i == null)
-//                        throw new PackageManager.NameNotFoundException();
-//                    i.addCategory(Intent.CATEGORY_LAUNCHER);
-//                    startActivity(i);
-//                } catch (PackageManager.NameNotFoundException e) {
-//                    InstallAPK downloadAndInstall = new InstallAPK();
-//                    ProgressDialog progress = new ProgressDialog(getActivity());
-//                    progress.setCancelable(false);
-//                    progress.setMessage("Downloading...");
-//                    downloadAndInstall.setContext(getActivity(), progress);
-//                    downloadAndInstall.execute("http://kadouk.com/kaouk/public/api/download/app/1/app/43/test.apk");
-//                }
-//            }
-//        });
+        BtnDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                for(int i = 0; i< PRDownloader.getAll().length; i++) {
+                    if (PRDownloader.getAll()[i] != null) {
+                        Log.e("Progress", PRDownloader.getAll()[i].getFileName() + "");
+                        if(PRDownloader.getAll()[i].getFileName().equals(name + ".apk")){
+                            downloadIdOne = PRDownloader.getAll()[i].getDownloadId();
+//                        break;
+                        }
+                    }
+
+                }
 
 
-//        BtnDownload.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                Intent i;
-//                PackageManager manager = getActivity().getPackageManager();
-//                try {
-//                    i = manager.getLaunchIntentForPackage("com.mycompany.mygame");
-//                    if (i == null)
-//                        throw new PackageManager.NameNotFoundException();
-//                    i.addCategory(Intent.CATEGORY_LAUNCHER);
-//                    startActivity(i);
-//                } catch (PackageManager.NameNotFoundException e) {
-//                    InstallAPK downloadAndInstall = new InstallAPK();
-//                    ProgressDialog progress = new ProgressDialog(getActivity());
-//                    progress.setCancelable(false);
-//                    progress.setMessage("Downloading...");
-//                    downloadAndInstall.setContext(getActivity(), progress);
-//                    downloadAndInstall.execute("http://kadouk.com/kaouk/public/api/download/app/1/app/43/test.apk");
-//                }
-//            }
-//        });
+                if (Status.RUNNING == PRDownloader.getStatus(downloadIdOne)) {
+                    PRDownloader.pause(downloadIdOne);
+                    return;
+                }
 
+//                BtnDownload.setEnabled(false);
+                pbDownload.setIndeterminate(true);
+                pbDownload.getIndeterminateDrawable().setColorFilter(
+                        Color.BLUE, android.graphics.PorterDuff.Mode.SRC_IN);
+
+                if (Status.PAUSED == PRDownloader.getStatus(downloadIdOne)) {
+                    PRDownloader.resume(downloadIdOne);
+                    return;
+                }
+
+                downloadIdOne = PRDownloader.download(URL1, dirPath, name + ".apk")
+                        .build()
+                        .setOnStartOrResumeListener(new OnStartOrResumeListener() {
+                            @Override
+                            public void onStartOrResume() {
+                                pbDownload.setIndeterminate(false);
+                                BtnDownload.setEnabled(true);
+                                BtnDownload.setText("pause");
+//                                buttonCancelOne.setEnabled(true);
+                            }
+                        })
+                        .setOnPauseListener(new OnPauseListener() {
+                            @Override
+                            public void onPause() {
+                                BtnDownload.setText("resume");
+                            }
+                        })
+                        .setOnCancelListener(new OnCancelListener() {
+                            @Override
+                            public void onCancel() {
+                                BtnDownload.setText("start");
+//                                buttonCancelOne.setEnabled(false);
+                                pbDownload.setProgress(0);
+                                TextViewAppName.setText("");
+                                downloadIdOne = 0;
+                                pbDownload.setIndeterminate(false);
+                            }
+                        })
+                        .setOnProgressListener(new OnProgressListener() {
+                            @Override
+                            public void onProgress(Progress progress) {
+                                long progressPercent = progress.currentBytes * 100 / progress.totalBytes;
+
+                                pbDownload.setProgress((int) progressPercent);
+                                Log.e("ee", (int) progressPercent + "++");
+                                Log.e("ee", DownloadUtils.getProgressDisplayLine(progress.currentBytes, progress.totalBytes)+ "++");
+                                TextViewAppName.setText(DownloadUtils.getProgressDisplayLine(progress.currentBytes, progress.totalBytes));
+                                pbDownload.setIndeterminate(false);
+                            }
+                        })
+                        .start(new OnDownloadListener() {
+                            @Override
+                            public void onDownloadComplete() {
+                                BtnDownload.setEnabled(false);
+//                                buttonCancelOne.setEnabled(false);
+                                BtnDownload.setText("complete");
+                            }
+
+                            @Override
+                            public void onError(Error error) {
+                                BtnDownload.setText("start");
+                                Toast.makeText(getActivity().getApplicationContext(), "Error" + " " + "1", Toast.LENGTH_SHORT).show();
+                                TextViewAppName.setText("");
+                                Log.e("error", error.toString());
+                                pbDownload.setProgress(0);
+                                downloadIdOne = 0;
+//                                buttonCancelOne.setEnabled(false);
+                                pbDownload.setIndeterminate(false);
+                                BtnDownload.setEnabled(true);
+                            }
+                        });
+
+
+
+
+            }
+        });
 
         return view;
     }
@@ -185,4 +271,40 @@ public class ProductPageFragment extends Fragment  {
             }
         });
     }
+
+//    private void showNotification(int id) {
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+//            NotificationChannel chanel = new NotificationChannel("chanelid1",
+//                    "001", NotificationManager.IMPORTANCE_DEFAULT);
+//            chanel.setDescription("description");
+//
+//            NotificationManager manager = (NotificationManager) getContext().
+//                    getSystemService(NOTIFICATION_SERVICE);
+//
+//            manager.createNotificationChannel(chanel);
+//
+//            builder = new Notification.Builder(getContext(), "chanelid1");
+//            builder.setContentTitle("Downloading");
+//            builder.setAutoCancel(false);
+//            builder.setProgress(100, 0, false);
+//            builder.setWhen(System.currentTimeMillis());
+//            builder.setPriority(Notification.PRIORITY_DEFAULT);
+//
+//            nmc = NotificationManagerCompat.from(getActivity().getApplicationContext());
+//            nmc.notify(id, builder.build());
+//        }
+//        else{
+//            builder = new Notification.Builder(getActivity().getApplicationContext());
+//            builder.setContentTitle("Downloading");
+//            builder.setAutoCancel(false);
+//            builder.setProgress(100, 0, false);
+//            builder.setWhen(System.currentTimeMillis());
+//            builder.setPriority(Notification.PRIORITY_DEFAULT);
+//
+//            nmc = NotificationManagerCompat.from(getActivity().getApplicationContext());
+//            nmc.notify(id, builder.build());
+//        }
+//
+//    }
+
 }

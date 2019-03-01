@@ -2,8 +2,8 @@ package com.kadouk.app.webService;
 
 import com.kadouk.app.model.AllCategoryResponse;
 import com.kadouk.app.model.CategoryResponse;
-import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.model.Content;
+import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.model.Details;
 import com.kadouk.app.model.RegisterResponse;
 

@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <!-- bekhatere inke aval az hame .Font ro init konim ino inja gozashtam -->
     <application
         android:name=".Font"
         android:allowBackup="true"
@@ -25,8 +24,9 @@
         <activity
             android:name=".SignUpActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".SignUpProfileActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".SignUpProfileActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SignUpEnterCodeActivity"
             android:parentActivityName=".SignUpActivity"
@@ -39,16 +39,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Parent activity meta-data to support 4.0 and lower -->
+        </activity> <!-- Parent activity meta-data to support 4.0 and lower -->
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.kadouk.app.SignUpActivity" />
 
-        <activity android:name=".ParentPasswordActivity"
-            android:windowSoftInputMode="adjustResize"/>
-
+        <activity
+            android:name=".ParentPasswordActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

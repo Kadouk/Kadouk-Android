@@ -1,12 +1,11 @@
 package com.kadouk.app;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,8 +13,6 @@ import com.kadouk.app.model.AllCategoryResponse;
 import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
-
-import java.net.InetAddress;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -129,7 +126,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<AllCategoryResponse> call, Throwable t) {
-
+                Log.i("Retro", "Fail = " + t.getMessage());
             }
         });
     }

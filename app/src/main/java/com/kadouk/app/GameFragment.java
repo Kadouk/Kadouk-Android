@@ -1,29 +1,22 @@
 package com.kadouk.app;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.kadouk.app.model.CategoryResponse;
-import com.kadouk.app.model.Content;
 import com.kadouk.app.model.ContentRespons;
 import com.kadouk.app.model.Contents;
 import com.kadouk.app.webService.APIClient;
 import com.kadouk.app.webService.APIInterface;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -61,6 +54,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         mLayoutManagerCategories = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.HORIZONTAL, false);
         mRecyclerViewCategories.setLayoutManager(mLayoutManagerCategories);
+
         return view;
     }
 
