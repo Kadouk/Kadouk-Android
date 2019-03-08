@@ -2,6 +2,7 @@ package com.kadouk.app;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
@@ -57,6 +58,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") int position) {
         String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/"+content.get(position).getImage();
         Log.i("LOADPIC",imageUrl + position);
+
         Glide
                 .with(adapterContext)
                 .load(imageUrl)
