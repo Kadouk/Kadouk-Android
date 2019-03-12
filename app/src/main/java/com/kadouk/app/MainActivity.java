@@ -2,7 +2,6 @@ package com.kadouk.app;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -21,7 +20,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 public class MainActivity extends AppCompatActivity {
 
     final Fragment gameFragment = new GameFragment();
@@ -29,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
     final Fragment searchFragment = new SearchFragment();
     final Fragment accountFragment = new AccountFragment();
     Fragment fGame1;
-    Fragment active = gameFragment;
-    final Fragment game = new GameFragment(), download = new DownloadsFragment(),
-            search = new SearchFragment(), account = new AccountFragment();
-    String FRAGMENT_OTHER = "other", backStackGame = "HOME", backStackDownload = "DOWNLOAD";
-    public FragmentManager fragmentManager;
+    final Fragment game = new GameFragment();
+    String FRAGMENT_OTHER = "other", backStackGame = "HOME";
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +41,17 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
-            fragmentManager.beginTransaction().add(R.id.contentContainer, accountFragment, "4")
-                    .hide(accountFragment).commit();
-            fragmentManager.beginTransaction().add(R.id.contentContainer, searchFragment, "3")
-                    .hide(searchFragment).commit();
-            fragmentManager.beginTransaction().add(R.id.contentContainer, downloadsFragment, "2")
-                    .hide(downloadsFragment).commit();
-            fragmentManager.beginTransaction().add(R.id.contentContainer,gameFragment, "1").commit();
+//        fragmentManager.beginTransaction().add(R.id.fragment_container, accountFragment, "4")
+//                .hide(accountFragment).commit();
+//        fragmentManager.beginTransaction().add(R.id.fragment_container, searchFragment, "3")
+//                .hide(searchFragment).commit();
+//        fragmentManager.beginTransaction().add(R.id.fragment_container, downloadsFragment, "2")
+//                .hide(downloadsFragment).commit();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container,gameFragment, "0").commit();
+        fragmentTransaction.addToBackStack(gameFragment.toString());
 
-
-
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+       bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.game);
         bottomNavigationView.setOnNavigationItemSelectedListener(
@@ -61,30 +59,21 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
+
                             case R.id.account:
-                                Log.i("tabs", FRAGMENT_OTHER);
-                                viewFragment(accountFragment, FRAGMENT_OTHER);
+                                viewFragment(accountFragment);
                                 break;
 
                             case R.id.download:
-                                if(backStackDownload.equals("DOWNLOAD"))
-                                    viewFragment(downloadsFragment, backStackDownload);
-                                else if(backStackDownload.equals("download1"))
-                                    viewFragment(fGame1, "download1");
-
-                                Log.i("tabs","2");
+                                viewFragment(downloadsFragment);
                                 break;
 
                             case R.id.search:
-                                Log.i("tabs","3");
-                                viewFragment(searchFragment, FRAGMENT_OTHER);
+                                viewFragment(searchFragment);
                                 break;
 
                             case R.id.game:
-                                if(backStackGame.equals("HOME"))
-                                    viewFragment(gameFragment, backStackGame);
-                                else if(backStackGame.equals("game1"))
-                                    viewFragment(fGame1, "game1");
+                                viewFragment(gameFragment);
                                 break;
                         }
                         return true;
@@ -92,54 +81,62 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void viewFragment(final Fragment fragment, String name){
-        Log.i("backs", String.valueOf(active));
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.hide(active).show(fragment).commit();
-        active = fragment;
-        Log.i("backs", String.valueOf(active));
-        final int BackstackCount = fragmentManager.getBackStackEntryCount();
-       // if( name.equals(FRAGMENT_OTHER)|| name.equals("game1") ) {
-            fragmentTransaction.addToBackStack(name);
-            Log.i("backs", String.valueOf(BackstackCount)+"   "+name);
-        Log.i("backs", String.valueOf(fragmentManager.getBackStackEntryCount()));
-       // }
-        fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-            @Override
-            public void onBackStackChanged() {
-                if( fragmentManager.getBackStackEntryCount() <= BackstackCount){
-                    if(backStackDownload.equals("DOWNLOAD")){
+    private void viewFragment(Fragment fragment){
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_out_right, android.R.anim.slide_out_right);
+        fragmentTransaction.replace(R.id.fragment_container,fragment).commit();
 
-                        fragmentManager.beginTransaction().hide(downloadsFragment)
-                                .hide(searchFragment).hide(accountFragment).commit();
-                        fragmentManager.popBackStack(backStackGame, POP_BACK_STACK_INCLUSIVE);
-                        fragmentManager.removeOnBackStackChangedListener(this);
+//        if(addToBackStack) {
+//            Log.i("backstack", fragment.toString());
+//            fragmentTransaction.addToBackStack(null);
+//        }
+//        fragmentTransaction.hide(active).show(fragment).commit();
+//        active = fragment;
 
-                    }else if(backStackDownload.equals("download1")) {
-
-                        fragmentManager.beginTransaction().hide(gameFragment).hide(searchFragment)
-                                .hide(accountFragment).commit();
-                        fragmentManager.popBackStack(backStackDownload, POP_BACK_STACK_INCLUSIVE);
-                        fragmentManager.removeOnBackStackChangedListener(this);
-                        backStackDownload = "DOWNLOAD";
-                        active = downloadsFragment;
-                    }
-
-                    if(backStackGame.equals("HOME"))
-                        active = gameFragment;
-                    if(backStackGame.equals("game1"))
-                        active = fGame1;
-                }
-            }
-        });
+//        Log.i("backs", String.valueOf(active));
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.hide(active).show(fragment).commit();
+//        active = fragment;
+//        Log.i("backs", String.valueOf(active));
+//        final int BackstackCount = fragmentManager.getBackStackEntryCount();
+//        // if( name.equals(FRAGMENT_OTHER)|| name.equals("game1") ) {
+//        fragmentTransaction.addToBackStack(name);
+//        Log.i("backs", String.valueOf(BackstackCount)+"   "+name);
+//        Log.i("backs", String.valueOf(fragmentManager.getBackStackEntryCount()));
+//        // }
+//        fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+//            @Override
+//            public void onBackStackChanged() {
+//                if( fragmentManager.getBackStackEntryCount() <= BackstackCount){
+//                    if(backStackDownload.equals("DOWNLOAD")){
+//
+//                        fragmentManager.beginTransaction().hide(downloadsFragment)
+//                                .hide(searchFragment).hide(accountFragment).commit();
+//                        fragmentManager.popBackStack(backStackGame, POP_BACK_STACK_INCLUSIVE);
+//                        fragmentManager.removeOnBackStackChangedListener(this);
+//
+//                    }else if(backStackDownload.equals("download1")) {
+//
+//                        fragmentManager.beginTransaction().hide(gameFragment).hide(searchFragment)
+//                                .hide(accountFragment).commit();
+//                        fragmentManager.popBackStack(backStackDownload, POP_BACK_STACK_INCLUSIVE);
+//                        backStackDownload = "DOWNLOAD";//                        fragmentManager.removeOnBackStackChangedListener(this);
+//                        active = downloadsFragment;
+//                    }
+//
+//                    if(backStackGame.equals("HOME"))
+//                        active = gameFragment;
+//                    if(backStackGame.equals("game1"))
+//                        active = fGame1;
+//                }
+//            }
+//        });
     }
 
     public void addFragmentOnTop(Fragment fragment) {
         fGame1 = fragment;
-        fragmentManager.beginTransaction().add(R.id.contentContainer,fGame1,"game1").commit();
-        viewFragment(fGame1, "game1");
+        viewFragment(fGame1);
     }
-
 
     private void details() {
 
@@ -170,5 +167,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fragments = getSupportFragmentManager();
+       // Fragment homeFrag = fragments.findFragmentByTag("0");
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.fragment_container);
+        int tab = bottomNavigationView.getSelectedItemId();
+        Log.i("backstackcunter", String.valueOf(fragments.getBackStackEntryCount()+
+                currentFragment.toString())+"id==="+tab);
+        if (fragments.getBackStackEntryCount() >= 1 && currentFragment!=gameFragment) {
+            // We have fragments on the backstack that are poppable
+            //fragmentManager.popBackStack(gameFragment.toString(), POP_BACK_STACK_INCLUSIVE);
+            //fragments.popBackStackImmediate();
+            bottomNavigationView.setSelectedItemId(R.id.game);
+        } else {
+            Log.i("backstackcunter", "backssss");
+            supportFinishAfterTransition();
+        }
     }
 }

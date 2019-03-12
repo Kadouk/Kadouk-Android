@@ -23,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GameFragment extends Fragment implements FragmentManager.OnBackStackChangedListener {
+public class GameFragment extends Fragment  {
 
     RecyclerView mRecyclerViewApps, mRecyclerViewCategories;
     RecyclerView.LayoutManager mLayoutManagerApps, mLayoutManagerCategories;
@@ -40,7 +40,7 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
         ((MainActivity)getActivity()).setSupportActionBar(myToolbar);
         getContent();
 
-        getActivity().getSupportFragmentManager().addOnBackStackChangedListener(this);
+       //getActivity().getSupportFragmentManager().addOnBackStackChangedListener(this);
         getCatContent(1);
 
         mRecyclerViewApps = view.findViewById(R.id.game_recycler_apps);
@@ -85,11 +85,11 @@ public class GameFragment extends Fragment implements FragmentManager.OnBackStac
     ///////// bzese crash mishe vaghti app ro baz mikoni va back mizani, chon upButton nadare va in mikhad hide kone. /////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void onBackStackChanged() {
-        if (getActivity().getSupportFragmentManager().getBackStackEntryCount() < 1) {
-            ((MainActivity) getActivity()).hideUpButton();
-        }
-    }
+//    public void onBackStackChanged() {
+//        if (getActivity().getSupportFragmentManager().getBackStackEntryCount() > 1) {
+//            ((MainActivity) getActivity()).hideUpButton();
+//        }
+//    }
 
     private void getContent() {
 

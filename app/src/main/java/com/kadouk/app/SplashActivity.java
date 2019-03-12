@@ -120,6 +120,7 @@ public class SplashActivity extends AppCompatActivity {
                     Globals.setAllCategories(response.body().getCategoryRespons());
                      Log.i("allCat",Globals.allCategories.get(0).getCatName());
                     Log.i("token", "eshteba = " + SharedPreferences.getString(FirstRun,null));
+                    finish();
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 }
             }
