@@ -13,7 +13,6 @@ public class AllCategoryResponse {
     @SerializedName("cats")
     private List<CategoryResponse> categoryRespons;
 
-
     public List<CategoryResponse> getCategoryRespons() {
         return categoryRespons;
     }

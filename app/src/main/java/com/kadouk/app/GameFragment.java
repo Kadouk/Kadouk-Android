@@ -38,7 +38,7 @@ public class GameFragment extends Fragment  {
 
         Toolbar myToolbar = (Toolbar) view.findViewById(R.id.toolbar);
         ((MainActivity)getActivity()).setSupportActionBar(myToolbar);
-        getContent();
+        getCategory();
 
        //getActivity().getSupportFragmentManager().addOnBackStackChangedListener(this);
         getCatContent(1);
@@ -91,7 +91,7 @@ public class GameFragment extends Fragment  {
 //        }
 //    }
 
-    private void getContent() {
+    private void getCategory() {
 
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
         Call<ContentRespons> call = apiInterface.content();

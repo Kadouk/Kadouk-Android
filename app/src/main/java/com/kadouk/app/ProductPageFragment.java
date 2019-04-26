@@ -56,7 +56,7 @@ public class ProductPageFragment extends Fragment {
     static Button BtnDownload;
 
 //    final String URL1 = "http://www.appsapk.com/downloading/latest/WeChat-6.5.7.apk";
-    final String URL1 = "http://192.168.183.130:8000/api/download/apk/1/app/43/anaconda.zip";
+    final String URL1 = "http://31.184.135.109//api/download/apk/1/app/43/game.apk";
 
 
     static ProgressBar pbDownload;
@@ -244,7 +244,7 @@ public class ProductPageFragment extends Fragment {
         call.enqueue(new Callback<Content>() {
             @Override
             public void onResponse(Call<Content> call, Response<Content> response) {
-                String appImageUrl ="http://kadouk.com/kadouk/public/api/download/image/"
+                String appImageUrl ="http://31.184.135.109/api/download/image/"
                         + response.body().getImage();
                 //Log.i("appImageUrl",appImageUrl);
 

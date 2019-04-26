@@ -47,7 +47,7 @@ public class VerticalListAdapter extends RecyclerView.Adapter<VerticalListAdapte
 
         viewHolder.txvAppName.setText(contents.get(position).getName());
         viewHolder.txvAppDesc.setText(contents.get(position).getDesc());
-        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/"
+        String imageUrl = "http://31.184.135.109/api/download/image/"
                 + contents.get(position).getImage();
 
         Log.i("LOADPIC", imageUrl + position);

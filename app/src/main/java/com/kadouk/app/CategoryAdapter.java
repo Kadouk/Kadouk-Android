@@ -56,7 +56,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") int position) {
-        String imageUrl = "http://kadouk.com/kadouk/public/api/download/image/"+content.get(position).getImage();
+        String imageUrl = "http://31.184.135.109/api/download/image/"+content.get(position).getImage();
         Log.i("LOADPIC",imageUrl + position);
 
         Glide

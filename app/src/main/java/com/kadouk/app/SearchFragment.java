@@ -128,7 +128,8 @@ public class SearchFragment extends Fragment {
         }
 
         public void onTextChanged(CharSequence s, int start, int before, int count){
-           getSearchList(String.valueOf(EditTextSearch.getText()));
+            if(EditTextSearch.getText().length()>=1)
+                getSearchList(String.valueOf(EditTextSearch.getText()));
         }
 
         public void afterTextChanged(Editable s) {

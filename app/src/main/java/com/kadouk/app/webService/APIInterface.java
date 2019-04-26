@@ -1,6 +1,7 @@
 package com.kadouk.app.webService;
 
 import com.kadouk.app.model.AllCategoryResponse;
+import com.kadouk.app.model.AppUpdate;
 import com.kadouk.app.model.CategoryResponse;
 import com.kadouk.app.model.Content;
 import com.kadouk.app.model.ContentRespons;
@@ -61,5 +62,10 @@ public interface APIInterface{
 
  @POST ("content/search")
  @FormUrlEncoded
- Call<CategoryResponse> searchAppDataByDetails (@Field("s") String searchText) ;
+ Call<CategoryResponse> searchAppDataByDetails (@Field("s") String searchText);
+
+ @POST ("update/kadouk")
+ @FormUrlEncoded
+ Call<AppUpdate> checkUpdate (@Field("version") String appVersion) ;
+
 }

@@ -133,5 +133,10 @@
     <string name="category">دسته بندی</string>
     <string name="images">تصاویر</string>
     <string name="tags">برچسب ها</string>
+    <string name="download_update_text_optional">نسخه جدید رو بگیر ;)</string>
+    <string name="download_update_bigtext_optional">نسخه جدید نرم افزار در دسترس است آیا میخواهید بروزرسانی کنید؟</string>
+    <string name="download_update_alert_force">بدون بروزرسانی قادر به ادامه دادن نمیباشد، آیا بروزرسانی میکنید؟</string>
+    <string name="dwonload_update_alert_yes">باشه</string>
+    <string name="dwonload_update_alert_no">نه</string>
 
 </resources>
